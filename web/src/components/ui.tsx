@@ -57,7 +57,11 @@ export function Btn({ children, onClick, active, className, title, disabled, kin
   );
 }
 
-export function Segmented<T extends string>({ value, options, onChange, size = 'sm' }: { value: T; options: { value: T; label: ReactNode; title?: string }[]; onChange: (v: T) => void; size?: 'sm' | 'xs' }) {
+/**
+ * A disabled option stays focusable and keeps its tooltip (aria-disabled, not `disabled`), so its
+ * title can say why it is unavailable; clicking it does nothing.
+ */
+export function Segmented<T extends string>({ value, options, onChange, size = 'sm' }: { value: T; options: { value: T; label: ReactNode; title?: string; disabled?: boolean }[]; onChange: (v: T) => void; size?: 'sm' | 'xs' }) {
   return (
     <div className="inline-flex rounded-md bg-ink-800 p-0.5" role="radiogroup">
       {options.map((o) => (
@@ -66,9 +70,14 @@ export function Segmented<T extends string>({ value, options, onChange, size = '
           type="button"
           role="radio"
           aria-checked={value === o.value}
+          aria-disabled={o.disabled || undefined}
           title={o.title}
-          onClick={() => onChange(o.value)}
-          className={clsx('rounded-sm px-2 font-medium transition-colors pointer-coarse:min-h-11 focus-visible:outline-2 focus-visible:outline-accent', size === 'sm' ? 'h-6 text-xs' : 'h-5 text-[11px]', value === o.value ? 'bg-ink-900 text-paper shadow-float' : 'text-ink-300 hover:text-paper')}
+          onClick={() => !o.disabled && onChange(o.value)}
+          className={clsx(
+            'rounded-sm px-2 font-medium transition-colors pointer-coarse:min-h-11 focus-visible:outline-2 focus-visible:outline-accent',
+            size === 'sm' ? 'h-6 text-xs' : 'h-5 text-[11px]',
+            value === o.value ? 'bg-ink-900 text-paper shadow-float' : o.disabled ? 'cursor-not-allowed text-ink-500' : 'text-ink-300 hover:text-paper',
+          )}
         >
           {o.label}
         </button>

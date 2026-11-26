@@ -11,6 +11,7 @@ import { facadePoint, floorSunPatches, type PlacedWindow } from '../lib/obstacle
 import type { Vec2, Vec3 } from '../schema/scene';
 import { daySamples } from '../engine';
 import { Segmented } from './ui';
+import { cameraPose, fallbackView } from '../lib/twinCamera';
 import type { WindowSampleResult } from '../engine/types';
 import RoomControls from './twin/RoomControls';
 import { floorLabel } from '../lib/apartmentOps';
@@ -217,26 +218,22 @@ function CameraRig({ mode, focus, street, apt }: { mode: ViewMode; focus: Vec3; 
   const { camera } = useThree();
   useEffect(() => {
     const pc = camera as THREE.PerspectiveCamera;
-    pc.fov = mode === 'interior' ? 78 : mode === 'street' && fin(street.vfov) && street.vfov > 1 && street.vfov < 170 ? street.vfov : 42;
+    // The wide indoor lens only once there is a room to stand in; otherwise the camera stays put.
+    pc.fov = mode === 'interior' && apt ? 78 : mode === 'street' && fin(street.vfov) && street.vfov > 1 && street.vfov < 170 ? street.vfov : 42;
     pc.updateProjectionMatrix();
-  }, [mode, camera, street.vfov]);
+  }, [mode, camera, street.vfov, !!apt]);
   const controls = useThree((s) => s.controls) as unknown as OrbitControlsImpl | null;
   const anim = useRef<{ from: THREE.Vector3; to: THREE.Vector3; tFrom: THREE.Vector3; tTo: THREE.Vector3; k: number } | null>(null);
   useEffect(() => {
-    let eye: Vec3;
-    let tgt: Vec3;
-    if (mode === 'top') { eye = [focus[0], focus[1] - 0.01, 260]; tgt = focus; }
-    else if (mode === 'street') { eye = street.eye; tgt = [street.eye[0] + street.dir[0] * 30, street.eye[1] + street.dir[1] * 30, street.eye[2] + street.dir[2] * 30]; }
-    else if (mode === 'exterior' && apt) { eye = apt.eye; tgt = apt.target; }
-    else if (mode === 'interior' && apt) { eye = apt.interior.eye; tgt = apt.interior.target; }
-    else { eye = [focus[0] - 110, focus[1] - 140, 120]; tgt = focus; }
-    // A non-finite eye or target would put NaN into the camera matrix and blank the whole canvas.
-    if (!finVec(eye) || !finVec(tgt)) return;
+    // null: an apartment view without an apartment, or a non-finite pose. Leave the camera alone.
+    const pose = cameraPose(mode, focus, street, apt);
+    if (!pose) return;
+    const { eye, target: tgt } = pose;
     const tFrom = controls && finVec(controls.target.toArray()) ? controls.target.clone() : enu2three(focus);
     const from = finVec(camera.position.toArray()) ? camera.position.clone() : enu2three(eye);
     anim.current = { from, to: enu2three(eye), tFrom, tTo: enu2three(tgt), k: 0 };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mode, focus[0], focus[1], apt?.eye[0], apt?.eye[1], apt?.interior.eye[2]]);
+  }, [mode, focus[0], focus[1], apt?.eye[0], apt?.eye[1], apt?.interior.eye[2], mode === 'interior' ? apt?.interior.eye[0] : null, mode === 'interior' ? apt?.interior.eye[1] : null]);
   useFrame((_, dt) => {
     const a = anim.current;
     if (!a) return;
@@ -340,15 +337,13 @@ function TwinViewBody({ sim, scene, camParams }: { sim: ReturnType<typeof useSim
     const st = useStore.getState();
     if (!st.selectedWindowIds.length && st.viewMode !== 'street') st.set({ viewMode: 'street' });
   }, [sceneId]);
-  // Simple mode: selecting a window from nothing shows the apartment once; clearing the selection returns to the street.
+  // Simple mode: selecting a window from nothing shows the apartment once (leaving it is the apartment effect below).
   const prevSelCount = useRef(selected.length);
   useEffect(() => {
     const before = prevSelCount.current;
     prevSelCount.current = selected.length;
     const st = useStore.getState();
-    if (st.uiMode !== 'simple') return;
-    if (before === 0 && selected.length > 0) st.set({ viewMode: 'exterior' });
-    else if (before > 0 && selected.length === 0 && (st.viewMode === 'exterior' || st.viewMode === 'interior')) st.set({ viewMode: 'street' });
+    if (st.uiMode === 'simple' && before === 0 && selected.length > 0) st.set({ viewMode: 'exterior' });
   }, [selected.length]);
 
   const sunPath = useMemo(() => {
@@ -404,6 +399,16 @@ function TwinViewBody({ sim, scene, camParams }: { sim: ReturnType<typeof useSim
     };
     return finPts([cams.eye, cams.target, cams.interior.eye, cams.interior.target]) ? cams : null;
   }, [apt]);
+  // Apartment and Inside need an apartment. When there is none (selection cleared, the selected window deleted
+  // or no longer on a facade, a restored selection that no longer exists, degenerate geometry), go back to the
+  // street rather than sit on a view that cannot show anything. Only once the reconstruction exists: while it
+  // is being built there is no apartment yet, and the pending pick sets the selection and view together.
+  const hasAptCams = !!aptCams;
+  useEffect(() => {
+    const st = useStore.getState();
+    const next = fallbackView(st.viewMode, hasAptCams, !!sim);
+    if (next) st.set({ viewMode: next });
+  }, [sim, hasAptCams, viewMode]);
   const street = useMemo(() => {
     const h = ((fin(camParams.heading) ? camParams.heading : 0) * Math.PI) / 180;
     const p = ((fin(camParams.pitch) ? camParams.pitch : 0) * Math.PI) / 180;
@@ -429,7 +434,8 @@ function TwinViewBody({ sim, scene, camParams }: { sim: ReturnType<typeof useSim
 
   if (!sim) return <div className="canvas-dots grid h-full place-items-center text-xs text-ink-400">Reconstructing…</div>;
   const { geo, recon } = sim;
-  const hideTarget = cutaway || viewMode === 'interior';
+  // Inside without an apartment shows nothing to stand in, so keep the building.
+  const hideTarget = cutaway || (viewMode === 'interior' && !!aptCams);
   // The building that is ghosted for cutaway/interior: the apartment's own building (it may be a
   // neighbour photographed in an extra view), else the target.
   const cutBuildingId = apt?.windows[0]?.fw.buildingId ?? scene.targetBuildingId;
@@ -596,8 +602,8 @@ function TwinViewBody({ sim, scene, camParams }: { sim: ReturnType<typeof useSim
               options={[
                 { value: 'overview', label: 'Overview' },
                 { value: 'street', label: 'Street', title: 'From the photographer’s position' },
-                { value: 'exterior', label: 'Apartment', title: 'Selected apartment exterior' },
-                { value: 'interior', label: 'Interior', title: 'Inside the hypothetical apartment' },
+                { value: 'exterior', label: 'Apartment', title: aptCams ? 'Selected apartment exterior' : 'Pick a window first', disabled: !aptCams },
+                { value: 'interior', label: 'Interior', title: aptCams ? 'Inside the hypothetical apartment' : 'Pick a window first', disabled: !aptCams },
                 { value: 'top', label: 'Top' },
               ]}
             />
@@ -607,8 +613,8 @@ function TwinViewBody({ sim, scene, camParams }: { sim: ReturnType<typeof useSim
               onChange={(v) => set({ viewMode: v })}
               options={[
                 { value: 'street', label: 'Street', title: 'From where the photo was taken' },
-                { value: 'exterior', label: 'Apartment', title: apt ? 'Your apartment from outside' : 'Pick a window first' },
-                { value: 'interior', label: 'Inside', title: apt ? 'Inside your apartment (a guess)' : 'Pick a window first' },
+                { value: 'exterior', label: 'Apartment', title: aptCams ? 'Your apartment from outside' : 'Pick a window first', disabled: !aptCams },
+                { value: 'interior', label: 'Inside', title: aptCams ? 'Inside your apartment (a guess)' : 'Pick a window first', disabled: !aptCams },
               ]}
             />
           )}
