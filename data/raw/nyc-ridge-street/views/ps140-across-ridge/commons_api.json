@@ -1,0 +1,381 @@
+{
+ "batchcomplete": true,
+ "query": {
+  "pages": [
+   {
+    "pageid": 67480043,
+    "ns": 6,
+    "title": "File:Straus School PS 140 jeh.jpg",
+    "imagerepository": "local",
+    "imageinfo": [
+     {
+      "size": 2408648,
+      "width": 3561,
+      "height": 2671,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Straus_School_PS_140_jeh.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "descriptionurl": "https://commons.wikimedia.org/wiki/File:Straus_School_PS_140_jeh.jpg",
+      "descriptionshorturl": "https://commons.wikimedia.org/wiki/Special:Redirect/page/67480043",
+      "sha1": "b4465bf98c4dfd3a9a6b275f065147622a1b3a03",
+      "commonmetadata": [
+       {
+        "name": "ImageDescription",
+        "value": [
+         {
+          "name": "x-default",
+          "value": "Looking north from street at school on a cloudy late afternoon"
+         },
+         {
+          "name": "_type",
+          "value": "lang"
+         }
+        ]
+       },
+       {
+        "name": "Make",
+        "value": "NIKON"
+       },
+       {
+        "name": "Model",
+        "value": "COOLPIX P610"
+       },
+       {
+        "name": "Orientation",
+        "value": 1
+       },
+       {
+        "name": "XResolution",
+        "value": "300/1"
+       },
+       {
+        "name": "YResolution",
+        "value": "300/1"
+       },
+       {
+        "name": "ResolutionUnit",
+        "value": 2
+       },
+       {
+        "name": "Software",
+        "value": "Windows Photo Editor 10.0.10011.16384"
+       },
+       {
+        "name": "DateTime",
+        "value": "2018:03:18 18:55:55"
+       },
+       {
+        "name": "YCbCrPositioning",
+        "value": 1
+       },
+       {
+        "name": "ExposureTime",
+        "value": "10/1250"
+       },
+       {
+        "name": "FNumber",
+        "value": "33/10"
+       },
+       {
+        "name": "ExposureProgram",
+        "value": 2
+       },
+       {
+        "name": "ISOSpeedRatings",
+        "value": 100
+       },
+       {
+        "name": "ExifVersion",
+        "value": "0230"
+       },
+       {
+        "name": "DateTimeOriginal",
+        "value": "2018:03:10 16:53:48"
+       },
+       {
+        "name": "DateTimeDigitized",
+        "value": "2018:03:10 16:53:48"
+       },
+       {
+        "name": "ComponentsConfiguration",
+        "value": [
+         {
+          "name": 0,
+          "value": 1
+         },
+         {
+          "name": 1,
+          "value": 2
+         },
+         {
+          "name": 2,
+          "value": 3
+         },
+         {
+          "name": 3,
+          "value": 0
+         },
+         {
+          "name": "_type",
+          "value": "ol"
+         }
+        ]
+       },
+       {
+        "name": "CompressedBitsPerPixel",
+        "value": "2/1"
+       },
+       {
+        "name": "ExposureBiasValue",
+        "value": "3/10"
+       },
+       {
+        "name": "MaxApertureValue",
+        "value": "34/10"
+       },
+       {
+        "name": "MeteringMode",
+        "value": 5
+       },
+       {
+        "name": "LightSource",
+        "value": 0
+       },
+       {
+        "name": "Flash",
+        "value": 16
+       },
+       {
+        "name": "FocalLength",
+        "value": "43/10"
+       },
+       {
+        "name": "FlashPixVersion",
+        "value": "0100"
+       },
+       {
+        "name": "ColorSpace",
+        "value": 1
+       },
+       {
+        "name": "FileSource",
+        "value": 3
+       },
+       {
+        "name": "SceneType",
+        "value": 1
+       },
+       {
+        "name": "CustomRendered",
+        "value": 0
+       },
+       {
+        "name": "ExposureMode",
+        "value": 0
+       },
+       {
+        "name": "WhiteBalance",
+        "value": 0
+       },
+       {
+        "name": "DigitalZoomRatio",
+        "value": "0/100"
+       },
+       {
+        "name": "FocalLengthIn35mmFilm",
+        "value": 24
+       },
+       {
+        "name": "SceneCaptureType",
+        "value": 0
+       },
+       {
+        "name": "GainControl",
+        "value": 4
+       },
+       {
+        "name": "Contrast",
+        "value": 0
+       },
+       {
+        "name": "Saturation",
+        "value": 0
+       },
+       {
+        "name": "Sharpness",
+        "value": 0
+       },
+       {
+        "name": "SubjectDistanceRange",
+        "value": 0
+       },
+       {
+        "name": "GPSLatitude",
+        "value": 40.71846166666667
+       },
+       {
+        "name": "GPSLongitude",
+        "value": -73.983385
+       },
+       {
+        "name": "GPSAltitude",
+        "value": 45.3
+       },
+       {
+        "name": "GPSTimeStamp",
+        "value": [
+         {
+          "name": 0,
+          "value": "21/1"
+         },
+         {
+          "name": 1,
+          "value": "52/1"
+         },
+         {
+          "name": 2,
+          "value": "48010/1000"
+         }
+        ]
+       },
+       {
+        "name": "GPSSatellites",
+        "value": "11 "
+       },
+       {
+        "name": "GPSMapDatum",
+        "value": "WGS84"
+       },
+       {
+        "name": "GPSDateStamp",
+        "value": "2018:03:10"
+       },
+       {
+        "name": "GPSVersionID",
+        "value": "2.3.0.0"
+       },
+       {
+        "name": "ObjectName",
+        "value": [
+         {
+          "name": "x-default",
+          "value": "Looking north from street at school on a cloudy late afternoon"
+         },
+         {
+          "name": "_type",
+          "value": "lang"
+         }
+        ]
+       }
+      ],
+      "extmetadata": {
+       "DateTime": {
+        "value": "2018-03-19 01:19:08",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+       },
+       "ObjectName": {
+        "value": "Straus School PS 140 jeh",
+        "source": "mediawiki-metadata"
+       },
+       "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+       },
+       "Categories": {
+        "value": "Rivington Street (Manhattan)|Elementary schools in Manhattan|Self-published work|Files with coordinates missing SDC location of creation|United States photographs taken on 2018-03-10|2018 in the Lower East Side|March 2018 in Manhattan, New York City|2018 Manhattan photos by Jim.henderson|Schools in the Lower East Side, Manhattan",
+        "source": "commons-categories",
+        "hidden": ""
+       },
+       "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+       },
+       "GPSLatitude": {
+        "value": "40.718460",
+        "source": "commons-desc-page"
+       },
+       "GPSLongitude": {
+        "value": "-73.983390",
+        "source": "commons-desc-page"
+       },
+       "GPSMapDatum": {
+        "value": "WGS-84",
+        "source": "commons-desc-page",
+        "hidden": ""
+       },
+       "ImageDescription": {
+        "value": "Looking north from street at school on a cloudy late afternoon",
+        "source": "commons-desc-page"
+       },
+       "DateTimeOriginal": {
+        "value": "Taken on 10 March 2018, 16:53:48",
+        "source": "commons-desc-page"
+       },
+       "Credit": {
+        "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+        "source": "commons-desc-page"
+       },
+       "Artist": {
+        "value": "<a href=\"//commons.wikimedia.org/wiki/User:Jim.henderson\" title=\"User:Jim.henderson\">Jim.henderson</a>",
+        "source": "commons-desc-page"
+       },
+       "LicenseShortName": {
+        "value": "CC BY-SA 4.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+       },
+       "UsageTerms": {
+        "value": "Creative Commons Attribution-Share Alike 4.0",
+        "source": "commons-desc-page"
+       },
+       "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+       },
+       "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "commons-desc-page"
+       },
+       "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+       },
+       "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+       },
+       "License": {
+        "value": "cc-by-sa-4.0",
+        "source": "commons-templates",
+        "hidden": ""
+       }
+      },
+      "mime": "image/jpeg"
+     }
+    ],
+    "revisions": [
+     {
+      "revid": 1181492038,
+      "parentid": 710914479,
+      "timestamp": "2026-03-15T11:34:38Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "=={{int:filedesc}}==\n{{Information\n|description={{en|1=Looking north from street at school on a cloudy late afternoon}}\n|date={{Taken on|2018-03-10 16:53:48|location=United States}}\n|source={{own}}\n|author=[[User:Jim.henderson|Jim.henderson]]\n|permission=\n|other versions=\n}}\n{{Location|40.71846|-73.98339|heading:NbW}}\n=={{int:license-header}}==\n{{self|cc-by-sa-4.0}}\n\n[[Category:Elementary schools in Manhattan]]\n[[Category:Rivington Street (Manhattan)]]\n[[Category:March 2018 in Manhattan, New York City]]\n[[Category:2018 Manhattan photos by Jim.henderson]]\n[[Category:2018 in the Lower East Side]]\n[[Category:Schools in the Lower East Side, Manhattan]]"
+       }
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "_sunvision": {
+  "retrieved": "2026-11-25",
+  "endpoint": "https://commons.wikimedia.org/w/api.php"
+ }
+}

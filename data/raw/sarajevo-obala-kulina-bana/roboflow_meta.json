@@ -1,0 +1,11 @@
+{
+  "provider": "roboflow-hosted",
+  "modelId": "building-facade-segmentation-instance/4",
+  "inferredAt": "2026-11-25T18:37:38+00:00",
+  "inputWidth": 2000,
+  "inputHeight": 1333,
+  "confidence": 0.3,
+  "inferenceMs": 6677.0,
+  "service": "https://serverless.roboflow.com",
+  "note": "Recorded during the second Sarajevo candidate test (one hosted call per finalist, none retried) on this exact web/public/examples/sarajevo-obala-kulina-bana/photo.jpg (SHA-1 8471191858d0dc1355bafbd7d3f4c985aeef100a); scripts/analyze_example.py replays it and never calls Roboflow again. inferenceMs is the wall-clock latency of that call; the raw 'time' field (0.67 s) is server-side only."
+}

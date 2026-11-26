@@ -1,0 +1,695 @@
+{
+  "generated": "2026-11-26T10:20:14.974Z",
+  "note": "Produced by web/src/lib/__tests__/examples.test.ts from the recorded fixtures. Errors are reported, not tuned.",
+  "results": [
+    {
+      "id": "amsterdam-herengracht",
+      "windowsDetected": 38,
+      "windowsOnTargetFacade": 13,
+      "cameraFixture": {
+        "pitch": 8,
+        "heading": 273.37,
+        "roll": 0,
+        "hfov": 26.1,
+        "provenance": {
+          "position": "inferred",
+          "heading": "inferred",
+          "pitch": "assumed",
+          "hfov": "inferred",
+          "height": "assumed"
+        },
+        "hfovRange": [
+          13.1,
+          27.4
+        ]
+      },
+      "cameraStore": {
+        "pitch": 6.3,
+        "heading": 273.37,
+        "roll": 0,
+        "hfov": 26.1,
+        "position": [
+          54.94,
+          -1.82
+        ],
+        "provenance": {
+          "position": "inferred",
+          "heading": "inferred",
+          "pitch": "inferred",
+          "hfov": "inferred",
+          "height": "assumed"
+        }
+      },
+      "cameraAutoAligned": false,
+      "prepareSceneMs": 365,
+      "pitchInitial": 8,
+      "pitchCalibrated": 6.3,
+      "groundResidualInitial": 1.1734191901062974,
+      "groundResidual": -0.014077554139214854,
+      "heightInitialCamera": 20.7,
+      "height": 19.27,
+      "low": 19.27,
+      "high": 25.17,
+      "floors": 5,
+      "floorHeight": 4.14,
+      "methods": [
+        {
+          "method": "A · floors × floor height",
+          "value": 21.91,
+          "used": true,
+          "weight": 0.04
+        },
+        {
+          "method": "B · camera ray ∩ facade plane",
+          "value": 18.17,
+          "used": true,
+          "weight": 0.95
+        },
+        {
+          "method": "C · calibrated relative depth",
+          "value": 24.29,
+          "used": true,
+          "weight": 0.01
+        }
+      ],
+      "heightNote": "3 methods fused (inverse-variance, heuristic σ). Raised to clear the highest detected window (top + 0.3 m; was 18.4 m, inferred).",
+      "mapOnlyHeight": 21.3,
+      "mapOnlySource": "map-tag",
+      "reference": {
+        "source": "3D BAG v2 (api.3dbag.nl, CC BY 4.0), pand NL.IMBAG.Pand.0363100012176861",
+        "height": 22.29
+      },
+      "error": -3.02,
+      "errorInitialCamera": -1.59,
+      "referenceLevels": null,
+      "juneSolsticeDirectMinutesFacadeMean": 347,
+      "multiView": {
+        "views": [
+          {
+            "id": "across-canal-261",
+            "pitch": [
+              8,
+              7.685688339393598
+            ],
+            "heading": [
+              94.01,
+              97.83
+            ],
+            "hfov": [
+              26.1,
+              24.32
+            ],
+            "aligned": true,
+            "groundResidual": -0.10281779249614775,
+            "windowsDetected": 36,
+            "windowsPlaced": 29,
+            "duplicates": 0,
+            "depthCalibrated": true,
+            "measured": [
+              "way/266695027",
+              "way/266695085"
+            ]
+          },
+          {
+            "id": "across-canal-263",
+            "pitch": [
+              8,
+              7.5
+            ],
+            "heading": [
+              93.19,
+              93.19
+            ],
+            "hfov": [
+              21.93,
+              21.93
+            ],
+            "aligned": false,
+            "groundResidual": -0.026382270002434094,
+            "windowsDetected": 21,
+            "windowsPlaced": 20,
+            "duplicates": 1,
+            "depthCalibrated": false,
+            "measured": [
+              "way/266695085",
+              "way/266695086",
+              "way/266695123"
+            ]
+          }
+        ],
+        "targetHeight": 19.27,
+        "photoBuildingsSingle": 4,
+        "photoBuildingsMulti": 8,
+        "gainedPhotoHeights": [
+          {
+            "id": "way/266695027",
+            "views": [
+              "across-canal-261"
+            ],
+            "height": 19.99,
+            "low": 15.17,
+            "high": 24.82,
+            "singleViewHeight": 20.2,
+            "singleViewSource": "map-tag",
+            "osmHeight": 20.2,
+            "osmLevels": null,
+            "floors": 5,
+            "methods": [
+              "A · floors × floor height · Across the canal: Herengracht 259–263 (east quay): 15.2",
+              "Map · osm:height: 20.2"
+            ]
+          },
+          {
+            "id": "way/266695085",
+            "views": [
+              "across-canal-261",
+              "across-canal-263"
+            ],
+            "height": 15.08,
+            "low": 15.08,
+            "high": 16.58,
+            "singleViewHeight": 16.6,
+            "singleViewSource": "map-tag",
+            "osmHeight": 16.6,
+            "osmLevels": null,
+            "floors": 6,
+            "methods": [
+              "A · floors × floor height · Across the canal: Herengracht 259–263 (east quay): 15.9",
+              "B · camera ray ∩ facade plane · Across the canal: Herengracht 259–263 (east quay): 14.6",
+              "A · floors × floor height · Across the canal: Herengracht 261–265 (east quay): 14.4"
+            ]
+          },
+          {
+            "id": "way/266695086",
+            "views": [
+              "across-canal-263"
+            ],
+            "height": 14.53,
+            "low": 11.89,
+            "high": 17.16,
+            "singleViewHeight": 13.4,
+            "singleViewSource": "map-tag",
+            "osmHeight": 13.4,
+            "osmLevels": null,
+            "floors": 4,
+            "methods": [
+              "A · floors × floor height · Across the canal: Herengracht 261–265 (east quay): 11.9",
+              "B · camera ray ∩ facade plane · Across the canal: Herengracht 261–265 (east quay): 14.7"
+            ]
+          },
+          {
+            "id": "way/266695123",
+            "views": [
+              "across-canal-263"
+            ],
+            "height": 16.4,
+            "low": 14.6,
+            "high": 18.2,
+            "singleViewHeight": 16.6,
+            "singleViewSource": "map-tag",
+            "osmHeight": 16.6,
+            "osmLevels": null,
+            "floors": 4,
+            "methods": [
+              "A · floors × floor height · Across the canal: Herengracht 261–265 (east quay): 14.7",
+              "Map · osm:height: 16.6"
+            ]
+          }
+        ],
+        "windowsPlaced": 87,
+        "juneSolsticeDirectMinutesFacadeMean": 347
+      },
+      "depthCalibration": {
+        "alpha": 26.35714336717773,
+        "beta": 1.9025921299435686,
+        "samples": 48,
+        "rms": 0.2102451302332707
+      },
+      "behindFacade": [],
+      "warnings": [],
+      "warningsMultiView": [
+        "Across the canal: Herengracht 261–265 (east quay): Depth map could not be calibrated against street-level geometry (too few ground samples); depth method skipped.",
+        "Across the canal: Herengracht 259–263 (east quay): Window rows on way/266695086 measure 2.29 m apart through the current camera — implausible for storeys, so the camera scale (FOV, distance or pitch) is probably wrong. Geometry-based heights are set aside; calibrate in the Camera tab.",
+        "Across the canal: Herengracht 259–263 (east quay): 7 windows on way/266695086 not placed: this photo's camera scale is inconsistent with its window rows there."
+      ]
+    },
+    {
+      "id": "nyc-ridge-street",
+      "windowsDetected": 92,
+      "windowsOnTargetFacade": 81,
+      "cameraFixture": {
+        "pitch": 17.09,
+        "heading": 59.15,
+        "roll": -0.57,
+        "hfov": 41.9,
+        "provenance": {
+          "position": "inferred",
+          "heading": "inferred",
+          "pitch": "inferred",
+          "hfov": "inferred",
+          "height": "assumed"
+        },
+        "hfovRange": [
+          41.9,
+          61.6
+        ]
+      },
+      "cameraStore": {
+        "pitch": 17.09,
+        "heading": 59.15,
+        "roll": -0.57,
+        "hfov": 41.9,
+        "position": [
+          -33.77,
+          -24.09
+        ],
+        "provenance": {
+          "position": "inferred",
+          "heading": "inferred",
+          "pitch": "inferred",
+          "hfov": "inferred",
+          "height": "assumed"
+        }
+      },
+      "cameraAutoAligned": false,
+      "prepareSceneMs": 216,
+      "pitchInitial": 17.09,
+      "pitchCalibrated": 17.09,
+      "groundResidualInitial": -0.020126625092403594,
+      "groundResidual": -0.020126625092403594,
+      "heightInitialCamera": 21.31,
+      "height": 21.31,
+      "low": 20.16,
+      "high": 22.75,
+      "floors": 6,
+      "floorHeight": 3.16,
+      "methods": [
+        {
+          "method": "A · floors × floor height",
+          "value": 20.16,
+          "used": true,
+          "weight": 0.08
+        },
+        {
+          "method": "B · camera ray ∩ facade plane",
+          "value": 21.41,
+          "used": true,
+          "weight": 0.92
+        }
+      ],
+      "heightNote": "2 methods fused (inverse-variance, heuristic σ).",
+      "mapOnlyHeight": 21.4,
+      "mapOnlySource": "map-tag",
+      "reference": {
+        "source": "OpenStreetMap tags on way/278284302 (ODbL)",
+        "height": 21.4
+      },
+      "error": -0.09,
+      "errorInitialCamera": -0.09,
+      "referenceLevels": {
+        "source": "OpenStreetMap tags on way/278284302 (ODbL)",
+        "levels": 5
+      },
+      "juneSolsticeDirectMinutesFacadeMean": 446,
+      "multiView": {
+        "views": [
+          {
+            "id": "ps140-across-ridge",
+            "pitch": [
+              8,
+              8
+            ],
+            "heading": [
+              348.75,
+              348.75
+            ],
+            "hfov": [
+              71.59,
+              71.59
+            ],
+            "aligned": false,
+            "groundResidual": null,
+            "windowsDetected": 10,
+            "windowsPlaced": 7,
+            "duplicates": 0,
+            "depthCalibrated": true,
+            "measured": [
+              "way/278279377"
+            ]
+          }
+        ],
+        "targetHeight": 21.31,
+        "photoBuildingsSingle": 2,
+        "photoBuildingsMulti": 3,
+        "gainedPhotoHeights": [
+          {
+            "id": "way/278279377",
+            "views": [
+              "ps140-across-ridge"
+            ],
+            "height": 11.15,
+            "low": 7.35,
+            "high": 14.96,
+            "singleViewHeight": 10.9,
+            "singleViewSource": "map-tag",
+            "osmHeight": 10.9,
+            "osmLevels": null,
+            "floors": 5,
+            "methods": [
+              "A · floors × floor height · Across Ridge Street: Nathan Straus School (PS 140): 15.0",
+              "Map · osm:height: 10.9"
+            ]
+          }
+        ],
+        "windowsPlaced": 96,
+        "juneSolsticeDirectMinutesFacadeMean": 430
+      },
+      "depthCalibration": null,
+      "behindFacade": [
+        {
+          "view": "ps140-across-ridge",
+          "rooflineSamples": 0,
+          "windows": 3
+        }
+      ],
+      "warnings": [
+        "Depth map could not be calibrated against street-level geometry (too few ground samples); depth method skipped."
+      ],
+      "warningsMultiView": [
+        "Depth map could not be calibrated against street-level geometry (too few ground samples); depth method skipped.",
+        "Across Ridge Street: Nathan Straus School (PS 140): 3 windows set aside: the depth map puts them about 3× farther than the facade they project onto (something behind it, such as a taller building further away). Those windows are not placed and count toward no floor."
+      ]
+    },
+    {
+      "id": "paris-boulevard-diderot",
+      "windowsDetected": 51,
+      "windowsOnTargetFacade": 26,
+      "cameraFixture": {
+        "pitch": 22,
+        "heading": 353.46,
+        "roll": 0,
+        "hfov": 71.6,
+        "provenance": {
+          "position": "observed",
+          "heading": "observed",
+          "pitch": "assumed",
+          "hfov": "inferred",
+          "height": "assumed"
+        },
+        "hfovRange": [
+          35.8,
+          75.2
+        ]
+      },
+      "cameraStore": {
+        "pitch": 9.906510725419292,
+        "heading": 348.87,
+        "roll": 0.27,
+        "hfov": 75.2,
+        "position": [
+          15.91,
+          -43.75
+        ],
+        "provenance": {
+          "position": "inferred",
+          "heading": "inferred",
+          "pitch": "inferred",
+          "hfov": "inferred",
+          "height": "assumed"
+        }
+      },
+      "cameraAutoAligned": true,
+      "prepareSceneMs": 344,
+      "pitchInitial": 22,
+      "pitchCalibrated": 9.906510725419292,
+      "groundResidualInitial": 7.659036122645687,
+      "groundResidual": 0.020906655155821907,
+      "heightInitialCamera": 35.35,
+      "height": 24.12,
+      "low": 24.12,
+      "high": 29.07,
+      "floors": 7,
+      "floorHeight": 3.78,
+      "methods": [
+        {
+          "method": "A · floors × floor height",
+          "value": 27.68,
+          "used": true,
+          "weight": 0.03
+        },
+        {
+          "method": "B · camera ray ∩ facade plane",
+          "value": 22.55,
+          "used": true,
+          "weight": 0.97
+        }
+      ],
+      "heightNote": "2 methods fused (inverse-variance, heuristic σ). Raised to clear the highest detected window (top + 0.3 m; was 22.7 m, inferred).",
+      "mapOnlyHeight": 22,
+      "mapOnlySource": "map-levels",
+      "reference": {
+        "source": "IGN BD TOPO v3 batiment BATIMENT0000000240741603 (data.geopf.fr WFS, Licence Ouverte 2.0)",
+        "height": 24.5
+      },
+      "error": -0.38,
+      "errorInitialCamera": 10.85,
+      "referenceLevels": {
+        "source": "IGN BD TOPO v3 batiment BATIMENT0000000240741603 (data.geopf.fr WFS, Licence Ouverte 2.0)",
+        "levels": 8
+      },
+      "juneSolsticeDirectMinutesFacadeMean": 410,
+      "multiView": {
+        "views": [
+          {
+            "id": "gare-de-lyon-south",
+            "pitch": [
+              8,
+              -1.5505999082940138
+            ],
+            "heading": [
+              172.47,
+              174.84
+            ],
+            "hfov": [
+              62.7,
+              62.43
+            ],
+            "aligned": true,
+            "groundResidual": 0.13997319775259087,
+            "windowsDetected": 53,
+            "windowsPlaced": 52,
+            "duplicates": 0,
+            "depthCalibrated": true,
+            "measured": [
+              "way/78158884",
+              "way/115948491",
+              "way/1161318094"
+            ]
+          },
+          {
+            "id": "rue-de-lyon-southwest",
+            "pitch": [
+              8,
+              -1.6239852459630062
+            ],
+            "heading": [
+              216.17,
+              210.34
+            ],
+            "hfov": [
+              67.3,
+              65.5
+            ],
+            "aligned": true,
+            "groundResidual": 0.08993195433257872,
+            "windowsDetected": 79,
+            "windowsPlaced": 68,
+            "duplicates": 0,
+            "depthCalibrated": true,
+            "measured": [
+              "way/78158884"
+            ]
+          }
+        ],
+        "targetHeight": 24.12,
+        "photoBuildingsSingle": 2,
+        "photoBuildingsMulti": 5,
+        "gainedPhotoHeights": [
+          {
+            "id": "way/78158884",
+            "views": [
+              "gare-de-lyon-south",
+              "rue-de-lyon-southwest"
+            ],
+            "height": 14.06,
+            "low": 14.06,
+            "high": 19.84,
+            "singleViewHeight": 14,
+            "singleViewSource": "map-tag",
+            "osmHeight": 14,
+            "osmLevels": 4,
+            "floors": 4,
+            "methods": [
+              "A · floors × floor height · Across the boulevard: Gare de Lyon and its clock tower (south): 7.5",
+              "A · floors × floor height · South-west across Rue de Lyon: Gare de Lyon west wing and towers: 17.5",
+              "B · camera ray ∩ facade plane · South-west across Rue de Lyon: Gare de Lyon west wing and towers: 15.3",
+              "C · calibrated relative depth · South-west across Rue de Lyon: Gare de Lyon west wing and towers: 10.5"
+            ]
+          },
+          {
+            "id": "way/115948491",
+            "views": [
+              "gare-de-lyon-south"
+            ],
+            "height": 32.78,
+            "low": 32.78,
+            "high": 39.59,
+            "singleViewHeight": 30,
+            "singleViewSource": "map-tag",
+            "osmHeight": 30,
+            "osmLevels": 9,
+            "floors": 4,
+            "methods": [
+              "A · floors × floor height · Across the boulevard: Gare de Lyon and its clock tower (south): 23.2",
+              "Map · osm:height: 30.0"
+            ]
+          },
+          {
+            "id": "way/1161318094",
+            "views": [
+              "gare-de-lyon-south"
+            ],
+            "height": 20.75,
+            "low": 18.81,
+            "high": 22.92,
+            "singleViewHeight": 7,
+            "singleViewSource": "map-levels",
+            "osmHeight": null,
+            "osmLevels": 2,
+            "floors": 6,
+            "methods": [
+              "A · floors × floor height · Across the boulevard: Gare de Lyon and its clock tower (south): 19.3",
+              "B · camera ray ∩ facade plane · Across the boulevard: Gare de Lyon and its clock tower (south): 20.8"
+            ]
+          }
+        ],
+        "windowsPlaced": 171,
+        "juneSolsticeDirectMinutesFacadeMean": 410
+      },
+      "depthCalibration": {
+        "alpha": 10.978651472700177,
+        "beta": 1.7000518338434851,
+        "samples": 48,
+        "rms": 1.0115305114896154
+      },
+      "behindFacade": [
+        {
+          "view": "rue-de-lyon-southwest",
+          "rooflineSamples": 7,
+          "windows": 6
+        }
+      ],
+      "warnings": [],
+      "warningsMultiView": [
+        "South-west across Rue de Lyon: Gare de Lyon west wing and towers: 7 roofline samples and 6 windows set aside: the depth map puts them about 3× farther than the facade they project onto (something behind it, such as a taller building further away). Those windows are not placed and count toward no floor. The roofline height (method B) uses the remaining samples."
+      ]
+    },
+    {
+      "id": "sarajevo-obala-kulina-bana",
+      "windowsDetected": 58,
+      "windowsOnTargetFacade": 23,
+      "cameraFixture": {
+        "pitch": 8.87,
+        "heading": 340.63,
+        "roll": 0.87,
+        "hfov": 63.5,
+        "provenance": {
+          "position": "inferred",
+          "heading": "inferred",
+          "pitch": "inferred",
+          "hfov": "inferred",
+          "height": "assumed"
+        },
+        "hfovRange": [
+          62.2,
+          66.7
+        ]
+      },
+      "cameraStore": {
+        "pitch": 8.87,
+        "heading": 340.63,
+        "roll": 0.87,
+        "hfov": 63.5,
+        "position": [
+          6.94,
+          -53.6
+        ],
+        "provenance": {
+          "position": "inferred",
+          "heading": "inferred",
+          "pitch": "inferred",
+          "hfov": "inferred",
+          "height": "assumed"
+        }
+      },
+      "cameraAutoAligned": false,
+      "prepareSceneMs": 94,
+      "pitchInitial": 8.87,
+      "pitchCalibrated": 8.87,
+      "groundResidualInitial": -0.0638337634447238,
+      "groundResidual": -0.0638337634447238,
+      "heightInitialCamera": 18.2,
+      "height": 18.2,
+      "low": 18.2,
+      "high": 23.53,
+      "floors": 4,
+      "floorHeight": 5.05,
+      "methods": [
+        {
+          "method": "A · floors × floor height",
+          "value": 21.41,
+          "used": true,
+          "weight": 0.02
+        },
+        {
+          "method": "B · camera ray ∩ facade plane",
+          "value": 18.85,
+          "used": true,
+          "weight": 0.86
+        },
+        {
+          "method": "C · calibrated relative depth",
+          "value": 12.82,
+          "used": true,
+          "weight": 0.12
+        }
+      ],
+      "heightNote": "3 methods fused (inverse-variance, heuristic σ). Raised to clear the highest detected window (top + 0.3 m; was 18.2 m, inferred).",
+      "mapOnlyHeight": 12,
+      "mapOnlySource": "assumed-default",
+      "reference": null,
+      "error": null,
+      "errorInitialCamera": null,
+      "referenceLevels": null,
+      "juneSolsticeDirectMinutesFacadeMean": 529,
+      "multiView": {
+        "views": [],
+        "targetHeight": 18.2,
+        "photoBuildingsSingle": 5,
+        "photoBuildingsMulti": 5,
+        "gainedPhotoHeights": [],
+        "windowsPlaced": 58,
+        "juneSolsticeDirectMinutesFacadeMean": 529
+      },
+      "depthCalibration": {
+        "alpha": 22.542832024847186,
+        "beta": 1.9984698224149104,
+        "samples": 48,
+        "rms": 0.1257126009424294
+      },
+      "behindFacade": [],
+      "warnings": [],
+      "warningsMultiView": []
+    }
+  ]
+}

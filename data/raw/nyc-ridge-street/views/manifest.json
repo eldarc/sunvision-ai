@@ -1,0 +1,47 @@
+{
+  "generatedBy": "scripts/add_views.py fetch",
+  "note": "Extra views of the surroundings (multi-view obstacles). Originals are not stored; re-download from originalUrl and verify originalSha1.",
+  "views": [
+    {
+      "viewId": "ps140-across-ridge",
+      "commonsTitle": "File:Straus School PS 140 jeh.jpg",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Straus_School_PS_140_jeh.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Straus_School_PS_140_jeh.jpg",
+      "originalSize": [
+        3561,
+        2671
+      ],
+      "originalBytes": 2408648,
+      "originalSha1": "b4465bf98c4dfd3a9a6b275f065147622a1b3a03",
+      "creator": "Jim.henderson",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "credit": "Own work",
+      "dateTimeOriginal": "Taken on 10 March 2018, 16:53:48",
+      "commonsLocationTemplate": "{{Location|40.71846|-73.98339|heading:NbW}}",
+      "exif": {
+        "Make": "NIKON",
+        "Model": "COOLPIX P610",
+        "Orientation": 1,
+        "Software": "Windows Photo Editor 10.0.10011.16384",
+        "DateTimeOriginal": "2018:03:10 16:53:48",
+        "FocalLength": "43/10",
+        "DigitalZoomRatio": "0/100",
+        "FocalLengthIn35mmFilm": 24
+      },
+      "shippedFile": "web/public/examples/nyc-ridge-street/views/ps140-across-ridge/photo.jpg",
+      "shippedSize": [
+        2000,
+        1500
+      ],
+      "shippedSha1": "0c95ce0a6ad72d9789f3cfca944c0afd9f1c567b",
+      "transformations": [
+        "downscaled from 3561x2671 to 2000x1500 (Lanczos)",
+        "re-encoded JPEG q88",
+        "all EXIF/XMP/ICC metadata stripped"
+      ],
+      "retrieved": "2026-11-25",
+      "commonsApiFile": "data/raw/nyc-ridge-street/views/ps140-across-ridge/commons_api.json"
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "_comment": "Hand-curated inputs for scripts/build_scene.py. Every value here is either copied from a cited source (Commons file page / EXIF) or explicitly marked as an assumption with a note.",
+  "examples": [
+    {
+      "id": "amsterdam-herengracht",
+      "title": "Herengracht 256",
+      "city": "Amsterdam",
+      "country": "Netherlands",
+      "description": "A narrow historic canal house photographed straight-on from across the Herengracht: three bays of tall sash windows on an east-facing facade, flanked by taller neighbours and a row of canal trees.",
+      "timezone": "Europe/Amsterdam",
+      "photo": {
+        "title": "File:Herengracht 256.JPG",
+        "creator": "Evert100",
+        "license": "CC0 1.0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Herengracht_256.JPG",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Herengracht_256.JPG",
+        "captureDate": "2011-01-24T13:35:24",
+        "retrieved": "2026-11-25",
+        "make": "NIKON",
+        "model": "COOLPIX L110",
+        "focalLengthMm": 10.1,
+        "focalLength35mm": 56,
+        "transformations": [
+          "downscaled from 3000x4000 to 1500x2000 (Lanczos)",
+          "re-encoded JPEG q88",
+          "all EXIF/XMP metadata stripped"
+        ]
+      },
+      "camera": {
+        "lat": 52.371627,
+        "lon": 4.886642,
+        "headingRaw": "N",
+        "headingRawDeg": 0,
+        "heading": 0,
+        "pitch": 8,
+        "pitchProvenance": "assumed",
+        "hfov": 26.1,
+        "hfovProvenance": "inferred",
+        "notes": [
+          "The Commons {{Location dec}} geotag (52.371627, 4.886642, heading 'N') coincides with the address point of Herengracht 256 (OSM node 2721940376, 1.0 m away), i.e. it marks the subject, not the photographer; the 'N' heading is inconsistent with the east-facing canal facade.",
+          "Camera position inferred: on the opposite (east) quay of the Herengracht, 40 m in front of the facade along its normal (the canal + quays are ≈ 40 m wide in OSM). Heading inferred as the reverse facade normal (the photo is near-frontal).",
+          "Cross-check (not used as input): with hfov 26.1° the 3-bay facade (≈ 620 px of 1500) at 40 m implies a facade width of ≈ 7.7 m, consistent with the 8.0 m OSM footprint edge.",
+          "hfov 26.1° from EXIF 35 mm-equivalent focal length 56 mm on a 3:4 portrait frame (diagonal convention: horizontal side = 43.27 mm x 3/5).",
+          "Pitch 8° estimated by eye from the horizon implied by a 1.6 m eye level on the far quay (≈ row 1480 of 2000); refine with the calibration tool."
+        ],
+        "placeOnFacadeNormal": 40
+      },
+      "validation": [],
+      "targetPoint": [
+        52.3716182,
+        4.8866584
+      ],
+      "targetPointSource": "Nominatim geocode of 'Herengracht 256, Amsterdam' -> OSM address node/2721940376 (BAG-derived)",
+      "facadeBearing": 90
+    },
+    {
+      "id": "paris-boulevard-diderot",
+      "title": "21bis Boulevard Diderot",
+      "city": "Paris",
+      "country": "France",
+      "description": "A Haussmann-era corner apartment block opposite Gare de Lyon: a south-facing stone facade with continuous wrought-iron balconies, a brasserie at street level and a zinc mansard roof.",
+      "timezone": "Europe/Paris",
+      "photo": {
+        "title": "File:Immeuble 21bis Boulevard Diderot - Paris XII (FR75) - 2026-03-20 - 1.jpg",
+        "creator": "Chabe01",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Immeuble_21bis_Boulevard_Diderot_-_Paris_XII_(FR75)_-_2026-03-20_-_1.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/6/64/Immeuble_21bis_Boulevard_Diderot_-_Paris_XII_%28FR75%29_-_2026-03-20_-_1.jpg",
+        "captureDate": "2026-03-20T14:34:06",
+        "retrieved": "2026-11-25",
+        "make": "Apple",
+        "model": "iPhone 16 Pro",
+        "focalLengthMm": 6.765,
+        "focalLength35mm": 24,
+        "transformations": [
+          "downscaled from 5712x4284 to 2000x1500 (Lanczos)",
+          "re-encoded JPEG q88",
+          "all EXIF/XMP metadata stripped"
+        ]
+      },
+      "camera": {
+        "lat": 48.84560833333334,
+        "lon": 2.372911111111111,
+        "headingRawDeg": 353.45983875783816,
+        "heading": 353.46,
+        "headingProvenance": "observed",
+        "pitch": 22,
+        "pitchProvenance": "assumed",
+        "hfov": 71.6,
+        "hfovProvenance": "inferred",
+        "notes": [
+          "Position and heading: Commons {{Location}} geotag with compass heading (phone GPS + compass; accuracy unknown).",
+          "hfov 71.6° from EXIF 35 mm-equivalent focal length 24 mm on a 4:3 landscape frame (diagonal convention).",
+          "Pitch 22° estimated by eye: pedestrians' heads (≈ 1.6 m eye level) sit at ≈ 88% of the image height; strong vertical convergence confirms an upward shot."
+        ]
+      },
+      "validation": [],
+      "targetPoint": [
+        48.8458985,
+        2.3727865
+      ],
+      "targetPointSource": "Nominatim geocode of '21bis Boulevard Diderot, Paris' -> OSM node/1372868497"
+    },
+    {
+      "id": "nyc-ridge-street",
+      "title": "106 Ridge Street",
+      "city": "New York",
+      "country": "United States",
+      "description": "A 1914 Colonial Revival tenement on the corner of Ridge and Rivington Streets on the Lower East Side: six storeys of brick and fire escapes on a narrow Manhattan street grid, photographed from across the intersection.",
+      "timezone": "America/New_York",
+      "photo": {
+        "title": "File:Apartment building at 106 Ridge Street, Lower East Side, Manhattan - 20200906.jpg",
+        "creator": "Andre Carrotflower",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apartment_building_at_106_Ridge_Street,_Lower_East_Side,_Manhattan_-_20200906.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Apartment_building_at_106_Ridge_Street%2C_Lower_East_Side%2C_Manhattan_-_20200906.jpg",
+        "captureDate": "2020-09-06T12:22:00",
+        "retrieved": "2026-11-25",
+        "make": "Apple",
+        "model": "iPhone 6s Plus",
+        "focalLengthMm": 4.15,
+        "focalLength35mm": 29,
+        "transformations": [
+          "downscaled from 2586x2586 to 2000x2000 (Lanczos)",
+          "re-encoded JPEG q88",
+          "all EXIF/XMP metadata stripped"
+        ]
+      },
+      "camera": {
+        "lat": 40.718444,
+        "lon": -73.983689,
+        "headingRawDeg": 61.63079835910382,
+        "heading": 61.63,
+        "headingProvenance": "observed",
+        "pitch": 20,
+        "pitchProvenance": "assumed",
+        "hfov": 48,
+        "hfovProvenance": "assumed",
+        "notes": [
+          "Position and heading: Commons {{Location}} geotag with compass heading (accuracy unknown).",
+          "The published file is a 2586x2586 square crop of a 4:3 iPhone frame, so the EXIF focal length (29 mm eq.) does not give the FOV directly: full-frame hfov would be 61.6°, a centred crop without rescaling 41.9°; 48° assumes a 3024-px square crop. Calibrate.",
+          "Pitch 20° estimated by eye from pedestrians' head height (≈ 91% of the image height)."
+        ]
+      },
+      "validation": [],
+      "targetOsmId": "way/278284302",
+      "targetPointSource": "Nominatim geocode of '106 Ridge Street, New York' -> OSM way/278284302 (building=apartments)"
+    },
+    {
+      "id": "sarajevo-obala-kulina-bana",
+      "title": "Obala Kulina bana 24",
+      "city": "Sarajevo",
+      "country": "Bosnia and Herzegovina",
+      "description": "The neo-Moorish former police station on the Miljacka embankment, photographed square-on from the opposite bank in full afternoon sun: a yellow stucco facade with horseshoe-arched windows, a row of round attic windows and a crenellated centre bay. OSM maps it as three building=apartments footprints; whether it is lived in today is not confirmed.",
+      "timezone": "Europe/Sarajevo",
+      "photo": {
+        "title": "File:Sarajevo – Obala Kulina bana 24.jpg",
+        "creator": "Julian Nyča",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sarajevo_%E2%80%93_Obala_Kulina_bana_24.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Sarajevo_%E2%80%93_Obala_Kulina_bana_24.jpg",
+        "captureDate": "2015-08-02T14:30:38",
+        "retrieved": "2026-11-25",
+        "make": "Canon",
+        "model": "Canon EOS 550D",
+        "focalLengthMm": 18,
+        "transformations": [
+          "downscaled from 3500x2333 to 2000x1333 (Lanczos)",
+          "re-encoded JPEG q88",
+          "all EXIF/XMP metadata stripped (the original has no GPS and no ICC profile)"
+        ]
+      },
+      "camera": {
+        "lat": 43.856692,
+        "lon": 18.425885,
+        "heading": 338.3,
+        "headingProvenance": "inferred",
+        "pitch": 9,
+        "pitchProvenance": "assumed",
+        "hfov": 63.5,
+        "hfovProvenance": "inferred",
+        "hfovRange": [
+          62.2,
+          66.7
+        ],
+        "notes": [
+          "Position: starts from the uploader's Commons {{Location|43.856692|18.425885}}, which the Commons API lists as the camera location (type: camera); the camera itself recorded no GPS. From that point, on the south bank of the Miljacka 38.6 m from the facade line, the facade projects about 19 % wider than photographed (outer corners at x ≈ 148 and 1978 px at street level, against ≈ 204 and ≈ 1770 px in the photo), so the published camera is resected instead (last note).",
+          "Heading: neither Commons nor EXIF gives one. The start value 338.3° is the reverse normal of the facade line between the building's outer corners (OSM nodes 2008185172 and 2008184871, bearing 68.3°), because the photo is square-on; the resection refines it.",
+          "hfov 63.5° from EXIF FocalLength 18 mm on the Canon EOS 550D's 22.3 mm-wide APS-C sensor (manufacturer spec; ≈ 29 mm equivalent). EXIF has no 35 mm-equivalent field. The 3500x2333 file has the sensor's 3:2 aspect (native 5184x3456), so a plain downscale is assumed, not a crop. hfovRange 62.2–66.7° covers 18 ± 0.5 mm (EXIF rounding) and the 23.0 mm width implied by the EXIF FocalPlaneXResolution (5728 px/inch at 5184 px, hfov 65.1°).",
+          "Pitch 9° is the start value; the resection gives 8.87°.",
+          "Lens height 1.6 m above the riverside street (assumed)."
+        ],
+        "resection": "data/calibration/sarajevo-obala-kulina-bana.json (run scripts/solve_camera.py sarajevo-obala-kulina-bana --write after build_scene.py)"
+      },
+      "validation": [],
+      "targetOsmId": "way/191316850",
+      "targetPointSource": "Commons description 'Obala Kulina bana No. 24'; no address is mapped on the building in OSM. OSM splits the facade into three building=apartments ways with no levels or height: way/190229391 (west wing, 16.4 m street edge), way/190229449 (centre, 7.1 m) and way/191316850 (east wing, 19.5 m). Target = the east wing (photo right), the longest edge with the most windows. The OSM centre way is narrower than the raised centre bay in the photo (≈ 13 m), so only the outer corners match the architecture.",
+      "facadeBearing": 158
+    }
+  ]
+}

@@ -1,0 +1,387 @@
+{
+  "generatedBy": "scripts/build_scene.py",
+  "model": {
+    "id": "building-facade-segmentation-instance/4",
+    "url": "https://universe.roboflow.com/building-facade/building-facade-segmentation-instance",
+    "license": "CC BY 4.0",
+    "note": "Inference provenance is recorded per example in analysis.json"
+  },
+  "examples": [
+    {
+      "id": "amsterdam-herengracht",
+      "photo": {
+        "commonsTitle": "File:Herengracht 256.JPG",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Herengracht_256.JPG",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Herengracht_256.JPG",
+        "originalSize": [
+          3000,
+          4000
+        ],
+        "originalSha1": "5c932db89013a15403ffb3d1a341f78ccee0c099",
+        "creator": "Evert100",
+        "license": "CC0 1.0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "captureDate": "2011-01-24T13:35:24",
+        "commonsLocationTemplate": "{{location dec|52.371627|4.886642|region:NL_heading:N}}",
+        "exif": {
+          "FocalLengthIn35mmFilm": 56,
+          "Make": "NIKON",
+          "Model": "COOLPIX L110   ",
+          "DateTimeOriginal": "2011:01:24 13:35:24",
+          "FocalLength": "10.1"
+        },
+        "shippedFile": "web/public/examples/amsterdam-herengracht/photo.jpg",
+        "transformations": [
+          "downscaled from 3000x4000 to 1500x2000 (Lanczos)",
+          "re-encoded JPEG q88",
+          "all EXIF/XMP metadata stripped"
+        ]
+      },
+      "camera": {
+        "lat": 52.371627,
+        "lon": 4.886642,
+        "headingRaw": 0,
+        "final": {
+          "position": [
+            54.937,
+            -1.822
+          ],
+          "height": 1.6,
+          "heading": 273.37,
+          "pitch": 8,
+          "roll": 0.0,
+          "hfov": 26.1,
+          "provenance": {
+            "position": "inferred",
+            "heading": "inferred",
+            "pitch": "assumed",
+            "hfov": "inferred",
+            "height": "assumed"
+          },
+          "notes": [
+            "The Commons {{Location dec}} geotag (52.371627, 4.886642, heading 'N') coincides with the address point of Herengracht 256 (OSM node 2721940376, 1.0 m away), i.e. it marks the subject, not the photographer; the 'N' heading is inconsistent with the east-facing canal facade.",
+            "Camera position inferred: on the opposite (east) quay of the Herengracht, 40 m in front of the facade along its normal (the canal + quays are ≈ 40 m wide in OSM). Heading inferred as the reverse facade normal (the photo is near-frontal).",
+            "Cross-check (not used as input): with hfov 26.1° the 3-bay facade (≈ 620 px of 1500) at 40 m implies a facade width of ≈ 7.7 m, consistent with the 8.0 m OSM footprint edge.",
+            "hfov 26.1° from EXIF 35 mm-equivalent focal length 56 mm on a 3:4 portrait frame (diagonal convention: horizontal side = 43.27 mm x 3/5).",
+            "Pitch 8° estimated by eye from the horizon implied by a 1.6 m eye level on the far quay (≈ row 1480 of 2000); refine with the calibration tool.",
+            "hfovRange = [0.5, 1.05] × the EXIF-derived hfov: a crop can only narrow the field of view and nothing widens it, so auto-alignment keeps the FOV inside these bounds."
+          ],
+          "hfovRange": [
+            13.1,
+            27.4
+          ]
+        }
+      },
+      "subject": {
+        "targetBuildingId": "relation/3581114",
+        "facadeEdgeIndex": 0,
+        "geocode": "Nominatim geocode of 'Herengracht 256, Amsterdam' -> OSM address node/2721940376 (BAG-derived)"
+      },
+      "osm": {
+        "endpoint": "https://overpass-api.de/api/interpreter",
+        "retrieved": "2026-11-25T07:07:32Z",
+        "query": "[out:json][timeout:60];\n( way[\"building\"](around:220,52.3716270,4.8871570);\n  relation[\"building\"][\"type\"=\"multipolygon\"](around:220,52.3716270,4.8871570);\n  node[\"natural\"=\"tree\"](around:200,52.3716270,4.8871570);\n  way[\"natural\"=\"tree_row\"](around:200,52.3716270,4.8871570);\n  way[\"highway\"](around:200,52.3716270,4.8871570); );\nout body geom;",
+        "rawFile": "data/raw/amsterdam-herengracht/osm.json",
+        "license": "ODbL 1.0",
+        "attribution": "© OpenStreetMap contributors"
+      },
+      "validation": [
+        {
+          "source": "3D BAG v2 (api.3dbag.nl, CC BY 4.0), pand NL.IMBAG.Pand.0363100012176861",
+          "height": 22.29,
+          "note": "height = b3_h_dak_max (23.33 m NAP) - b3_h_maaiveld (1.03 m NAP); 70th-percentile roof height b3_h_dak_70p - b3_h_maaiveld = 18.95 m; construction year 1615. Derived from AHN lidar."
+        },
+        {
+          "source": "OpenStreetMap tags on relation/3581114 (ODbL)",
+          "height": 21.3,
+          "note": "tags height / building:levels; OSM height source: 3DBAG."
+        }
+      ],
+      "origin": {
+        "lat": 52.37163012,
+        "lon": 4.88646332
+      },
+      "timezone": "Europe/Amsterdam"
+    },
+    {
+      "id": "paris-boulevard-diderot",
+      "photo": {
+        "commonsTitle": "File:Immeuble 21bis Boulevard Diderot - Paris XII (FR75) - 2026-03-20 - 1.jpg",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Immeuble_21bis_Boulevard_Diderot_-_Paris_XII_(FR75)_-_2026-03-20_-_1.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/6/64/Immeuble_21bis_Boulevard_Diderot_-_Paris_XII_%28FR75%29_-_2026-03-20_-_1.jpg",
+        "originalSize": [
+          5712,
+          4284
+        ],
+        "originalSha1": "e1ecde230bf2a1171ab5288bba220e08e6de3255",
+        "creator": "Chabe01",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "captureDate": "2026-03-20T14:34:06",
+        "commonsLocationTemplate": "{{Location|48.84560833333334|2.372911111111111|heading:353.45983875783816}}",
+        "exif": {
+          "Make": "Apple",
+          "Model": "iPhone 16 Pro",
+          "DateTimeOriginal": "2026:03:20 14:34:06",
+          "FocalLength": "6.764999865652793",
+          "FocalLengthIn35mmFilm": 24,
+          "LensModel": "iPhone 16 Pro back triple camera 6.765mm f/1.78"
+        },
+        "shippedFile": "web/public/examples/paris-boulevard-diderot/photo.jpg",
+        "transformations": [
+          "downscaled from 5712x4284 to 2000x1500 (Lanczos)",
+          "re-encoded JPEG q88",
+          "all EXIF/XMP metadata stripped"
+        ]
+      },
+      "camera": {
+        "lat": 48.84560833333334,
+        "lon": 2.372911111111111,
+        "headingRaw": 353.45983875783816,
+        "final": {
+          "position": [
+            13.843,
+            -45.204
+          ],
+          "height": 1.6,
+          "heading": 353.46,
+          "pitch": 22,
+          "roll": 0.0,
+          "hfov": 71.6,
+          "provenance": {
+            "position": "observed",
+            "heading": "observed",
+            "pitch": "assumed",
+            "hfov": "inferred",
+            "height": "assumed"
+          },
+          "notes": [
+            "Position and heading: Commons {{Location}} geotag with compass heading (phone GPS + compass; accuracy unknown).",
+            "hfov 71.6° from EXIF 35 mm-equivalent focal length 24 mm on a 4:3 landscape frame (diagonal convention).",
+            "Pitch 22° estimated by eye: pedestrians' heads (≈ 1.6 m eye level) sit at ≈ 88% of the image height; strong vertical convergence confirms an upward shot.",
+            "hfovRange = [0.5, 1.05] × the EXIF-derived hfov: a crop can only narrow the field of view and nothing widens it, so auto-alignment keeps the FOV inside these bounds."
+          ],
+          "hfovRange": [
+            35.8,
+            75.2
+          ]
+        }
+      },
+      "subject": {
+        "targetBuildingId": "relation/1211438",
+        "facadeEdgeIndex": 1,
+        "geocode": "Nominatim geocode of '21bis Boulevard Diderot, Paris' -> OSM node/1372868497"
+      },
+      "osm": {
+        "endpoint": "https://overpass-api.de/api/interpreter",
+        "retrieved": "2026-11-25T07:08:18Z",
+        "query": "[out:json][timeout:60];\n( way[\"building\"](around:220,48.8459207,2.3728567);\n  relation[\"building\"][\"type\"=\"multipolygon\"](around:220,48.8459207,2.3728567);\n  node[\"natural\"=\"tree\"](around:200,48.8459207,2.3728567);\n  way[\"natural\"=\"tree_row\"](around:200,48.8459207,2.3728567);\n  way[\"highway\"](around:200,48.8459207,2.3728567); );\nout body geom;",
+        "rawFile": "data/raw/paris-boulevard-diderot/osm.json",
+        "license": "ODbL 1.0",
+        "attribution": "© OpenStreetMap contributors"
+      },
+      "validation": [
+        {
+          "source": "IGN BD TOPO v3 batiment BATIMENT0000000240741603 (data.geopf.fr WFS, Licence Ouverte 2.0)",
+          "height": 24.5,
+          "levels": 8,
+          "note": "fields 'hauteur' and 'nombre_d_etages'; altimetric method: Interpolation bâti BDTopo, stated precision 2.5 m."
+        },
+        {
+          "source": "OpenStreetMap tags on relation/1211438 (ODbL)",
+          "levels": 7,
+          "note": "tags height / building:levels; OSM height source: unspecified."
+        }
+      ],
+      "origin": {
+        "lat": 48.84601482,
+        "lon": 2.3727225
+      },
+      "timezone": "Europe/Paris"
+    },
+    {
+      "id": "nyc-ridge-street",
+      "photo": {
+        "commonsTitle": "File:Apartment building at 106 Ridge Street, Lower East Side, Manhattan - 20200906.jpg",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Apartment_building_at_106_Ridge_Street,_Lower_East_Side,_Manhattan_-_20200906.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Apartment_building_at_106_Ridge_Street%2C_Lower_East_Side%2C_Manhattan_-_20200906.jpg",
+        "originalSize": [
+          2586,
+          2586
+        ],
+        "originalSha1": "9920f15bc191d8cd2fd6b84e22ff69ab31ac6293",
+        "creator": "Andre Carrotflower",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "captureDate": "2020-09-06T12:22:00",
+        "commonsLocationTemplate": "{{Location|40.718444|-73.983689|heading:61.63079835910382}}",
+        "exif": {
+          "Make": "Apple",
+          "Model": "iPhone 6s Plus",
+          "DateTimeOriginal": "2020:09:06 12:22:00",
+          "FocalLength": "4.15",
+          "FocalLengthIn35mmFilm": 29,
+          "LensModel": "iPhone 6s Plus back camera 4.15mm f/2.2"
+        },
+        "shippedFile": "web/public/examples/nyc-ridge-street/photo.jpg",
+        "transformations": [
+          "downscaled from 2586x2586 to 2000x2000 (Lanczos)",
+          "re-encoded JPEG q88",
+          "all EXIF/XMP metadata stripped"
+        ]
+      },
+      "camera": {
+        "lat": 40.718444,
+        "lon": -73.983689,
+        "headingRaw": 61.63079835910382,
+        "final": {
+          "position": [
+            -33.774,
+            -24.087
+          ],
+          "height": 1.6,
+          "heading": 59.15,
+          "pitch": 17.09,
+          "roll": -0.57,
+          "hfov": 41.9,
+          "provenance": {
+            "position": "inferred",
+            "heading": "inferred",
+            "pitch": "inferred",
+            "hfov": "inferred",
+            "height": "assumed"
+          },
+          "notes": [
+            "Position and heading: Commons {{Location}} geotag with compass heading (accuracy unknown).",
+            "The published file is a 2586x2586 square crop of a 4:3 iPhone frame, so the EXIF focal length (29 mm eq.) does not give the FOV directly: full-frame hfov would be 61.6°, a centred crop without rescaling 41.9°; 48° assumes a 3024-px square crop. Calibrate.",
+            "Pitch 20° estimated by eye from pedestrians' head height (≈ 91% of the image height).",
+            "Resected from 3 ground + 3 vertical-edge correspondences picked on the photo (data/calibration/nyc-ridge-street.json); rms 33.3 px. Geotag was 0.0 m away. No building height was used.",
+            "Hand-picked resection vs. the camera below: the maintainer resection above (position (-36.875, -33.871), heading 48.57°, pitch 17.07°, roll 1.34°, hfov 41.9°, all marked manual) is about 10° off in heading and 2° in roll. Its vertex-1 picks (data/calibration/nyc-ridge-street.json) mark the end of the ornate bays, not the end of the 28 m OSM edge, and are 433 px off under the camera below (docs/research/alignment.md §1).",
+            "Fixture camera auto-aligned from facade regularity (autoAlignCamera in web/src/lib/align.ts, with the resection relaxed from manual to inferred and hfov bounded to the EXIF range [41.9°, 61.6°]): heading 48.6° → 59.2°, roll 1.3° → -0.6°, moved 10.2 m along the Ridge Street facade and 0.7 m away from it; pitch 17.1° and hfov 41.9° (at the lower EXIF bound) kept. Window rows level to 0.11 m (robust σ; 0.80 m with the resection) and all 92 windows land on the target or 202 Rivington (88 with 4 missed with the resection). Values rounded; provenance inferred, so the app keeps refining it on load."
+          ],
+          "hfovRange": [
+            41.9,
+            61.6
+          ]
+        }
+      },
+      "subject": {
+        "targetBuildingId": "way/278284302",
+        "facadeEdgeIndex": 1,
+        "geocode": "Nominatim geocode of '106 Ridge Street, New York' -> OSM way/278284302 (building=apartments)"
+      },
+      "osm": {
+        "endpoint": "https://overpass-api.de/api/interpreter",
+        "retrieved": "2026-11-25T07:41:06Z",
+        "query": "[out:json][timeout:60];\n( way[\"building\"](around:220,40.7185934,-73.9833240);\n  relation[\"building\"][\"type\"=\"multipolygon\"](around:220,40.7185934,-73.9833240);\n  node[\"natural\"=\"tree\"](around:200,40.7185934,-73.9833240);\n  way[\"natural\"=\"tree_row\"](around:200,40.7185934,-73.9833240);\n  way[\"highway\"](around:200,40.7185934,-73.9833240); );\nout body geom;",
+        "rawFile": "data/raw/nyc-ridge-street/osm.json",
+        "license": "ODbL 1.0",
+        "attribution": "© OpenStreetMap contributors"
+      },
+      "validation": [
+        {
+          "source": "OpenStreetMap tags on way/278284302 (ODbL)",
+          "height": 21.4,
+          "levels": 5,
+          "note": "tags height / building:levels; OSM height source: NYC DoITT building footprints import."
+        }
+      ],
+      "origin": {
+        "lat": 40.71869917,
+        "lon": -73.98314051
+      },
+      "timezone": "America/New_York"
+    },
+    {
+      "id": "sarajevo-obala-kulina-bana",
+      "photo": {
+        "commonsTitle": "File:Sarajevo – Obala Kulina bana 24.jpg",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Sarajevo_%E2%80%93_Obala_Kulina_bana_24.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Sarajevo_%E2%80%93_Obala_Kulina_bana_24.jpg",
+        "originalSize": [
+          3500,
+          2333
+        ],
+        "originalSha1": "293237bded988e484a67f479c3ff4d3a224026a7",
+        "creator": "Julian Nyča",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "captureDate": "2015-08-02T14:30:38",
+        "commonsLocationTemplate": "{{Location|43.856692|18.425885}}",
+        "exif": {
+          "Make": "Canon",
+          "Model": "Canon EOS 550D",
+          "DateTimeOriginal": "2015:08:02 14:30:38",
+          "FocalLength": "18.0",
+          "FNumber": "9.0",
+          "ExposureTime": "1/200",
+          "ISOSpeedRatings": 100,
+          "Orientation": 1,
+          "FocalPlaneXResolution": "5184000/905",
+          "FocalPlaneYResolution": "3456000/595",
+          "FocalPlaneResolutionUnit": 2
+        },
+        "shippedFile": "web/public/examples/sarajevo-obala-kulina-bana/photo.jpg",
+        "transformations": [
+          "downscaled from 3500x2333 to 2000x1333 (Lanczos)",
+          "re-encoded JPEG q88",
+          "all EXIF/XMP metadata stripped (the original has no GPS and no ICC profile)"
+        ]
+      },
+      "camera": {
+        "lat": 43.856692,
+        "lon": 18.425885,
+        "headingRaw": null,
+        "final": {
+          "position": [
+            4.978,
+            -47.965
+          ],
+          "height": 1.6,
+          "heading": 338.3,
+          "pitch": 9,
+          "roll": 0.0,
+          "hfov": 63.5,
+          "hfovRange": [
+            31.8,
+            66.7
+          ],
+          "provenance": {
+            "position": "observed",
+            "heading": "inferred",
+            "pitch": "assumed",
+            "hfov": "inferred",
+            "height": "assumed"
+          },
+          "notes": [
+            "Position: the uploader's Commons {{Location|43.856692|18.425885}}, which the Commons API lists as the camera location (type: camera). The camera itself recorded no GPS. The point lies on the south bank of the Miljacka, across the river from the building and 38.6 m from the facade line between the outer corners. The cross-check resection below puts the camera 44.7 m from that line, so from the geotag the facade projects about 19 % wider than photographed (outer corners at x ≈ 148 and 1978 px at street level, against ≈ 204 and ≈ 1745 px in the photo). The geotag is kept as published; docs/VALIDATION.md lists the effect on window placement.",
+            "Heading: neither Commons nor EXIF gives one. 338.3° is inferred as the reverse normal of the facade line between the building's outer corners (OSM nodes 2008185172 and 2008184871, bearing 68.3°), because the photo is square-on (cross-check below).",
+            "hfov 63.5° from EXIF FocalLength 18 mm on the Canon EOS 550D's 22.3 mm-wide APS-C sensor (manufacturer spec; ≈ 29 mm equivalent). EXIF has no 35 mm-equivalent field. The 3500x2333 file has the sensor's 3:2 aspect (native 5184x3456), so a plain downscale is assumed, not a crop. The EXIF FocalPlaneXResolution (5728 px/inch at 5184 px) would give a 23.0 mm width and hfov 65.1°, inside hfovRange.",
+            "Pitch 9° is a starting value (assumed), rounded from the cross-check resection (8.9°); the app re-solves it from the detected ground line on load.",
+            "Cross-check, not used as input: a least-squares resection with the camera model of scripts/solve_camera.py (hfov fixed at 63.5°, lens 1.6 m) from 4 correspondences picked on photo.jpg (±10–15 px): ground points at the facade base on the embankment-wall top, OSM node 2008185172 (west outer corner, way/190229391) at px (204, 993) and node 2008184871 (east outer corner, way/191316850) at px (1770, 967); vertical-edge points under the cornice at px (223, 400) and (1737, 400) (horizontal residual only, height free). Result: 43.85664389, 18.42592373, heading 339.36°, pitch 8.87°, roll 0.91°, RMS 6.8 px; 6.2 m from the geotag, 44.6 m from the facade and 0.6° off its normal. With a free hfov the 4 points are degenerate (6 equations), so hfov is held fixed.",
+            "Lens height 1.6 m above the riverside street (assumed)."
+          ]
+        }
+      },
+      "subject": {
+        "targetBuildingId": "way/191316850",
+        "facadeEdgeIndex": 0,
+        "geocode": "Commons description 'Obala Kulina bana No. 24'; no address is mapped on the building in OSM. OSM splits the facade into three building=apartments ways with no levels or height: way/190229391 (west wing, 16.4 m street edge), way/190229449 (centre, 7.1 m) and way/191316850 (east wing, 19.5 m). Target = the east wing (photo right), the longest edge with the most windows. The OSM centre way is narrower than the raised centre bay in the photo (≈ 13 m), so only the outer corners match the architecture."
+      },
+      "osm": {
+        "endpoint": "https://overpass-api.de/api/interpreter",
+        "retrieved": "2026-11-25T18:53:42Z",
+        "query": "[out:json][timeout:60];\n( way[\"building\"](around:220,43.8569835,18.4257217);\n  relation[\"building\"][\"type\"=\"multipolygon\"](around:220,43.8569835,18.4257217);\n  node[\"natural\"=\"tree\"](around:200,43.8569835,18.4257217);\n  way[\"natural\"=\"tree_row\"](around:200,43.8569835,18.4257217);\n  way[\"highway\"](around:200,43.8569835,18.4257217); );\nout body geom;",
+        "rawFile": "data/raw/sarajevo-obala-kulina-bana/osm.json",
+        "license": "ODbL 1.0",
+        "attribution": "© OpenStreetMap contributors"
+      },
+      "validation": [],
+      "origin": {
+        "lat": 43.85712369,
+        "lon": 18.42582308
+      },
+      "timezone": "Europe/Sarajevo"
+    }
+  ]
+}

@@ -1,0 +1,330 @@
+{
+ "batchcomplete": true,
+ "query": {
+  "pages": [
+   {
+    "pageid": 105785239,
+    "ns": 6,
+    "title": "File:Place Combattants Afrique Nord - Paris XII (FR75) - 2021-05-23 - 1.jpg",
+    "imagerepository": "local",
+    "imageinfo": [
+     {
+      "size": 4562742,
+      "width": 4032,
+      "height": 3024,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Place_Combattants_Afrique_Nord_-_Paris_XII_%28FR75%29_-_2021-05-23_-_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "descriptionurl": "https://commons.wikimedia.org/wiki/File:Place_Combattants_Afrique_Nord_-_Paris_XII_(FR75)_-_2021-05-23_-_1.jpg",
+      "descriptionshorturl": "https://commons.wikimedia.org/wiki/Special:Redirect/page/105785239",
+      "sha1": "7b0f2801e382d070d480ec2e21e373d628cdb606",
+      "commonmetadata": [
+       {
+        "name": "Make",
+        "value": "Apple"
+       },
+       {
+        "name": "Model",
+        "value": "iPhone XS"
+       },
+       {
+        "name": "Orientation",
+        "value": 1
+       },
+       {
+        "name": "XResolution",
+        "value": "72/1"
+       },
+       {
+        "name": "YResolution",
+        "value": "72/1"
+       },
+       {
+        "name": "ResolutionUnit",
+        "value": 2
+       },
+       {
+        "name": "Software",
+        "value": "14.5.1"
+       },
+       {
+        "name": "DateTime",
+        "value": "2021:05:23 17:46:24"
+       },
+       {
+        "name": "YCbCrPositioning",
+        "value": 1
+       },
+       {
+        "name": "ExposureTime",
+        "value": "1/570"
+       },
+       {
+        "name": "FNumber",
+        "value": "9/5"
+       },
+       {
+        "name": "ExposureProgram",
+        "value": 2
+       },
+       {
+        "name": "ISOSpeedRatings",
+        "value": 25
+       },
+       {
+        "name": "ExifVersion",
+        "value": "0232"
+       },
+       {
+        "name": "DateTimeOriginal",
+        "value": "2021:05:23 17:46:24"
+       },
+       {
+        "name": "DateTimeDigitized",
+        "value": "2021:05:23 17:46:24"
+       },
+       {
+        "name": "ComponentsConfiguration",
+        "value": [
+         {
+          "name": 0,
+          "value": 1
+         },
+         {
+          "name": 1,
+          "value": 2
+         },
+         {
+          "name": 2,
+          "value": 3
+         },
+         {
+          "name": 3,
+          "value": 0
+         },
+         {
+          "name": "_type",
+          "value": "ol"
+         }
+        ]
+       },
+       {
+        "name": "ShutterSpeedValue",
+        "value": "201074/21961"
+       },
+       {
+        "name": "ApertureValue",
+        "value": "54823/32325"
+       },
+       {
+        "name": "BrightnessValue",
+        "value": "46962/5893"
+       },
+       {
+        "name": "ExposureBiasValue",
+        "value": "0/1"
+       },
+       {
+        "name": "MeteringMode",
+        "value": 5
+       },
+       {
+        "name": "Flash",
+        "value": 16
+       },
+       {
+        "name": "FocalLength",
+        "value": "17/4"
+       },
+       {
+        "name": "SubSecTimeOriginal",
+        "value": "500"
+       },
+       {
+        "name": "SubSecTimeDigitized",
+        "value": "500"
+       },
+       {
+        "name": "FlashPixVersion",
+        "value": "0100"
+       },
+       {
+        "name": "ColorSpace",
+        "value": 65535
+       },
+       {
+        "name": "SensingMethod",
+        "value": 2
+       },
+       {
+        "name": "SceneType",
+        "value": 1
+       },
+       {
+        "name": "ExposureMode",
+        "value": 0
+       },
+       {
+        "name": "WhiteBalance",
+        "value": 0
+       },
+       {
+        "name": "FocalLengthIn35mmFilm",
+        "value": 26
+       },
+       {
+        "name": "SceneCaptureType",
+        "value": 0
+       },
+       {
+        "name": "GPSLatitude",
+        "value": 48.84585833333333
+       },
+       {
+        "name": "GPSLongitude",
+        "value": 2.3725055555555556
+       },
+       {
+        "name": "GPSAltitude",
+        "value": 33.09952504317789
+       },
+       {
+        "name": "GPSSpeedRef",
+        "value": "K"
+       },
+       {
+        "name": "GPSSpeed",
+        "value": "20743/57983"
+       },
+       {
+        "name": "GPSImgDirectionRef",
+        "value": "T"
+       },
+       {
+        "name": "GPSImgDirection",
+        "value": "271943/1258"
+       },
+       {
+        "name": "GPSDestBearingRef",
+        "value": "T"
+       },
+       {
+        "name": "GPSDestBearing",
+        "value": "271943/1258"
+       },
+       {
+        "name": "GPSDateStamp",
+        "value": "2021:05:23"
+       }
+      ],
+      "extmetadata": {
+       "DateTime": {
+        "value": "2021-05-23 22:05:26",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+       },
+       "ObjectName": {
+        "value": "Place Combattants Afrique Nord - Paris XII (FR75) - 2021-05-23 - 1",
+        "source": "mediawiki-metadata"
+       },
+       "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+       },
+       "Categories": {
+        "value": "Place des Combattants-en-Afrique-du-Nord (Paris)|Self-published work|Paris photographs taken on 2021-05-23|Images of Paris 12e arrondissement by Chabe01|Images by Chabe01 taken with iPhone XS|Files with coordinates missing SDC location of creation (48° N, 2° E)",
+        "source": "commons-categories",
+        "hidden": ""
+       },
+       "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+       },
+       "GPSLatitude": {
+        "value": "48.845858",
+        "source": "commons-desc-page"
+       },
+       "GPSLongitude": {
+        "value": "2.372506",
+        "source": "commons-desc-page"
+       },
+       "GPSMapDatum": {
+        "value": "WGS-84",
+        "source": "commons-desc-page",
+        "hidden": ""
+       },
+       "ImageDescription": {
+        "value": "Place de Combattants en Afrique du Nord, Paris.",
+        "source": "commons-desc-page"
+       },
+       "DateTimeOriginal": {
+        "value": "2021-05-23 17:46:24",
+        "source": "commons-desc-page"
+       },
+       "Credit": {
+        "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+        "source": "commons-desc-page"
+       },
+       "Artist": {
+        "value": "<a href=\"//commons.wikimedia.org/wiki/User:Chabe01\" title=\"User:Chabe01\">Chabe01</a>",
+        "source": "commons-desc-page"
+       },
+       "LicenseShortName": {
+        "value": "CC BY-SA 4.0",
+        "source": "commons-desc-page",
+        "hidden": ""
+       },
+       "UsageTerms": {
+        "value": "Creative Commons Attribution-Share Alike 4.0",
+        "source": "commons-desc-page"
+       },
+       "AttributionRequired": {
+        "value": "true",
+        "source": "commons-desc-page",
+        "hidden": ""
+       },
+       "LicenseUrl": {
+        "value": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "commons-desc-page"
+       },
+       "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+       },
+       "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+       },
+       "License": {
+        "value": "cc-by-sa-4.0",
+        "source": "commons-templates",
+        "hidden": ""
+       }
+      },
+      "mime": "image/jpeg"
+     }
+    ],
+    "revisions": [
+     {
+      "revid": 964621398,
+      "parentid": 904111940,
+      "timestamp": "2024-12-02T07:32:42Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "=={{int:filedesc}}==\n{{Information\n|description={{fr|1=Place de Combattants en Afrique du Nord, Paris.}}\n|date=2021-05-23 17:46:24\n|source={{own}}\n|author=[[User:Chabe01|Chabe01]]\n|permission=\n|other versions=\n}}\n{{Location|48.845858|2.372506|heading:216.17090620031797}}\n\n=={{int:license-header}}==\n{{self|cc-by-sa-4.0}}\n\n[[Category:Place des Combattants-en-Afrique-du-Nord (Paris)]]\n[[Category:Images of Paris 12e arrondissement by Chabe01]]\n[[Category:Images by Chabe01 taken with iPhone XS]]\n[[Category:Paris photographs taken on 2021-05-23]]"
+       }
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "_sunvision": {
+  "retrieved": "2026-11-25",
+  "endpoint": "https://commons.wikimedia.org/w/api.php"
+ }
+}

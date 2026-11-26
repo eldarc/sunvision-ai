@@ -1,0 +1,67 @@
+{
+  "exampleId": "nyc-ridge-street",
+  "method": "Least-squares camera resection from manually picked image points of OSM footprint vertices. Ground points (z = 0) constrain position/heading/FOV; points high on the same vertical building edges contribute only their horizontal residual with height left free, so they constrain pitch/roll without using any building height.",
+  "pickedBy": "Sunvision maintainers, by inspecting web/public/examples/nyc-ridge-street/photo.jpg (2000x2000); estimated picking accuracy \u00b115 px",
+  "fixed": {
+    "height": 1.6
+  },
+  "groundPoints": [
+    {
+      "vertex": 1,
+      "px": [
+        414,
+        1920
+      ],
+      "what": "left end of the left (Ridge Street) facade at the sidewalk"
+    },
+    {
+      "vertex": 2,
+      "px": [
+        932,
+        1956
+      ],
+      "what": "building corner (centre of the chamfer) at the sidewalk"
+    },
+    {
+      "vertex": 3,
+      "px": [
+        1846,
+        1863
+      ],
+      "what": "right end of the right (Rivington Street) facade at the sidewalk"
+    }
+  ],
+  "verticalPoints": [
+    {
+      "vertex": 1,
+      "px": [
+        400,
+        564
+      ],
+      "what": "same left edge, under the parapet"
+    },
+    {
+      "vertex": 2,
+      "px": [
+        932,
+        166
+      ],
+      "what": "corner under the parapet"
+    },
+    {
+      "vertex": 3,
+      "px": [
+        1782,
+        486
+      ],
+      "what": "same right edge, under the parapet"
+    }
+  ],
+  "note": "Vertex indices refer to the target footprint ring in scene.base.json; vertex 1 projects left of the optical axis, vertex 3 right (checked by bearing from the geotag).",
+  "hfovRange": [
+    41.9,
+    61.6
+  ],
+  "hfovRangeSource": "EXIF 29 mm-equivalent focal length on a square crop: 41.9\u00b0 (centred crop, no rescale) to 61.6\u00b0 (full frame width).",
+  "status": "Superseded for the shipped example: the vertex-1 picks are inconsistent (they mark the end of the ornate bays, not the end of the 28 m OSM edge; 433 px off under the regularity-aligned camera). web/public/examples/nyc-ridge-street/scene.base.json now ships the auto-aligned camera (provenance inferred) and keeps this resection as history in camera.notes. See docs/research/alignment.md \u00a74.4 (b)."
+}

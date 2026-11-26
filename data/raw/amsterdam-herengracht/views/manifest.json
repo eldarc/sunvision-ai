@@ -1,0 +1,86 @@
+{
+  "generatedBy": "scripts/add_views.py fetch",
+  "note": "Extra views of the surroundings (multi-view obstacles). Originals are not stored; re-download from originalUrl and verify originalSha1.",
+  "views": [
+    {
+      "viewId": "across-canal-261",
+      "commonsTitle": "File:Herengracht 261.JPG",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Herengracht_261.JPG",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/8/80/Herengracht_261.JPG",
+      "originalSize": [
+        3000,
+        4000
+      ],
+      "originalBytes": 5978682,
+      "originalSha1": "781a1d4a2412021b2ca3a9c9a46036b1e8502327",
+      "creator": "Evert100",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "credit": "Own work",
+      "dateTimeOriginal": "2011-01-05",
+      "commonsLocationTemplate": "{{location dec|52.371648|4.887347|region:NL_heading:N}}",
+      "exif": {
+        "Make": "NIKON",
+        "Model": "COOLPIX L110",
+        "Software": "COOLPIX L110V1.3",
+        "DigitalZoomRatio": "0/100",
+        "FocalLengthIn35mmFilm": 56,
+        "DateTimeOriginal": "2011:01:03 15:49:52",
+        "FocalLength": "101/10"
+      },
+      "shippedFile": "web/public/examples/amsterdam-herengracht/views/across-canal-261/photo.jpg",
+      "shippedSize": [
+        1500,
+        2000
+      ],
+      "shippedSha1": "6e26d59c56c6b86542a1d923a7b9a39a20b0d886",
+      "transformations": [
+        "downscaled from 3000x4000 to 1500x2000 (Lanczos)",
+        "re-encoded JPEG q88",
+        "all EXIF/XMP/ICC metadata stripped"
+      ],
+      "retrieved": "2026-11-25",
+      "commonsApiFile": "data/raw/amsterdam-herengracht/views/across-canal-261/commons_api.json"
+    },
+    {
+      "viewId": "across-canal-263",
+      "commonsTitle": "File:Herengracht 263.JPG",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Herengracht_263.JPG",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Herengracht_263.JPG",
+      "originalSize": [
+        3000,
+        4000
+      ],
+      "originalBytes": 5956637,
+      "originalSha1": "6b451614c50e16b017c47237fa2c9400ebce3acb",
+      "creator": "Evert100",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "credit": "Own work",
+      "dateTimeOriginal": "2011-01-05",
+      "commonsLocationTemplate": "{{location dec|52.371594|4.887333|region:NL_heading:N}}",
+      "exif": {
+        "Make": "NIKON",
+        "Model": "COOLPIX L110",
+        "Software": "COOLPIX L110V1.3",
+        "DigitalZoomRatio": "0/100",
+        "FocalLengthIn35mmFilm": 67,
+        "DateTimeOriginal": "2011:01:03 15:50:08",
+        "FocalLength": "122/10"
+      },
+      "shippedFile": "web/public/examples/amsterdam-herengracht/views/across-canal-263/photo.jpg",
+      "shippedSize": [
+        1500,
+        2000
+      ],
+      "shippedSha1": "74966726eb0b647d5b96e23eee6f018a5d66f93d",
+      "transformations": [
+        "downscaled from 3000x4000 to 1500x2000 (Lanczos)",
+        "re-encoded JPEG q88",
+        "all EXIF/XMP/ICC metadata stripped"
+      ],
+      "retrieved": "2026-11-25",
+      "commonsApiFile": "data/raw/amsterdam-herengracht/views/across-canal-263/commons_api.json"
+    }
+  ]
+}

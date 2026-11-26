@@ -1,0 +1,10 @@
+{
+  "provider": "roboflow-hosted",
+  "modelId": "building-facade-segmentation-instance/4",
+  "inferredAt": "2026-11-25T07:36:59+00:00",
+  "inputWidth": 2000,
+  "inputHeight": 2000,
+  "confidence": 0.3,
+  "inferenceMs": 3393.7,
+  "service": "https://serverless.roboflow.com"
+}

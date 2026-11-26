@@ -1,0 +1,108 @@
+{
+ "File:Herengracht 256.JPG": {
+  "title": "File:Herengracht 256.JPG",
+  "descriptionurl": "https://commons.wikimedia.org/wiki/File:Herengracht_256.JPG",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Herengracht_256.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "width": 3000,
+  "height": 4000,
+  "sha1": "5c932db89013a15403ffb3d1a341f78ccee0c099",
+  "artist": "Evert100",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "date": "2011-01-24",
+  "credit": "Own work",
+  "description": "Herengracht 256",
+  "location": [
+   "{{location dec|52.371627|4.886642|region:NL_heading:N}}"
+  ],
+  "objectLocation": [],
+  "info": []
+ },
+ "File:Apartment building at 106 Ridge Street, Lower East Side, Manhattan - 20200906.jpg": {
+  "title": "File:Apartment building at 106 Ridge Street, Lower East Side, Manhattan - 20200906.jpg",
+  "descriptionurl": "https://commons.wikimedia.org/wiki/File:Apartment_building_at_106_Ridge_Street,_Lower_East_Side,_Manhattan_-_20200906.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Apartment_building_at_106_Ridge_Street%2C_Lower_East_Side%2C_Manhattan_-_20200906.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "width": 2586,
+  "height": 2586,
+  "sha1": "9920f15bc191d8cd2fd6b84e22ff69ab31ac6293",
+  "artist": "Andre Carrotflower",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "date": "2020-09-06 12:22:00",
+  "credit": "Own work",
+  "description": "As seen in September 2020: the apartment building at 106 Ridge Street (corner Rivington Street) on the Lower East Side of Manhattan, New York was built in 1914 and is an excellent example of the transitional Colonial Revival/Neo-Renaissance style popular in residential architecture in the initial de",
+  "location": [
+   "{{Location|40.718444|-73.983689|heading:61.63079835910382}}"
+  ],
+  "objectLocation": [],
+  "info": [
+   "|date=2020-09-06 12:22:00",
+   "|source={{own}}",
+   "|author=[[User:Andre Carrotflower|Andre Carrotflower]]"
+  ]
+ },
+ "File:Immeuble 21bis Boulevard Diderot - Paris XII (FR75) - 2026-03-20 - 1.jpg": {
+  "title": "File:Immeuble 21bis Boulevard Diderot - Paris XII (FR75) - 2026-03-20 - 1.jpg",
+  "descriptionurl": "https://commons.wikimedia.org/wiki/File:Immeuble_21bis_Boulevard_Diderot_-_Paris_XII_(FR75)_-_2026-03-20_-_1.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Immeuble_21bis_Boulevard_Diderot_-_Paris_XII_%28FR75%29_-_2026-03-20_-_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "width": 5712,
+  "height": 4284,
+  "sha1": "e1ecde230bf2a1171ab5288bba220e08e6de3255",
+  "artist": "Chabe01",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "date": "2026-03-20 14:34:06",
+  "credit": "Own work",
+  "description": "Immeuble, 21bis boulevard Diderot, Paris.",
+  "location": [
+   "{{Location|48.84560833333334|2.372911111111111|heading:353.45983875783816}}"
+  ],
+  "objectLocation": [],
+  "info": [
+   "|date=2026-03-20 14:34:06",
+   "|source={{own}}",
+   "|author=[[User:Chabe01|Chabe01]]"
+  ]
+ },
+ "File:Sarajevo – Obala Kulina bana 24.jpg": {
+  "title": "File:Sarajevo – Obala Kulina bana 24.jpg",
+  "descriptionurl": "https://commons.wikimedia.org/wiki/File:Sarajevo_%E2%80%93_Obala_Kulina_bana_24.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Sarajevo_%E2%80%93_Obala_Kulina_bana_24.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "width": 3500,
+  "height": 2333,
+  "sha1": "293237bded988e484a67f479c3ff4d3a224026a7",
+  "artist": "Julian Nyča",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "date": "2015-08-02 14:30:38",
+  "credit": "Own work",
+  "description": "Obala Kulina bana No. 24 in Sarajevo",
+  "location": [
+   "{{Location|43.856692|18.425885}}"
+  ],
+  "objectLocation": [],
+  "info": [
+   "|date=2015-08-02 14:30:38",
+   "|source={{own}}",
+   "|author=[[User:J budissin|Julian Nyča]]"
+  ],
+  "terms": [
+   "{{User:J budissin/Terms|Sarajevo|2015}}"
+  ],
+  "categories": [
+   "Category:August 2015 in Sarajevo",
+   "Category:Former police station on obala Kulina bana"
+  ],
+  "coordinates": [
+   {
+    "lat": 43.856692,
+    "lon": 18.425885,
+    "primary": "",
+    "type": "camera",
+    "dim": "1000",
+    "globe": "earth"
+   }
+  ],
+  "revisionTimestamp": "2022-11-05T07:47:43Z"
+ }
+}

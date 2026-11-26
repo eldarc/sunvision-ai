@@ -1,0 +1,334 @@
+{
+ "batchcomplete": true,
+ "query": {
+  "pages": [
+   {
+    "pageid": 133941836,
+    "ns": 6,
+    "title": "File:Vue de la gare de Lyon (Paris) sous la pluie en juin 2023.JPG",
+    "imagerepository": "local",
+    "imageinfo": [
+     {
+      "size": 8118116,
+      "width": 3690,
+      "height": 2898,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Vue_de_la_gare_de_Lyon_%28Paris%29_sous_la_pluie_en_juin_2023.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "descriptionurl": "https://commons.wikimedia.org/wiki/File:Vue_de_la_gare_de_Lyon_(Paris)_sous_la_pluie_en_juin_2023.JPG",
+      "descriptionshorturl": "https://commons.wikimedia.org/wiki/Special:Redirect/page/133941836",
+      "sha1": "feb20b4e4d4de5303274a72dd772683d7ee36c9c",
+      "commonmetadata": [
+       {
+        "name": "Make",
+        "value": "Apple"
+       },
+       {
+        "name": "Model",
+        "value": "iPhone 13"
+       },
+       {
+        "name": "Orientation",
+        "value": 1
+       },
+       {
+        "name": "XResolution",
+        "value": "300/1"
+       },
+       {
+        "name": "YResolution",
+        "value": "300/1"
+       },
+       {
+        "name": "ResolutionUnit",
+        "value": 2
+       },
+       {
+        "name": "Software",
+        "value": "GIMP 2.10.34"
+       },
+       {
+        "name": "DateTime",
+        "value": "2023:07:04 16:37:37"
+       },
+       {
+        "name": "YCbCrPositioning",
+        "value": 1
+       },
+       {
+        "name": "ExposureTime",
+        "value": "1/122"
+       },
+       {
+        "name": "FNumber",
+        "value": "8/5"
+       },
+       {
+        "name": "ExposureProgram",
+        "value": 2
+       },
+       {
+        "name": "ISOSpeedRatings",
+        "value": 64
+       },
+       {
+        "name": "ExifVersion",
+        "value": "0232"
+       },
+       {
+        "name": "DateTimeOriginal",
+        "value": "2023:06:22 09:03:24"
+       },
+       {
+        "name": "DateTimeDigitized",
+        "value": "2023:06:22 09:03:24"
+       },
+       {
+        "name": "ComponentsConfiguration",
+        "value": [
+         {
+          "name": 0,
+          "value": 1
+         },
+         {
+          "name": 1,
+          "value": 2
+         },
+         {
+          "name": 2,
+          "value": 3
+         },
+         {
+          "name": 3,
+          "value": 0
+         },
+         {
+          "name": "_type",
+          "value": "ol"
+         }
+        ]
+       },
+       {
+        "name": "ShutterSpeedValue",
+        "value": "17610/2543"
+       },
+       {
+        "name": "ApertureValue",
+        "value": "14447/10653"
+       },
+       {
+        "name": "BrightnessValue",
+        "value": "115190/24011"
+       },
+       {
+        "name": "ExposureBiasValue",
+        "value": "0/1"
+       },
+       {
+        "name": "MeteringMode",
+        "value": 5
+       },
+       {
+        "name": "Flash",
+        "value": 16
+       },
+       {
+        "name": "FocalLength",
+        "value": "51/10"
+       },
+       {
+        "name": "SubSecTimeOriginal",
+        "value": "901"
+       },
+       {
+        "name": "SubSecTimeDigitized",
+        "value": "901"
+       },
+       {
+        "name": "FlashPixVersion",
+        "value": "0100"
+       },
+       {
+        "name": "ColorSpace",
+        "value": 1
+       },
+       {
+        "name": "SensingMethod",
+        "value": 2
+       },
+       {
+        "name": "SceneType",
+        "value": 1
+       },
+       {
+        "name": "ExposureMode",
+        "value": 0
+       },
+       {
+        "name": "WhiteBalance",
+        "value": 0
+       },
+       {
+        "name": "FocalLengthIn35mmFilm",
+        "value": 26
+       },
+       {
+        "name": "SceneCaptureType",
+        "value": 0
+       },
+       {
+        "name": "GPSLatitude",
+        "value": 48.845683333333334
+       },
+       {
+        "name": "GPSLongitude",
+        "value": 2.3729583333333335
+       },
+       {
+        "name": "GPSAltitude",
+        "value": 49.87475105111751
+       },
+       {
+        "name": "GPSSpeedRef",
+        "value": "K"
+       },
+       {
+        "name": "GPSSpeed",
+        "value": "0/1"
+       },
+       {
+        "name": "GPSImgDirectionRef",
+        "value": "T"
+       },
+       {
+        "name": "GPSImgDirection",
+        "value": "714697/4144"
+       },
+       {
+        "name": "GPSDestBearingRef",
+        "value": "T"
+       },
+       {
+        "name": "GPSDestBearing",
+        "value": "714697/4144"
+       },
+       {
+        "name": "GPSDateStamp",
+        "value": "2023:06:22"
+       },
+       {
+        "name": "OriginalDocumentID",
+        "value": "xmp.did:be663572-82de-4834-b951-314bbf61f3b7"
+       }
+      ],
+      "extmetadata": {
+       "DateTime": {
+        "value": "2023-07-04 14:37:56",
+        "source": "mediawiki-metadata",
+        "hidden": ""
+       },
+       "ObjectName": {
+        "value": "Vue de la gare de Lyon (Paris) sous la pluie en juin 2023",
+        "source": "mediawiki-metadata"
+       },
+       "CommonsMetadataExtension": {
+        "value": 1.2,
+        "source": "extension",
+        "hidden": ""
+       },
+       "Categories": {
+        "value": "Exterior of Paris-Gare de Lyon|CC-Zero|Photographs by Benoît Prieur|Self-published work|Rain in Paris|June 2023 in Paris|2023 images by Benoît Prieur|Train stations in France photographed in 2023|Images of Paris 12e arrondissement by Benoît Prieur|Zebra crossings in Paris|Paris photographs taken on 2023-06-22|Files with coordinates missing SDC location of creation (48° N, 2° E)|Uploaded with PyCommonist|Images of rail transport by Benoît Prieur",
+        "source": "commons-categories",
+        "hidden": ""
+       },
+       "Assessments": {
+        "value": "",
+        "source": "commons-categories",
+        "hidden": ""
+       },
+       "GPSLatitude": {
+        "value": "48.845683",
+        "source": "commons-desc-page"
+       },
+       "GPSLongitude": {
+        "value": "2.372958",
+        "source": "commons-desc-page"
+       },
+       "GPSMapDatum": {
+        "value": "WGS-84",
+        "source": "commons-desc-page",
+        "hidden": ""
+       },
+       "ImageDescription": {
+        "value": "Vue de la gare de Lyon (Paris) sous la pluie en juin 2023.",
+        "source": "commons-desc-page"
+       },
+       "DateTimeOriginal": {
+        "value": "2023-06-22 09:03:24",
+        "source": "commons-desc-page"
+       },
+       "Credit": {
+        "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+        "source": "commons-desc-page"
+       },
+       "Artist": {
+        "value": "<bdi><a href=\"https://www.wikidata.org/wiki/Q42790984\" class=\"extiw\" title=\"d:Q42790984\"><span title=\"French computing engineer\">Benoît Prieur</span></a></bdi>",
+        "source": "commons-desc-page"
+       },
+       "LicenseShortName": {
+        "value": "CC0",
+        "source": "commons-desc-page",
+        "hidden": ""
+       },
+       "UsageTerms": {
+        "value": "Creative Commons Zero, Public Domain Dedication",
+        "source": "commons-desc-page"
+       },
+       "AttributionRequired": {
+        "value": "false",
+        "source": "commons-desc-page",
+        "hidden": ""
+       },
+       "LicenseUrl": {
+        "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "source": "commons-desc-page"
+       },
+       "Copyrighted": {
+        "value": "True",
+        "source": "commons-desc-page",
+        "hidden": ""
+       },
+       "Restrictions": {
+        "value": "",
+        "source": "commons-desc-page",
+        "hidden": ""
+       },
+       "License": {
+        "value": "cc0",
+        "source": "commons-templates",
+        "hidden": ""
+       }
+      },
+      "mime": "image/jpeg"
+     }
+    ],
+    "revisions": [
+     {
+      "revid": 1164946144,
+      "parentid": 948540345,
+      "timestamp": "2026-02-13T16:43:05Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "== {{int:filedesc}} ==\n{{Information\n|Description = {{fr|1=Vue de la gare de Lyon (Paris) sous la pluie en juin 2023.}}\n|Source = {{own}}\n|Author = {{Creator:Benoît Prieur}}\n|Date = 2023-06-22 09:03:24\n|Permission =\n|other versions =\n}}\n{{Location dec|48.845683333333334|2.3729583333333335|heading:172.46549227799227}}\n\n== {{int:license-header}} == \n{{self|cc-zero}}\n\n[[Category:Photographs by Benoît Prieur]]\n[[Category:Paris photographs taken on 2023-06-22]]\n[[Category:June 2023 in Paris]]\n[[Category:Images of Paris 12e arrondissement by Benoît Prieur]]\n[[Category:2023 images by Benoît Prieur]]\n[[Category:Images of rail transport by Benoît Prieur]]\n[[Category:Exterior of Paris-Gare de Lyon]]\n[[Category:Rain in Paris]]\n[[Category:Train stations in France photographed in 2023]]\n[[Category:Zebra crossings in Paris]]\n[[Category:Uploaded with PyCommonist]]"
+       }
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "_sunvision": {
+  "retrieved": "2026-11-25",
+  "endpoint": "https://commons.wikimedia.org/w/api.php"
+ }
+}

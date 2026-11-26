@@ -1,0 +1,62 @@
+{
+ "amsterdam-herengracht": {
+  "size": [
+   3000,
+   4000
+  ],
+  "exif": {
+   "FocalLengthIn35mmFilm": 56,
+   "Make": "NIKON",
+   "Model": "COOLPIX L110   ",
+   "DateTimeOriginal": "2011:01:24 13:35:24",
+   "FocalLength": "10.1"
+  }
+ },
+ "paris-boulevard-diderot": {
+  "size": [
+   5712,
+   4284
+  ],
+  "exif": {
+   "Make": "Apple",
+   "Model": "iPhone 16 Pro",
+   "DateTimeOriginal": "2026:03:20 14:34:06",
+   "FocalLength": "6.764999865652793",
+   "FocalLengthIn35mmFilm": 24,
+   "LensModel": "iPhone 16 Pro back triple camera 6.765mm f/1.78"
+  }
+ },
+ "nyc-ridge-street": {
+  "size": [
+   2586,
+   2586
+  ],
+  "exif": {
+   "Make": "Apple",
+   "Model": "iPhone 6s Plus",
+   "DateTimeOriginal": "2020:09:06 12:22:00",
+   "FocalLength": "4.15",
+   "FocalLengthIn35mmFilm": 29,
+   "LensModel": "iPhone 6s Plus back camera 4.15mm f/2.2"
+  }
+ },
+ "sarajevo-obala-kulina-bana": {
+  "size": [
+   3500,
+   2333
+  ],
+  "exif": {
+   "Make": "Canon",
+   "Model": "Canon EOS 550D",
+   "DateTimeOriginal": "2015:08:02 14:30:38",
+   "FocalLength": "18.0",
+   "FNumber": "9.0",
+   "ExposureTime": "1/200",
+   "ISOSpeedRatings": 100,
+   "Orientation": 1,
+   "FocalPlaneXResolution": "5184000/905",
+   "FocalPlaneYResolution": "3456000/595",
+   "FocalPlaneResolutionUnit": 2
+  }
+ }
+}

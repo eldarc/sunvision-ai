@@ -1,0 +1,88 @@
+{
+  "generatedBy": "scripts/add_views.py fetch",
+  "note": "Extra views of the surroundings (multi-view obstacles). Originals are not stored; re-download from originalUrl and verify originalSha1.",
+  "views": [
+    {
+      "viewId": "gare-de-lyon-south",
+      "commonsTitle": "File:Vue de la gare de Lyon (Paris) sous la pluie en juin 2023.JPG",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Vue_de_la_gare_de_Lyon_(Paris)_sous_la_pluie_en_juin_2023.JPG",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Vue_de_la_gare_de_Lyon_%28Paris%29_sous_la_pluie_en_juin_2023.JPG",
+      "originalSize": [
+        3690,
+        2898
+      ],
+      "originalBytes": 8118116,
+      "originalSha1": "feb20b4e4d4de5303274a72dd772683d7ee36c9c",
+      "creator": "Benoît Prieur",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "credit": "Own work",
+      "dateTimeOriginal": "2023-06-22 09:03:24",
+      "commonsLocationTemplate": "{{Location dec|48.845683333333334|2.3729583333333335|heading:172.46549227799227}}",
+      "exif": {
+        "Make": "Apple",
+        "Model": "iPhone 13",
+        "Orientation": 1,
+        "Software": "GIMP 2.10.34",
+        "DateTimeOriginal": "2023:06:22 09:03:24",
+        "FocalLength": "51/10",
+        "FocalLengthIn35mmFilm": 26,
+        "GPSImgDirection": "714697/4144"
+      },
+      "shippedFile": "web/public/examples/paris-boulevard-diderot/views/gare-de-lyon-south/photo.jpg",
+      "shippedSize": [
+        2000,
+        1571
+      ],
+      "shippedSha1": "ec39beff3a3054d83b01d75412b4bcb5cb8a3229",
+      "transformations": [
+        "downscaled from 3690x2898 to 2000x1571 (Lanczos)",
+        "re-encoded JPEG q88",
+        "all EXIF/XMP/ICC metadata stripped"
+      ],
+      "retrieved": "2026-11-25",
+      "commonsApiFile": "data/raw/paris-boulevard-diderot/views/gare-de-lyon-south/commons_api.json"
+    },
+    {
+      "viewId": "rue-de-lyon-southwest",
+      "commonsTitle": "File:Place Combattants Afrique Nord - Paris XII (FR75) - 2021-05-23 - 1.jpg",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Place_Combattants_Afrique_Nord_-_Paris_XII_(FR75)_-_2021-05-23_-_1.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/11/Place_Combattants_Afrique_Nord_-_Paris_XII_%28FR75%29_-_2021-05-23_-_1.jpg",
+      "originalSize": [
+        4032,
+        3024
+      ],
+      "originalBytes": 4562742,
+      "originalSha1": "7b0f2801e382d070d480ec2e21e373d628cdb606",
+      "creator": "Chabe01",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "credit": "Own work",
+      "dateTimeOriginal": "2021-05-23 17:46:24",
+      "commonsLocationTemplate": "{{Location|48.845858|2.372506|heading:216.17090620031797}}",
+      "exif": {
+        "Make": "Apple",
+        "Model": "iPhone XS",
+        "Orientation": 1,
+        "Software": "14.5.1",
+        "DateTimeOriginal": "2021:05:23 17:46:24",
+        "FocalLength": "17/4",
+        "FocalLengthIn35mmFilm": 26,
+        "GPSImgDirection": "271943/1258"
+      },
+      "shippedFile": "web/public/examples/paris-boulevard-diderot/views/rue-de-lyon-southwest/photo.jpg",
+      "shippedSize": [
+        2000,
+        1500
+      ],
+      "shippedSha1": "e410a76c3ecbdcc4ee9eba668f4b0003d545f6ab",
+      "transformations": [
+        "downscaled from 4032x3024 to 2000x1500 (Lanczos)",
+        "re-encoded JPEG q88",
+        "all EXIF/XMP/ICC metadata stripped"
+      ],
+      "retrieved": "2026-11-25",
+      "commonsApiFile": "data/raw/paris-boulevard-diderot/views/rue-de-lyon-southwest/commons_api.json"
+    }
+  ]
+}

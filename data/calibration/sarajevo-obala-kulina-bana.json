@@ -1,0 +1,19 @@
+{
+  "exampleId": "sarajevo-obala-kulina-bana",
+  "method": "Least-squares camera resection from manually picked image points of OSM footprint vertices (scripts/solve_camera.py). Ground points (z = 0) constrain position, heading and FOV; points high on the same vertical edges contribute only their horizontal residual with height left free, so they constrain pitch and roll without using any building height.",
+  "pickedBy": "Sunvision maintainers, by inspecting web/public/examples/sarajevo-obala-kulina-bana/photo.jpg (2000x1333); estimated picking accuracy ±10–15 px",
+  "provenance": "inferred",
+  "fixed": { "height": 1.6, "hfov": 63.5 },
+  "fixedNote": "Two corners cannot separate FOV from distance (a free FOV within hfovRange runs to its 62.2° bound for 0.8 px less RMS), so the solve holds the EXIF value; hfovRange is written to the scene as the app's alignment bound.",
+  "hfovRange": [62.2, 66.7],
+  "hfovRangeNote": "EXIF FocalLength 18 mm ± 0.5 mm (rounding) on a 22.3–23.0 mm sensor width (Canon spec vs. EXIF FocalPlaneXResolution); the file keeps the sensor's 3:2 aspect, so no crop.",
+  "groundPoints": [
+    { "buildingId": "way/190229391", "vertex": 0, "px": [204, 993], "what": "west outer corner (OSM node 2008185172) at the facade base on the embankment-wall top" },
+    { "vertex": 1, "px": [1770, 967], "what": "east outer corner (OSM node 2008184871) at the facade base" }
+  ],
+  "verticalPoints": [
+    { "buildingId": "way/190229391", "vertex": 0, "px": [223, 400], "what": "same west edge, under the cornice" },
+    { "vertex": 1, "px": [1737, 400], "what": "same east edge, under the cornice" }
+  ],
+  "note": "Only the two outer corners are used: OSM's centre way (way/190229449, 7.1 m) is narrower than the raised centre bay in the photo (≈ 13 m), so the inner OSM vertices do not mark visible edges. Vertex indices refer to each building's ring in scene.base.json."
+}
