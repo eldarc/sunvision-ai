@@ -1,0 +1,26 @@
+# secrets
+.env
+.env.*
+!.env.example
+# deps / build
+node_modules/
+web/dist/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# local
+.DS_Store
+*.local
+# shared Roboflow key allowance ledger (api/sunvision_cv/quota.py)
+api/.quota/
+
+# Local test material (user-supplied photos; not for publication)
+data/dev/
+# Offline replay of a user-supplied photo (derived detections, depth and location): local only
+web/src/lib/__tests__/sarajevo.test.ts
+web/src/lib/__tests__/fixtures/sarajevo/
+# local tooling and build info
+.claude/
+api/.claude/
+*.tsbuildinfo
