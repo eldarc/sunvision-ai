@@ -1,4 +1,4 @@
-import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { memo, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { useStore } from '../state/store';
 import { useSimContext } from './SimContext';
@@ -68,7 +68,6 @@ export function useActiveWindowIds() {
 export default function Timeline() {
   const scene = useStore((s) => s.scene)!;
   const date = useStore((s) => s.date);
-  const minutes = useStore((s) => s.minutes);
   const playing = useStore((s) => s.playing);
   const speed = useStore((s) => s.speed);
   const set = useStore((s) => s.set);
@@ -129,12 +128,12 @@ export default function Timeline() {
         {/* time strip */}
         <div className="flex min-w-0 flex-1 flex-col justify-center gap-1.5 pb-4">
           <div className="flex flex-wrap items-baseline justify-between gap-x-3">
-            <span className="num text-[15px] font-semibold leading-5 tracking-[-0.01em] text-paper">{fmtMin(minutes)}</span>
+            <Clock className="num text-[15px] font-semibold leading-5 tracking-[-0.01em] text-paper" />
             <span className="min-w-0 text-[11px] text-ink-400">
               {sel.length ? `${ids.length} selected window${ids.length > 1 ? 's' : ''}` : `all ${ids.length} windows on the photographed facade`} · 5-min sampling · 12 rays/window
             </span>
           </div>
-          <DayStrip daily={daily} minutes={minutes} onChange={(m) => set({ minutes: m })} sunrise={times?.sunrise?.localMinutes} sunset={times?.sunset?.localMinutes} />
+          <DayStrip daily={daily} onChange={(m) => set({ minutes: m })} sunrise={times?.sunrise?.localMinutes} sunset={times?.sunset?.localMinutes} />
         </div>
 
         {/* day stats */}
@@ -310,7 +309,6 @@ function HiddenDateInput({ inputRef, date, onDate }: { inputRef: React.RefObject
 export function DayBar({ variant = 'bar' }: { variant?: 'bar' | 'dock' }) {
   const scene = useStore((s) => s.scene)!;
   const date = useStore((s) => s.date);
-  const minutes = useStore((s) => s.minutes);
   const playing = useStore((s) => s.playing);
   const set = useStore((s) => s.set);
   const sel = useStore((s) => s.selectedWindowIds);
@@ -322,6 +320,9 @@ export function DayBar({ variant = 'bar' }: { variant?: 'bar' | 'dock' }) {
   usePlayback(playing, times);
 
   const year = Number(date.slice(0, 4));
+  // Re-render once per hour of scrubbed or played time, so "Today" follows the wall clock past midnight
+  // without re-rendering this bar on every minute.
+  useStore((s) => Math.floor(s.minutes / 60));
   const today = localToday();
   const seasons = seasonDates(year, scene.origin.lat);
   const agg = daily?.aggregate;
@@ -341,16 +342,14 @@ export function DayBar({ variant = 'bar' }: { variant?: 'bar' | 'dock' }) {
       {playing ? <PauseIcon /> : <PlayIcon />}
     </button>
   );
-  const strip = (tall: boolean) => <DayStrip compact tall={tall} daily={daily} minutes={minutes} onChange={(m) => set({ minutes: m })} sunrise={times?.sunrise?.localMinutes} sunset={times?.sunset?.localMinutes} />;
+  const strip = (tall: boolean) => <DayStrip compact tall={tall} daily={daily} onChange={(m) => set({ minutes: m })} sunrise={times?.sunrise?.localMinutes} sunset={times?.sunset?.localMinutes} />;
 
   if (variant === 'dock')
     return (
       <div className="flex flex-col gap-1.5 px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
         <div className="flex min-w-0 items-center gap-2">
           {playBtn(true)}
-          <span className="num text-[17px] font-semibold leading-6 tracking-[-0.01em] text-paper" aria-label={`Time ${fmtMin(minutes)}`}>
-            {fmtMin(minutes)}
-          </span>
+          <Clock labelled className="num text-[17px] font-semibold leading-6 tracking-[-0.01em] text-paper" />
           <DateSheet date={date} today={today} seasons={seasons} onDate={(d) => set({ date: d })} />
           <div className="ml-auto min-w-0 text-right" title={directTitle}>
             <div className="text-[11px] leading-4 text-ink-400">Direct sun</div>
@@ -369,9 +368,7 @@ export function DayBar({ variant = 'bar' }: { variant?: 'bar' | 'dock' }) {
     <div className="flex h-full min-h-[88px] flex-col justify-center gap-2 px-3 py-2">
       <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1.5">
         {playBtn(false)}
-        <span className="num w-12 text-[15px] font-semibold leading-5 tracking-[-0.01em] text-paper" aria-label={`Time ${fmtMin(minutes)}`}>
-          {fmtMin(minutes)}
-        </span>
+        <Clock labelled className="num w-12 text-[15px] font-semibold leading-5 tracking-[-0.01em] text-paper" />
         <div className="relative flex items-center">
           <button
             type="button"
@@ -388,7 +385,7 @@ export function DayBar({ variant = 'bar' }: { variant?: 'bar' | 'dock' }) {
           <HiddenDateInput inputRef={dateRef} date={date} onDate={(d) => set({ date: d })} />
         </div>
         <div className={PRESET_GROUP} role="group" aria-label="Season">
-          <PresetBtn title={fmtDayMonth(today)} selected={date === today} onClick={() => set({ date: today })}>Today</PresetBtn>
+          <PresetBtn title={fmtDayMonth(today)} selected={date === today} onClick={() => set({ date: localToday() })}>Today</PresetBtn>
           {seasons.map((s) => (
             <PresetBtn key={s.key} title={fmtDayMonth(s.date)} selected={date === s.date} onClick={() => set({ date: s.date })}>{s.label}</PresetBtn>
           ))}
@@ -410,6 +407,16 @@ export function DayBar({ variant = 'bar' }: { variant?: 'bar' | 'dock' }) {
       {strip(false)}
       <div className="h-3" aria-hidden />
     </div>
+  );
+}
+
+/** The clock read-out. It subscribes to `minutes` itself so playback re-renders only this span. */
+function Clock({ className, labelled = false }: { className: string; labelled?: boolean }) {
+  const minutes = useStore((s) => s.minutes);
+  return (
+    <span className={className} aria-label={labelled ? `Time ${fmtMin(minutes)}` : undefined}>
+      {fmtMin(minutes)}
+    </span>
   );
 }
 
@@ -513,9 +520,9 @@ const COMPACT_COLOR: Record<string, string> = { night: 'var(--color-night)', 'fa
  * The day strip: a slider over the day (role="slider", arrows ±10 min, Shift ±60, Home/End).
  * `tall`: a 44px touch target around a 32px strip (phone dock).
  */
-function DayStrip({ daily, minutes, onChange, sunrise, sunset, compact = false, tall = false }: { daily: DailyExposureResult | null; minutes: number; onChange: (m: number) => void; sunrise?: number; sunset?: number; compact?: boolean; tall?: boolean }) {
+function DayStrip({ daily, onChange, sunrise, sunset, compact = false, tall = false }: { daily: DailyExposureResult | null; onChange: (m: number) => void; sunrise?: number; sunset?: number; compact?: boolean; tall?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
-  const tl = daily?.aggregate.timeline ?? [];
+  const minutes = useStore((s) => s.minutes);
   const pick = (e: React.PointerEvent) => {
     const r = ref.current!.getBoundingClientRect();
     onChange(Math.max(0, Math.min(1439, ((e.clientX - r.left) / r.width) * 1440)));
@@ -551,20 +558,7 @@ function DayStrip({ daily, minutes, onChange, sunrise, sunset, compact = false, 
       }}
     >
       <div className={clsx('absolute inset-x-0 overflow-hidden rounded-md bg-ink-800 ring-1 ring-ink-700', tall ? 'inset-y-1.5' : 'inset-y-0')}>
-        <svg className="absolute inset-0 h-full w-full" preserveAspectRatio="none" viewBox="0 0 1440 44" aria-hidden>
-          {tl.map((s, i) => {
-            const step = daily!.stepMinutes;
-            const x = s.localMinutes - step / 2;
-            return <rect key={i} x={x} y={0} width={step + 0.6} height={44} style={{ fill: (compact ? COMPACT_COLOR : STATE_COLOR)[s.state] }} opacity={s.state === 'partial' ? 0.5 + s.litFraction * 0.5 : 1} />;
-          })}
-          {/* lit fraction curve */}
-          {tl.length > 0 && <polyline fill="none" style={{ stroke: 'var(--color-sun-300)' }} strokeWidth={1.2} vectorEffect="non-scaling-stroke" points={tl.map((s) => `${s.localMinutes},${42 - s.litFraction * 36}`).join(' ')} opacity={0.9} />}
-          {[3, 6, 9, 12, 15, 18, 21].map((h) => (
-            <line key={h} x1={h * 60} x2={h * 60} y1={0} y2={44} style={{ stroke: 'var(--color-paper)' }} strokeOpacity={0.1} vectorEffect="non-scaling-stroke" />
-          ))}
-          {sunrise != null && <line x1={sunrise} x2={sunrise} y1={0} y2={44} style={{ stroke: 'var(--color-sun-500)' }} strokeOpacity={0.75} strokeDasharray="2 2" vectorEffect="non-scaling-stroke" />}
-          {sunset != null && <line x1={sunset} x2={sunset} y1={0} y2={44} style={{ stroke: 'var(--color-sun-500)' }} strokeOpacity={0.75} strokeDasharray="2 2" vectorEffect="non-scaling-stroke" />}
-        </svg>
+        <DayStripChart daily={daily} sunrise={sunrise} sunset={sunset} compact={compact} />
       </div>
       <div className={clsx('pointer-events-none absolute w-0.5 rounded-full bg-paper shadow-[0_0_0_1.5px_var(--color-ink-900)]', tall ? 'inset-y-0.5' : 'inset-y-[-3px]')} style={{ left: `calc(${(minutes / 1440) * 100}% - 1px)` }} />
       <div className={clsx('pointer-events-none absolute left-0 right-0 flex justify-between px-0.5 text-[11px] leading-3 text-ink-400', tall ? 'top-[calc(100%-5px)]' : 'top-full mt-1')}>
@@ -577,12 +571,40 @@ function DayStrip({ daily, minutes, onChange, sunrise, sunset, compact = false, 
   );
 }
 
+/** The day strip's static chart (sun-state bands, lit-fraction curve, hour and sunrise/sunset lines); independent of `minutes`. */
+const DayStripChart = memo(function DayStripChart({ daily, sunrise, sunset, compact }: { daily: DailyExposureResult | null; sunrise?: number; sunset?: number; compact: boolean }) {
+  const tl = daily?.aggregate.timeline ?? [];
+  return (
+    <svg className="absolute inset-0 h-full w-full" preserveAspectRatio="none" viewBox="0 0 1440 44" aria-hidden>
+      {tl.map((s, i) => {
+        const step = daily!.stepMinutes;
+        const x = s.localMinutes - step / 2;
+        return <rect key={i} x={x} y={0} width={step + 0.6} height={44} style={{ fill: (compact ? COMPACT_COLOR : STATE_COLOR)[s.state] }} opacity={s.state === 'partial' ? 0.5 + s.litFraction * 0.5 : 1} />;
+      })}
+      {/* lit fraction curve */}
+      {tl.length > 0 && <polyline fill="none" style={{ stroke: 'var(--color-sun-300)' }} strokeWidth={1.2} vectorEffect="non-scaling-stroke" points={tl.map((s) => `${s.localMinutes},${42 - s.litFraction * 36}`).join(' ')} opacity={0.9} />}
+      {[3, 6, 9, 12, 15, 18, 21].map((h) => (
+        <line key={h} x1={h * 60} x2={h * 60} y1={0} y2={44} style={{ stroke: 'var(--color-paper)' }} strokeOpacity={0.1} vectorEffect="non-scaling-stroke" />
+      ))}
+      {sunrise != null && <line x1={sunrise} x2={sunrise} y1={0} y2={44} style={{ stroke: 'var(--color-sun-500)' }} strokeOpacity={0.75} strokeDasharray="2 2" vectorEffect="non-scaling-stroke" />}
+      {sunset != null && <line x1={sunset} x2={sunset} y1={0} y2={44} style={{ stroke: 'var(--color-sun-500)' }} strokeOpacity={0.75} strokeDasharray="2 2" vectorEffect="non-scaling-stroke" />}
+    </svg>
+  );
+});
+
 /** Annual analytics panel. `only="heatmap"` shows the heatmap alone (simple mode's "See the whole year"). */
 export function Analytics({ ids, daily, only }: { ids: string[]; daily: DailyExposureResult | null; onClose?: () => void; only?: 'heatmap' }) {
   const sim = useSimContext();
   const annual = useAnnual(sim, ids, true);
   const scene = useStore((s) => s.scene)!;
-  const store = useStore();
+  const settings = useStore((s) => s.settings);
+  const trees = useStore((s) => s.trees);
+  const extraBuildings = useStore((s) => s.extraBuildings);
+  const selectedWindowIds = useStore((s) => s.selectedWindowIds);
+  const apartment = useStore((s) => s.apartment);
+  const detections = useStore((s) => s.detections);
+  const camera = useStore((s) => s.camera);
+  const date = useStore((s) => s.date);
   const [chosen, setView] = useState<'heatmap' | 'monthly' | 'windows' | 'scenarios'>('heatmap');
   const view = only ?? chosen;
 
@@ -591,12 +613,12 @@ export function Analytics({ ids, daily, only }: { ids: string[]; daily: DailyExp
     if (!sim || view !== 'scenarios') return null;
     const ctx = { lat: scene.origin.lat, lon: scene.origin.lon, tz: scene.timezone };
     return (['low', 'best', 'high'] as const).map((sc) => {
-      const g = buildGeometry({ scene, recon: sim.recon, settings: { ...store.settings, scenario: sc }, trees: store.trees, extraBuildings: store.extraBuildings, selectedWindowIds: store.selectedWindowIds, apartment: store.apartment, detections: store.detections, camera: store.camera! });
+      const g = buildGeometry({ scene, recon: sim.recon, settings: { ...settings, scenario: sc }, trees, extraBuildings, selectedWindowIds, apartment, detections, camera: camera! });
       const ws = g.windows.filter((w) => ids.includes(w.fw.id)).map((w) => w.spec);
-      const d = dailyExposure(buildObstacleIndex(g.obstacles), ws, store.date, ctx, 10);
+      const d = dailyExposure(buildObstacleIndex(g.obstacles), ws, date, ctx, 10);
       return { sc, d };
     });
-  }, [sim, view, ids.join('|'), store.date, store.settings, store.trees, store.extraBuildings]);
+  }, [sim, view, ids.join('|'), date, settings, trees, extraBuildings]);
 
   return (
     <div className={clsx('sm:h-[300px]', only ? 'px-4 py-3' : 'border-t border-ink-700 px-3 py-2')}>
@@ -649,24 +671,32 @@ function Snapshots({ daily }: { daily: DailyExposureResult | null }) {
   );
 }
 
-function Heatmap({ a }: { a: AnnualResult | null }) {
+const heatCell = (v: number) => (v < 0 ? 'var(--color-night)' : v === 0 ? 'var(--color-away)' : `color-mix(in oklab, var(--color-lit) ${Math.round(25 + v * 75)}%, var(--color-unlit))`);
+
+const Heatmap = memo(function Heatmap({ a }: { a: AnnualResult | null }) {
   const [hover, setHover] = useState<{ d: number; b: number } | null>(null);
   const set = useStore((s) => s.set);
+  // One rect per day × bin (thousands): built once per result, not on every hover or tick.
+  const cells = useMemo(() => {
+    if (!a) return null;
+    const nb = a.matrix[0]?.length ?? 96;
+    const binMin = a.resolution.binMinutes;
+    return a.matrix.map((row, d) =>
+      row.map((v, b) => <rect key={d * nb + b} x={b} y={d} width={1.02} height={1.02} style={{ fill: heatCell(v) }} onMouseEnter={() => setHover({ d, b })} onClick={() => {
+          // Tapping also pins the read-out on that cell (there is no hover on a touch screen).
+          setHover({ d, b });
+          set({ date: a.days[d], minutes: b * binMin + binMin / 2 });
+        }} />),
+    );
+  }, [a, set]);
   if (!a) return <div className="grid h-full place-items-center text-xs text-ink-400">Preparing annual simulation…</div>;
   const nb = a.matrix[0]?.length ?? 96;
   const binMin = a.resolution.binMinutes;
-  const cell = (v: number) => (v < 0 ? 'var(--color-night)' : v === 0 ? 'var(--color-away)' : `color-mix(in oklab, var(--color-lit) ${Math.round(25 + v * 75)}%, var(--color-unlit))`);
   return (
     <div className="flex h-full flex-col gap-3 sm:flex-row">
       <div className="relative min-w-0 flex-1">
         <svg viewBox={`0 0 ${nb} ${a.days.length}`} preserveAspectRatio="none" className="h-[220px] w-full rounded-md" onMouseLeave={() => setHover(null)}>
-          {a.matrix.map((row, d) =>
-            row.map((v, b) => <rect key={d * nb + b} x={b} y={d} width={1.02} height={1.02} style={{ fill: cell(v) }} onMouseEnter={() => setHover({ d, b })} onClick={() => {
-                // Tapping also pins the read-out on that cell (there is no hover on a touch screen).
-                setHover({ d, b });
-                set({ date: a.days[d], minutes: b * binMin + binMin / 2 });
-              }} />),
-          )}
+          {cells}
         </svg>
         <div className="mt-1 flex justify-between text-[11px] leading-3 text-ink-400">
           {['00', '03', '06', '09', '12', '15', '18', '21', '24'].map((h, i) => <span key={h} className={clsx('num', i % 2 === 1 && 'hidden sm:inline')}>{h}:00</span>)}
@@ -680,10 +710,10 @@ function Heatmap({ a }: { a: AnnualResult | null }) {
       <div className="shrink-0 space-y-2 text-[11px] sm:w-44">
         <div className="flex flex-wrap gap-x-3 gap-y-1 sm:flex-col">
           {[
-            [cell(1), 'Direct sun'],
-            [cell(0.4), 'Partially lit'],
-            [cell(0), 'Shaded / facing away'],
-            [cell(-1), 'Night'],
+            [heatCell(1), 'Direct sun'],
+            [heatCell(0.4), 'Partially lit'],
+            [heatCell(0), 'Shaded / facing away'],
+            [heatCell(-1), 'Night'],
           ].map(([c, l]) => (
             <span key={l} className="flex items-center gap-1.5 text-ink-300"><span className="h-2.5 w-2.5 rounded-sm ring-1 ring-inset ring-ink-700" style={{ background: c }} />{l}</span>
           ))}
@@ -694,7 +724,7 @@ function Heatmap({ a }: { a: AnnualResult | null }) {
       </div>
     </div>
   );
-}
+});
 
 function Monthly({ a }: { a: AnnualResult | null }) {
   if (!a) return <div className="grid h-full place-items-center text-xs text-ink-400">Preparing annual simulation…</div>;

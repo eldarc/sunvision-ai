@@ -8,6 +8,8 @@ export interface ExampleIndexEntry {
   country: string;
   description: string;
   thumbnail?: string;
+  /** Small landing-card preview (card.webp, scripts/make_thumbs.py); falls back to thumbnail. */
+  card?: string;
   credit?: string;
 }
 
@@ -20,6 +22,29 @@ const EMPTY_ANALYSIS = (w: number, h: number): FacadeAnalysis => ({
   warnings: ['No recorded inference for this example yet — annotate windows manually.'],
   pipelineVersion: 'n/a',
 });
+
+/** View-strip thumbnails (thumb.webp next to each bundled photo, scripts/make_thumbs.py), keyed by resolved photo URL. */
+const viewThumbs = new Map<string, string>();
+
+const prefetched = new Set<string>();
+/**
+ * Starts downloading an image into the HTTP cache (once per URL), so it shows at once when it is
+ * displayed later. The small cards and thumbnails no longer do this as a side effect.
+ */
+export function prefetchImage(url: string) {
+  if (!url || prefetched.has(url) || typeof Image === 'undefined') return;
+  prefetched.add(url);
+  const img = new Image();
+  img.decoding = 'async';
+  img.src = url;
+}
+
+/** Thumbnail URL for a resolved example photo URL, if it has one. Uploads (blob URLs) never do. */
+export function viewThumbUrl(photoUrl: string): string | undefined {
+  return viewThumbs.get(photoUrl);
+}
+
+const thumbFor = (photoUrl: string) => viewThumbs.set(photoUrl, photoUrl.replace(/[^/]*$/, 'thumb.webp'));
 
 /** Fetch scene.base.json + analysis.json for a curated example and merge them. */
 export async function fetchExample(id: string): Promise<Scene> {
@@ -47,6 +72,8 @@ export async function fetchExample(id: string): Promise<Scene> {
         ? { ...v.analysis, depth: { ...v.analysis.depth, url: abs(v.analysis.depth.url), ...(v.analysis.depth.binUrl ? { binUrl: abs(v.analysis.depth.binUrl) } : {}) } }
         : v.analysis,
     }));
+  thumbFor(scene.image.url);
+  for (const v of scene.extraViews ?? []) thumbFor(v.image.url);
   return { ...(scene as Scene), analysis };
 }
 

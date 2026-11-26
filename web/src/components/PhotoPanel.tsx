@@ -229,6 +229,9 @@ function PhotoPanelBody({ scene, view }: { scene: SceneT; view: ViewT }) {
       detections: { appendable: { datasetId: 'sunvision-' + hash(imgUrl), clearOnCreate: true, retention: { mode: DetectionFrameRetentionMode.MemoryOnly } } },
       presentation,
       renderer: {
+        // A photo has nothing to play. Autoplay (the default) runs a playback loop that redraws the
+        // canvas every frame; paused, the scene renders only when something on it changes.
+        autoPlay: false,
         fit: MediaRendererFit.Contain,
         interaction: {
           mode: 'always' as never,

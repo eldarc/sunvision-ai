@@ -12,7 +12,7 @@
  */
 import clsx from 'clsx';
 import { useEffect, useRef, useState, type DragEvent, type KeyboardEvent, type PointerEvent } from 'react';
-import type { ExampleIndexEntry } from '../../lib/examples';
+import { prefetchImage, type ExampleIndexEntry } from '../../lib/examples';
 import { useCoarsePointer } from './ExampleStage';
 
 export interface ExamplePickerProps {
@@ -96,9 +96,16 @@ export default function ExamplePicker({ examples, selectedId, openingId, onSelec
     }
   };
 
+  /** The stage shows the full photo; start loading it as soon as a card is pointed at or focused. */
+  const warmStage = (id: string) => {
+    const ex = examples?.find((x) => x.id === id);
+    if (ex) prefetchImage(`examples/${ex.id}/${ex.thumbnail ?? 'photo.jpg'}`);
+  };
+
   /** Hover preview is a mouse affordance: a finger swiping the row must not swap the stage. */
   const onCardEnter = (e: PointerEvent<HTMLDivElement>, id: string) => {
     clearHover();
+    warmStage(id);
     if (e.pointerType !== 'mouse') return;
     hoverTimer.current = setTimeout(() => {
       onInteract();
@@ -140,6 +147,7 @@ export default function ExamplePicker({ examples, selectedId, openingId, onSelec
               tabIndex={ex.id === tabStop ? 0 : -1}
               onKeyDown={(e) => onCardKey(e, i, ex.id)}
               onPointerEnter={(e) => onCardEnter(e, ex.id)}
+              onFocus={() => warmStage(ex.id)}
               onPointerLeave={clearHover}
               onClick={() => {
                 onInteract();
@@ -157,7 +165,7 @@ export default function ExamplePicker({ examples, selectedId, openingId, onSelec
               )}
             >
               <img
-                src={`examples/${ex.id}/${ex.thumbnail ?? 'photo.jpg'}`}
+                src={`examples/${ex.id}/${ex.card ?? ex.thumbnail ?? 'photo.jpg'}`}
                 alt=""
                 loading="lazy"
                 draggable={false}

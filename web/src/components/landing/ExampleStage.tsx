@@ -462,6 +462,8 @@ export default function ExampleStage({ example, autoplay, onInteract, onPickWind
                 : { transform: zoom === 'held' ? 'scale(1.03)' : 'scale(1)', transition: reduced ? undefined : 'transform 300ms ease-out' }
             }
           >
+            {/* The card image is already cached: it fills the frame until the full photo has loaded. */}
+            {example.card && <img src={`examples/${example.id}/${example.card}`} alt="" aria-hidden className="absolute inset-0 h-full w-full select-none object-cover" draggable={false} />}
             <img
               src={`examples/${example.id}/${example.thumbnail ?? 'photo.jpg'}`}
               alt={`${example.title}, ${example.city}: street photograph used for this example`}

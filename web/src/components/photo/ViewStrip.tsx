@@ -8,6 +8,7 @@ import type { Scene } from '../../schema/scene';
 import { useStore } from '../../state/store';
 import { sceneViews } from '../../lib/views';
 import { exampleBase } from '../../lib/useSim';
+import { prefetchImage, viewThumbUrl } from '../../lib/examples';
 import { fetchHealth } from '../../lib/analyzeApi';
 
 const ABSOLUTE = /^(https?:|blob:|data:|\/)/;
@@ -48,6 +49,26 @@ export function useApiAvailable(): boolean | null {
   return ok;
 }
 
+/**
+ * The tiles show small thumbnails, so the full photos of the other bundled views are fetched once the
+ * page is idle: switching to a view then shows it at once.
+ */
+function PrefetchWhenIdle({ urls }: { urls: string[] }) {
+  const key = urls.join('\n');
+  useEffect(() => {
+    const list = key ? key.split('\n') : [];
+    if (!list.length) return;
+    const run = () => list.forEach(prefetchImage);
+    if (typeof requestIdleCallback === 'function') {
+      const id = requestIdleCallback(run, { timeout: 4000 });
+      return () => cancelIdleCallback(id);
+    }
+    const t = setTimeout(run, 1500);
+    return () => clearTimeout(t);
+  }, [key]);
+  return null;
+}
+
 export default function ViewStrip() {
   const scene = useStore((s) => s.scene);
   const camera = useStore((s) => s.camera);
@@ -76,9 +97,12 @@ export default function ViewStrip() {
 
   return (
     <div className="flex h-[68px] shrink-0 items-start gap-3 overflow-x-auto border-t border-ink-700 bg-ink-900 px-3 pt-2.5" role="group" aria-label="Photos of this scene">
+      <PrefetchWhenIdle urls={views.filter((v) => v.id !== activeViewId).map((v) => resolveViewAsset(scene, v.image.url)).filter((u) => !!viewThumbUrl(u))} />
       {views.map((v, i) => {
         const active = v.id === activeViewId;
         const label = i === 0 ? 'Main photo' : v.label;
+        const photo = resolveViewAsset(scene, v.image.url);
+        const thumb = viewThumbUrl(photo);
         return (
           <div key={v.id} className="group relative shrink-0">
             <button
@@ -92,7 +116,11 @@ export default function ViewStrip() {
               )}
             >
               <img
-                src={resolveViewAsset(scene, v.image.url)}
+                src={thumb ?? photo}
+                // A bundled example without a generated thumbnail falls back to the photo itself.
+                onError={(e) => {
+                  if (thumb && e.currentTarget.src.endsWith(thumb)) e.currentTarget.src = photo;
+                }}
                 alt=""
                 width={56}
                 height={42}

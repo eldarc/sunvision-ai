@@ -10,7 +10,8 @@ Inputs (all committed to the repo, so the build is reproducible offline):
 Output: a `Scene` (see web/src/schema/scene.ts) WITHOUT the `analysis` field.
 The CV pipeline writes `analysis.json` next to it; the browser merges both.
 Also written: web/public/examples/<id>/osm.json (the bundled ODbL snapshot the app reuses near the
-example) and web/public/examples/index.json (with each example's `center` = scene origin).
+example) and web/public/examples/index.json (with each example's `center` = scene origin, and
+`card` when scripts/make_thumbs.py has written card.webp).
 
 Coordinates: exact WGS84 geodetic -> ECEF -> local ENU tangent plane at the
 origin (h = 0). See docs/coordinates.md. Origin = area centroid of the target
@@ -629,8 +630,11 @@ def main():
         else:
             build(ex["id"], ex, plot=plot)
         entry = dict(id=ex["id"], title=ex["title"], city=ex["city"], country=ex["country"],
-                     description=ex["description"], thumbnail="photo.jpg",
-                     credit=f"{ex['photo']['creator']} · {ex['photo']['license']}")
+                     description=ex["description"], thumbnail="photo.jpg")
+        # Landing card preview written by scripts/make_thumbs.py.
+        if (EXAMPLES_DIR / ex["id"] / "card.webp").exists():
+            entry["card"] = "card.webp"
+        entry["credit"] = f"{ex['photo']['creator']} · {ex['photo']['license']}"
         scene_path = EXAMPLES_DIR / ex["id"] / "scene.base.json"
         if scene_path.exists():
             entry["center"] = json.loads(scene_path.read_text())["origin"]

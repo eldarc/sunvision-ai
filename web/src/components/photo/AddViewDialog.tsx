@@ -12,7 +12,6 @@
  */
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react';
 import clsx from 'clsx';
-import exifr from 'exifr';
 import type { BuildingModel, CameraParams, FacadeAnalysis, Footprint, PhotoView, Provenance, Scene, Vec2 } from '../../schema/scene';
 import { useStore } from '../../state/store';
 import { Dot, Modal } from '../kit';
@@ -260,6 +259,8 @@ export default function AddViewDialog() {
     }
     let ex: Record<string, unknown> = {};
     try {
+      // Loaded on demand: exifr is only needed once a photo is dropped.
+      const { default: exifr } = await import('exifr');
       ex = (await exifr.parse(f, { gps: true, tiff: true, exif: true, translateValues: true })) ?? {};
     } catch {
       /* no EXIF */

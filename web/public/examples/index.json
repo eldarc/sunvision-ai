@@ -6,6 +6,7 @@
     "country": "United States",
     "description": "A 1914 Colonial Revival tenement on the corner of Ridge and Rivington Streets on the Lower East Side: six storeys of brick and fire escapes on a narrow Manhattan street grid, photographed from across the intersection.",
     "thumbnail": "photo.jpg",
+    "card": "card.webp",
     "credit": "Andre Carrotflower · CC BY-SA 4.0",
     "center": {
       "lat": 40.71869917,
@@ -20,6 +21,7 @@
     "country": "Netherlands",
     "description": "A narrow historic canal house photographed straight-on from across the Herengracht: three bays of tall sash windows on an east-facing facade, flanked by taller neighbours and a row of canal trees.",
     "thumbnail": "photo.jpg",
+    "card": "card.webp",
     "credit": "Evert100 · CC0 1.0",
     "center": {
       "lat": 52.37163012,
@@ -34,6 +36,7 @@
     "country": "France",
     "description": "A Haussmann-era corner apartment block opposite Gare de Lyon: a south-facing stone facade with continuous wrought-iron balconies, a brasserie at street level and a zinc mansard roof.",
     "thumbnail": "photo.jpg",
+    "card": "card.webp",
     "credit": "Chabe01 · CC BY-SA 4.0",
     "center": {
       "lat": 48.84601482,
@@ -48,6 +51,7 @@
     "country": "Bosnia and Herzegovina",
     "description": "The neo-Moorish former police station on the Miljacka embankment, photographed square-on from the opposite bank in full afternoon sun: a yellow stucco facade with horseshoe-arched windows, a row of round attic windows and a crenellated centre bay. OSM maps it as three building=apartments footprints; whether it is lived in today is not confirmed.",
     "thumbnail": "photo.jpg",
+    "card": "card.webp",
     "credit": "Julian Nyča · CC BY-SA 3.0",
     "center": {
       "lat": 43.85712369,

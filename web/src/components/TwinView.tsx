@@ -1,6 +1,6 @@
 import { Canvas, useFrame, useThree, type RootState, type ThreeEvent } from '@react-three/fiber';
 import { OrbitControls, Line } from '@react-three/drei';
-import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
+import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import * as THREE from 'three';
 import clsx from 'clsx';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
@@ -72,7 +72,7 @@ function shapeFromRing(ring: Vec2[]) {
   return s;
 }
 
-function Building({ id, ring, zMin, zMax, color, opacity = 1, selected, onSelect, ghost, edge, accent, edgeOpacity = 0.35 }: { id: string; ring: Vec2[]; zMin: number; zMax: number; color: string; opacity?: number; selected?: boolean; onSelect?: (id: string) => void; ghost?: boolean; edge: string; accent: string; edgeOpacity?: number }) {
+const Building = memo(function Building({ id, ring, zMin, zMax, color, opacity = 1, selected, onSelect, ghost, edge, accent, edgeOpacity = 0.35 }: { id: string; ring: Vec2[]; zMin: number; zMax: number; color: string; opacity?: number; selected?: boolean; onSelect?: (id: string) => void; ghost?: boolean; edge: string; accent: string; edgeOpacity?: number }) {
   const geom = useMemo(() => {
     const g = new THREE.ExtrudeGeometry(shapeFromRing(ring), { depth: Math.max(0.5, zMax - zMin), bevelEnabled: false });
     g.translate(0, 0, zMin);
@@ -99,22 +99,42 @@ function Building({ id, ring, zMin, zMax, color, opacity = 1, selected, onSelect
       </lineSegments>
     </group>
   );
-}
+});
 
-function WindowMesh({ w, state, selected, hovered, glass, onClick, onHover }: { w: PlacedWindow; state?: WindowSampleResult; selected: boolean; hovered: boolean; glass?: boolean; onClick: (e: ThreeEvent<MouseEvent>) => void; onHover: (on: boolean) => void }) {
-  const { geom, mat } = useMemo(() => {
+/** Lit fraction of a window's sample, clamped to [0, 1]; 0 without a finite sample. */
+const litOf = (state?: WindowSampleResult) => (fin(state?.litFraction) ? Math.min(1, Math.max(0, state.litFraction)) : 0);
+
+/**
+ * One window. Memoized with primitive props, so a time tick only re-renders the windows whose light
+ * changed (a few per minute of playback), not all of them.
+ */
+const WindowMesh = memo(function WindowMesh({ w, lit, daylight, facing, selected, glass, onToggle, onHoverId }: { w: PlacedWindow; lit: number; daylight: boolean; facing: boolean; selected: boolean; glass?: boolean; onToggle: (id: string, additive: boolean) => void; onHoverId: (id: string | null) => void }) {
+  const geom = useMemo(() => {
     const [bl, br, tr, tl] = w.corners.map((c) => [c[0] + w.plane.normal[0] * 0.04, c[1] + w.plane.normal[1] * 0.04, c[2]] as Vec3);
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.Float32BufferAttribute([...bl, ...br, ...tr, ...bl, ...tr, ...tl], 3));
     g.computeVertexNormals();
-    return { geom: g, mat: null };
+    return g;
   }, [w]);
-  void mat;
   useEffect(() => () => geom.dispose(), [geom]);
-  const lit = fin(state?.litFraction) ? Math.min(1, Math.max(0, state.litFraction)) : 0;
-  const color = selected ? '#ffffff' : !state?.daylight ? '#1b2330' : lit > 0 ? new THREE.Color('#2a3444').lerp(new THREE.Color('#ffc65c'), 0.35 + 0.65 * lit) : state?.facing ? '#3e5573' : '#222a36';
+  const color = useMemo(
+    () => (selected ? '#ffffff' : !daylight ? '#1b2330' : lit > 0 ? new THREE.Color('#2a3444').lerp(new THREE.Color('#ffc65c'), 0.35 + 0.65 * lit) : facing ? '#3e5573' : '#222a36'),
+    [selected, daylight, lit, facing],
+  );
+  const id = w.fw.id;
   return (
-    <mesh geometry={geom} onClick={onClick} onPointerOver={(e) => { e.stopPropagation(); onHover(true); }} onPointerOut={() => onHover(false)}>
+    <mesh
+      geometry={geom}
+      onClick={(e: ThreeEvent<MouseEvent>) => {
+        e.stopPropagation();
+        onToggle(id, e.shiftKey || e.metaKey || e.ctrlKey);
+      }}
+      onPointerOver={(e) => {
+        e.stopPropagation();
+        onHoverId(id);
+      }}
+      onPointerOut={() => onHoverId(null)}
+    >
       {glass ? (
         <meshStandardMaterial color="#bcd3ea" transparent opacity={0.12} roughness={0.05} metalness={0.2} side={THREE.DoubleSide} depthWrite={false} />
       ) : (
@@ -122,9 +142,9 @@ function WindowMesh({ w, state, selected, hovered, glass, onClick, onHover }: { 
       )}
     </mesh>
   );
-}
+});
 
-function Tree({ p, h, r, enabled }: { p: Vec2; h: number; r: number; enabled: boolean }) {
+const Tree = memo(function Tree({ p, h, r, enabled }: { p: Vec2; h: number; r: number; enabled: boolean }) {
   if (!enabled) return null;
   const trunkH = Math.max(1, h - r * 1.6);
   return (
@@ -139,7 +159,7 @@ function Tree({ p, h, r, enabled }: { p: Vec2; h: number; r: number; enabled: bo
       </mesh>
     </group>
   );
-}
+});
 
 function SunRig({ dir, theme }: { dir: Vec3; theme: Theme }) {
   const x = SCENE_EXTRA[theme];
@@ -152,7 +172,7 @@ function SunRig({ dir, theme }: { dir: Vec3; theme: Theme }) {
     light.current.target.updateMatrixWorld();
   }, []);
   const elev = Math.max(0, dir[2]);
-  const warm = new THREE.Color('#ffd9a0').lerp(new THREE.Color('#fff6e8'), Math.min(1, elev * 1.6));
+  const warm = useMemo(() => new THREE.Color('#ffd9a0').lerp(new THREE.Color('#fff6e8'), Math.min(1, elev * 1.6)), [elev]);
   return (
     <>
       <directionalLight
@@ -160,7 +180,9 @@ function SunRig({ dir, theme }: { dir: Vec3; theme: Theme }) {
         position={pos}
         intensity={up ? x.sun * Math.min(1, 0.25 + elev * 2) : 0}
         color={warm}
-        castShadow={up}
+        // Always a shadow caster (at night its intensity is 0): toggling it changes every material's
+        // shader key and recompiles them all at sunrise and sunset.
+        castShadow
         shadow-mapSize={[4096, 4096]}
         shadow-camera-left={-170}
         shadow-camera-right={170}
@@ -214,14 +236,33 @@ function TouchPolicy({ pageScroll }: { pageScroll: boolean }) {
   return null;
 }
 
+/**
+ * The shadow map is redrawn only when the scene commits (sun, geometry, trees, ghosting, theme), not on
+ * frames where only the camera moves. Deliberately runs after every render of its parent. A shadow
+ * caster that changes outside a TwinViewBody render must set gl.shadowMap.needsUpdate itself.
+ */
+function ShadowRefresh() {
+  const gl = useThree((s) => s.gl);
+  const invalidate = useThree((s) => s.invalidate);
+  useLayoutEffect(() => {
+    gl.shadowMap.autoUpdate = false;
+    gl.shadowMap.needsUpdate = true;
+    invalidate();
+  });
+  return null;
+}
+
 function CameraRig({ mode, focus, street, apt }: { mode: ViewMode; focus: Vec3; street: { eye: Vec3; dir: Vec3; vfov: number } ; apt: { eye: Vec3; target: Vec3; interior: { eye: Vec3; target: Vec3 } } | null }) {
   const { camera } = useThree();
+  // The canvas renders on demand: anything this rig changes by hand must ask for a frame.
+  const invalidate = useThree((s) => s.invalidate);
   useEffect(() => {
     const pc = camera as THREE.PerspectiveCamera;
     // The wide indoor lens only once there is a room to stand in; otherwise the camera stays put.
     pc.fov = mode === 'interior' && apt ? 78 : mode === 'street' && fin(street.vfov) && street.vfov > 1 && street.vfov < 170 ? street.vfov : 42;
     pc.updateProjectionMatrix();
-  }, [mode, camera, street.vfov, !!apt]);
+    invalidate();
+  }, [mode, camera, street.vfov, !!apt, invalidate]);
   const controls = useThree((s) => s.controls) as unknown as OrbitControlsImpl | null;
   const anim = useRef<{ from: THREE.Vector3; to: THREE.Vector3; tFrom: THREE.Vector3; tTo: THREE.Vector3; k: number } | null>(null);
   useEffect(() => {
@@ -232,12 +273,15 @@ function CameraRig({ mode, focus, street, apt }: { mode: ViewMode; focus: Vec3; 
     const tFrom = controls && finVec(controls.target.toArray()) ? controls.target.clone() : enu2three(focus);
     const from = finVec(camera.position.toArray()) ? camera.position.clone() : enu2three(eye);
     anim.current = { from, to: enu2three(eye), tFrom, tTo: enu2three(tgt), k: 0 };
+    invalidate();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode, focus[0], focus[1], apt?.eye[0], apt?.eye[1], apt?.interior.eye[2], mode === 'interior' ? apt?.interior.eye[0] : null, mode === 'interior' ? apt?.interior.eye[1] : null]);
   useFrame((_, dt) => {
     const a = anim.current;
     if (!a) return;
-    a.k = Math.min(1, a.k + (fin(dt) ? dt : 0.016) * 1.6);
+    // The canvas renders on demand, so the first frame of a tween can carry seconds of idle time as dt.
+    // Clamp it, or the camera would jump straight to the end instead of easing there.
+    a.k = Math.min(1, a.k + (fin(dt) ? Math.min(dt, 1 / 30) : 0.016) * 1.6);
     const e = 1 - Math.pow(1 - a.k, 3);
     camera.position.lerpVectors(a.from, a.to, e);
     if (controls) {
@@ -245,6 +289,7 @@ function CameraRig({ mode, focus, street, apt }: { mode: ViewMode; focus: Vec3; 
       controls.update();
     } else camera.lookAt(a.tTo);
     if (a.k >= 1) anim.current = null;
+    else invalidate();
   });
   return null;
 }
@@ -429,6 +474,43 @@ function TwinViewBody({ sim, scene, camParams }: { sim: ReturnType<typeof useSim
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apt, sunUp, dir[0], dir[1], dir[2]]);
+  const onSelectBuilding = useCallback((id: string) => set({ selectedBuildingId: id }), [set]);
+  const onHoverWindow = useCallback((id: string | null) => set({ hoveredWindowId: id }), [set]);
+  const prisms = useMemo(() => (sim ? sim.geo.obstacles.prisms.filter((p) => p.ring.length >= 3 && finPts(p.ring) && fin(p.zMin) && fin(p.zMax)) : []), [sim]);
+  const windows = useMemo(() => (sim ? sim.geo.windows.filter((w) => finPts(w.corners) && finVec(w.plane.normal)) : []), [sim]);
+  // Line points must keep their identity between renders: drei's <Line> rebuilds its geometry and
+  // material (and relinks the shader) whenever `points` is a new array.
+  const roadSegs = useMemo(() => {
+    const wide: Vec3[] = [];
+    const foot: Vec3[] = [];
+    for (const r of scene.roads ?? []) {
+      if (r.line.length < 2 || !finPts(r.line)) continue;
+      const dst = r.tags.highway === 'footway' ? foot : wide;
+      for (let i = 0; i + 1 < r.line.length; i++) dst.push([r.line[i][0], r.line[i][1], 0.03], [r.line[i + 1][0], r.line[i + 1][1], 0.03]);
+    }
+    return { wide, foot };
+  }, [scene.roads]);
+  const camH = fin(camParams.heading) ? camParams.heading : 0;
+  const camF = fin(camParams.hfov) ? camParams.hfov : 60;
+  const camFan = useMemo(() => {
+    const a0 = ((camH - camF / 2) * Math.PI) / 180;
+    const a1 = ((camH + camF / 2) * Math.PI) / 180;
+    return [[0, 0, 0], [Math.sin(a0) * 12, Math.cos(a0) * 12, 0], [Math.sin(a1) * 12, Math.cos(a1) * 12, 0], [0, 0, 0]] as Vec3[];
+  }, [camH, camF]);
+  const balconyQuats = useMemo(() => {
+    const m = new Map<string, THREE.Quaternion>();
+    for (const b of sim?.geo.balconies ?? []) {
+      if (!b.axes.every((ax) => finVec(ax))) continue;
+      m.set(b.id, new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(new THREE.Vector3(...b.axes[0]), new THREE.Vector3(...b.axes[1]), new THREE.Vector3(...b.axes[2]))));
+    }
+    return m;
+  }, [sim]);
+  // Kept mounted with intensity 0 when there is no apartment: adding a light recompiles every material.
+  const aptLight = useMemo(() => {
+    if (!apt) return null;
+    const pos = facadePoint(apt.plane, (apt.u0 + apt.u1) / 2, apt.zFloor + apt.apartment.ceilingHeight - 0.3, -apt.apartment.depth / 2);
+    return finVec(pos) ? { pos, distance: apt.apartment.depth * 2.5 } : null;
+  }, [apt]);
   const aptLitRaw = apt ? apt.windows.reduce((a, w) => a + (fin(instant[w.fw.id]?.litFraction) ? instant[w.fw.id].litFraction : 0), 0) / Math.max(1, apt.windows.length) : 0;
   const aptLit = fin(aptLitRaw) ? aptLitRaw : 0;
 
@@ -440,17 +522,15 @@ function TwinViewBody({ sim, scene, camParams }: { sim: ReturnType<typeof useSim
   // neighbour photographed in an extra view), else the target.
   const cutBuildingId = apt?.windows[0]?.fw.buildingId ?? scene.targetBuildingId;
   const camOk = finVec([camParams.position[0], camParams.position[1], camParams.height]);
-  const camH = fin(camParams.heading) ? camParams.heading : 0;
-  const camF = fin(camParams.hfov) ? camParams.hfov : 60;
   const scenarioScale = settings.scenario === 'low' ? 0.75 : settings.scenario === 'high' ? 1.25 : 1;
-  const prisms = geo.obstacles.prisms.filter((p) => p.ring.length >= 3 && finPts(p.ring) && fin(p.zMin) && fin(p.zMax));
-  const windows = geo.windows.filter((w) => finPts(w.corners) && finVec(w.plane.normal));
   const bg = sunUp ? tc.sceneBgDay : tc.sceneBgNight;
 
   return (
     <div className="relative h-full w-full">
       <Canvas
         key={canvasKey}
+        // Render only when something changed (props, controls, the camera rig); idle costs nothing.
+        frameloop="demand"
         shadows
         dpr={[1, 2]}
         camera={{ fov: 42, near: 0.1, far: 4000, position: [-110, 120, 140] }}
@@ -465,6 +545,7 @@ function TwinViewBody({ sim, scene, camParams }: { sim: ReturnType<typeof useSim
         <color attach="background" args={[bg]} />
         <fog attach="fog" args={[sunUp ? tc.fog : tc.sceneBgNight, 350, 1200]} />
         <SunRig dir={dir} theme={theme} />
+        <ShadowRefresh />
         <OrbitControls
           makeDefault
           enableDamping
@@ -483,11 +564,9 @@ function TwinViewBody({ sim, scene, camParams }: { sim: ReturnType<typeof useSim
             <circleGeometry args={[420, 64]} />
             <meshStandardMaterial color={tc.ground} roughness={1} />
           </mesh>
-          {scene.roads
-            ?.filter((r) => r.line.length >= 2 && finPts(r.line))
-            .map((r) => (
-              <Line key={r.id} points={r.line.map(([x, y]) => [x, y, 0.03] as [number, number, number])} color={tc.road} lineWidth={r.tags.highway === 'footway' ? 1 : 2.5} />
-            ))}
+          {/* Roads as two batches of segments (Line2 draws a polyline as segments anyway). */}
+          {roadSegs.wide.length > 0 && <Line segments points={roadSegs.wide} color={tc.road} lineWidth={2.5} />}
+          {roadSegs.foot.length > 0 && <Line segments points={roadSegs.foot} color={tc.road} lineWidth={1} />}
           {prisms.map((p) => {
             const isT = p.kind === 'target-building';
             if (p.id === cutBuildingId && hideTarget) return <Building key={p.id} id={p.id} ring={p.ring} zMin={p.zMin} zMax={p.zMax} color={sx.ghost} opacity={0.12} ghost edge={tc.edge} accent={sx.accent} />;
@@ -504,7 +583,7 @@ function TwinViewBody({ sim, scene, camParams }: { sim: ReturnType<typeof useSim
                 color={col}
                 opacity={p.kind === 'hypothetical' ? 0.85 : 1}
                 selected={selectedBuildingId === p.id}
-                onSelect={(id) => set({ selectedBuildingId: id })}
+                onSelect={onSelectBuilding}
                 edge={tc.edge}
                 accent={sx.select}
                 edgeOpacity={sx.edgeOpacity}
@@ -518,9 +597,9 @@ function TwinViewBody({ sim, scene, camParams }: { sim: ReturnType<typeof useSim
               return <Building key={'u' + fp.id} id={fp.id} ring={fp.ring} zMin={0} zMax={m.height.high} color={sx.accent} opacity={theme === 'light' ? 0.12 : 0.08} ghost edge={tc.edge} accent={sx.accent} />;
             })}
           {geo.balconies
-            .filter((b) => finVec(b.center) && finVec(b.halfSize) && b.axes.every((ax) => finVec(ax)))
+            .filter((b) => finVec(b.center) && finVec(b.halfSize) && balconyQuats.has(b.id))
             .map((b) => (
-              <mesh key={b.id} position={b.center} quaternion={new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(new THREE.Vector3(...b.axes[0]), new THREE.Vector3(...b.axes[1]), new THREE.Vector3(...b.axes[2])))} castShadow receiveShadow>
+              <mesh key={b.id} position={b.center} quaternion={balconyQuats.get(b.id)} castShadow receiveShadow>
                 <boxGeometry args={[b.halfSize[0] * 2, b.halfSize[1] * 2, b.halfSize[2] * 2]} />
                 <meshStandardMaterial color={b.id === 'balc-user' ? '#c792ea' : sx.balcony} roughness={0.8} />
               </mesh>
@@ -530,21 +609,24 @@ function TwinViewBody({ sim, scene, camParams }: { sim: ReturnType<typeof useSim
               .filter((t) => finVec(t.position) && fin(t.height) && fin(t.crownRadius) && t.height > 0 && t.crownRadius > 0)
               .filter((t) => viewMode !== 'street' || !camOk || Math.hypot(t.position[0] - camParams.position[0], t.position[1] - camParams.position[1]) > t.crownRadius + 1.5)
               .map((t) => <Tree key={t.id} p={t.position} h={t.height * scenarioScale} r={t.crownRadius * scenarioScale} enabled={t.enabled} />)}
-          {windows.map((w) => (
-            <WindowMesh
-              key={w.fw.id}
-              w={w}
-              state={instant[w.fw.id]}
-              selected={selected.includes(w.fw.id)}
-              hovered={hovered === w.fw.id}
-              glass={hideTarget && selected.includes(w.fw.id)}
-              onHover={(on) => set({ hoveredWindowId: on ? w.fw.id : null })}
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleWindow(w.fw.id, e.shiftKey || e.metaKey || e.ctrlKey);
-              }}
-            />
-          ))}
+          {windows.map((w) => {
+            const st = instant[w.fw.id];
+            const sel = selected.includes(w.fw.id);
+            return (
+              <WindowMesh
+                key={w.fw.id}
+                w={w}
+                lit={litOf(st)}
+                daylight={!!st?.daylight}
+                facing={!!st?.facing}
+                selected={sel}
+                glass={hideTarget && sel}
+                onToggle={toggleWindow}
+                onHoverId={onHoverWindow}
+              />
+            );
+          })}
+          <pointLight position={aptLight?.pos ?? [0, 0, -1000]} intensity={aptLight ? 6 : 0} distance={aptLight?.distance ?? 1} decay={1.6} color="#ffe9cc" />
           {apt && <ApartmentVolume apt={apt} patches={patches} lit={aptLit} accent={sx.select} partition={sx.partition} wall={sx.wall} wallSide={sx.wallSide} floor={sx.floor} />}
           {/* photo camera marker */}
           {camOk && (
@@ -554,12 +636,7 @@ function TwinViewBody({ sim, scene, camParams }: { sim: ReturnType<typeof useSim
                 <meshBasicMaterial color={theme === 'light' ? '#2f9a5e' : '#6fcf97'} />
               </mesh>
               <Line
-                points={[
-                  [0, 0, 0],
-                  [Math.sin(((camH - camF / 2) * Math.PI) / 180) * 12, Math.cos(((camH - camF / 2) * Math.PI) / 180) * 12, 0],
-                  [Math.sin(((camH + camF / 2) * Math.PI) / 180) * 12, Math.cos(((camH + camF / 2) * Math.PI) / 180) * 12, 0],
-                  [0, 0, 0],
-                ]}
+                points={camFan}
                 color={theme === 'light' ? '#2f9a5e' : '#6fcf97'}
                 lineWidth={1.5}
               />
@@ -664,7 +741,10 @@ function TwinViewBody({ sim, scene, camParams }: { sim: ReturnType<typeof useSim
  */
 function ProjectedLabel({ anchor, elRef }: { anchor: Vec3 | null; elRef: React.RefObject<HTMLDivElement | null> }) {
   const { camera, size } = useThree();
+  const invalidate = useThree((s) => s.invalidate);
   const v = useMemo(() => new THREE.Vector3(), []);
+  // A hover can move or hide the label without changing anything in the scene: ask for a frame.
+  useEffect(() => invalidate(), [anchor, invalidate]);
   useFrame(() => {
     const el = elRef.current;
     if (!el) return;
@@ -693,6 +773,7 @@ function ApartmentVolume({ apt, patches, lit, accent, partition, wall, wallSide,
     }
     return segs;
   }, [fc, zFloor, a.ceilingHeight]);
+  const boxSegs = useMemo(() => Array.from({ length: box.length / 2 }, (_, i) => [box[i * 2], box[i * 2 + 1]] as Vec3[]), [box]);
   const floorGeom = useMemo(() => {
     const g = new THREE.BufferGeometry();
     const [p0, p1, p2, p3] = fc;
@@ -772,7 +853,6 @@ function ApartmentVolume({ apt, patches, lit, accent, partition, wall, wallSide,
   useEffect(() => () => patchGeoms.forEach((g) => g.dispose()), [patchGeoms]);
   return (
     <group>
-      <pointLight position={facadePoint(apt.plane, (apt.u0 + apt.u1) / 2, zFloor + a.ceilingHeight - 0.3, -a.depth / 2)} intensity={6} distance={a.depth * 2.5} decay={1.6} color="#ffe9cc" />
       <mesh geometry={floorGeom} receiveShadow>
         <meshStandardMaterial color={floor} roughness={0.85} side={THREE.DoubleSide} />
       </mesh>
@@ -792,8 +872,8 @@ function ApartmentVolume({ apt, patches, lit, accent, partition, wall, wallSide,
           <meshBasicMaterial color="#ffcf70" transparent opacity={0.25 + 0.6 * lit} side={THREE.DoubleSide} toneMapped={false} />
         </mesh>
       ))}
-      {Array.from({ length: box.length / 2 }, (_, i) => (
-        <Line key={i} points={[box[i * 2], box[i * 2 + 1]]} color={accent} lineWidth={1.2} transparent opacity={0.9} />
+      {boxSegs.map((seg, i) => (
+        <Line key={i} points={seg} color={accent} lineWidth={1.2} transparent opacity={0.9} />
       ))}
       {partitionLines.map((p, i) => (
         <Line key={'p' + i} points={p} color={partition} lineWidth={1} dashed dashSize={0.4} gapSize={0.3} />

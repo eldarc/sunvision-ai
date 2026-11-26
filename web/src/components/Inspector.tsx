@@ -5,7 +5,9 @@ import { useSimContext } from './SimContext';
 import { Btn, Prov, Segmented, Slider, Toggle, fmtDur } from './ui';
 import { calibratePitch } from '../lib/reconstruct';
 import { facadePoint } from '../lib/obstacles';
-import { useInstant, useSun } from '../lib/useSim';
+import { useSun } from '../lib/useSim';
+import { evaluateWindowAt } from '../engine';
+import type { WindowSampleResult } from '../engine/types';
 import type { CameraParams, Vec2 } from '../schema/scene';
 import { useActiveView } from '../lib/views';
 import { FIT_EXACT_HINT, applyViewCamera, autoAlignView, fitChipColor, fitRedundancy, solveViewCamera } from './photo/AlignCheck';
@@ -534,8 +536,21 @@ function ApartmentTab() {
   const ap = useStore((s) => s.apartment);
   const set = useStore((s) => s.set);
   const toggleWindow = useStore((s) => s.toggleWindow);
-  const sunInfo = useSun();
-  const instant = useInstant(sim, sunInfo?.sun);
+  const sun = useSun()?.sun;
+  // Same evaluation as useInstant, for the selected windows only.
+  const instant = useMemo(() => {
+    const out: Record<string, WindowSampleResult> = {};
+    if (!sim || !sun) return out;
+    for (const w of sim.geo.windows) {
+      if (!sel.includes(w.fw.id)) continue;
+      try {
+        out[w.fw.id] = evaluateWindowAt(sim.index, w.spec, sun);
+      } catch (e) {
+        console.warn('[sunvisionai] window', w.fw.id, e); // left out rather than blanking the panel
+      }
+    }
+    return out;
+  }, [sim, sun, sel]);
   if (!sim) return null;
   const wins = sim.geo.windows.filter((w) => sel.includes(w.fw.id));
   const apt = sim.geo.apartment;

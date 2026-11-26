@@ -159,8 +159,8 @@ export function useReconstruction(): { recon: ReconstructionResult; geo: SimGeom
   }, [scene, recon, settings, trees, extraBuildings, selectedWindowIds, apartment, detections, camera, views]);
 
   const index = useMemo(() => (geo ? buildObstacleIndex(geo.obstacles) : null), [geo]);
-  if (!recon || !geo || !index) return null;
-  return { recon, geo, index };
+  // Stable identity: it is the SimContext value, so a new object would re-render every consumer.
+  return useMemo(() => (recon && geo && index ? { recon, geo, index } : null), [recon, geo, index]);
 }
 
 /* -------------------------------------------------------------------------- */
