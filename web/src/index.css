@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+/*
+ * Themes. Dark is the default token set (@theme below). Light redefines the same token names
+ * under :root[data-theme="light"]; index.html sets data-theme before React loads (no flash) and
+ * lib/theme.ts keeps it in sync. The ink-* scale inverts in light: ink-950 is the page, paper is
+ * the text. Contrast pairs are checked by src/lib/__tests__/themeContrast.test.ts.
+ *
+ * `dark:` / `light:` variants follow the resolved theme (not only the OS preference).
+ */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
+@theme static {
+  /* Inter for everything: one family, weights and size carry the hierarchy. */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-sans);
+  --font-serif: var(--font-sans); /* alias: the UI uses one family */
+  --font-mono: "Roboto Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Small, consistent radii. Controls 5 px, cards 8 px, floating panels 12 px. */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 5px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 13px;
+
+  /* Neutral greys, no tint: the canvas is darkest, panels sit on it, inputs and hovers one step up. */
+  --color-ink-950: #1e1e1e; /* canvas / page */
+  --color-ink-900: #2c2c2c; /* docked panels */
+  --color-ink-850: #2c2c2c; /* cards, menus */
+  --color-ink-750: #2c2c2c; /* floating panels over the 3D view */
+  --color-ink-800: #383838; /* inputs, hover */
+  --color-ink-700: #444444; /* hairlines, secondary-button fill */
+  --color-ink-600: #545454; /* slider tracks, switch off */
+  --color-ink-500: #6b6b6b; /* disabled, strong dividers; never text */
+  --color-ink-400: #a8a8a8; /* tertiary text */
+  --color-ink-300: #c2c2c2; /* secondary text */
+  --color-ink-200: #dedede;
+  --color-paper: #f5f5f5;   /* primary text */
+
+  /* UI accent: selection, focus, primary actions. */
+  --color-accent-300: #4db5ff; /* accent text and links */
+  --color-accent-500: #0b6fd4; /* primary button fill (white text AA) */
+  --color-accent-600: #0a5fb8; /* primary button hover */
+  --color-accent: #0d99ff;     /* focus ring, selection outline, switch on */
+  --color-on-accent: #ffffff;
+  --color-knob: #ffffff; /* switch and slider knobs, both themes */
+  --color-selected: color-mix(in oklab, var(--color-accent) 22%, transparent); /* selected row / tool */
+
+  /* Sun: data only (hours of sun, lit windows, the sun's path), never chrome. */
+  --color-sun-300: #ffd78a;
+  --color-sun-400: #f8c160;
+  --color-sun-500: #f5b544;
+  --color-sun-600: #d9922a;
+  --color-on-sun: #1e1e1e;
+  --color-shade-400: #9ab6da;
+  --color-shade-500: #5d7a9e;
+  --color-obs: #6fcf97;
+  --color-inf: #f5b544;
+  --color-map: #9ab6da;
+  --color-asm: #b0b0b0;
+  --color-man: #c792ea;
+  --color-danger: #f24822; /* error fills, rings, dots */
+  --color-danger-text: #ffb5a3; /* error text */
+  /* Data-vis fills (day strip, heatmap, sparkline): not text. */
+  --color-lit: #f5b544;
+  --color-unlit: #3d4f68;
+  --color-away: #333333;
+  --color-night: #161616;
+  --color-scrim: rgb(0 0 0 / 0.5); /* behind dialogs */
+  --color-shadow: rgb(0 0 0 / 0.35);
+  --color-sun-glow: color-mix(in oklab, var(--color-sun-400) 30%, transparent); /* answer halo, selected window */
+  /* Floating surfaces (menus, popovers, dialogs, toolbars over the canvas). */
+  --shadow-panel: 0 0 0 0.5px rgb(0 0 0 / 0.4), 0 2px 5px rgb(0 0 0 / 0.25), 0 10px 24px -6px rgb(0 0 0 / 0.35);
+  --shadow-float: 0 0 0 0.5px rgb(0 0 0 / 0.4), 0 1px 3px rgb(0 0 0 / 0.3);
+}
+
+/* Light: white panels on a light grey canvas, hairline borders, the same blue. */
+:root[data-theme="light"] {
+  --color-ink-950: #f5f5f5; /* canvas / page */
+  --color-ink-900: #ffffff; /* panels */
+  --color-ink-850: #ffffff; /* cards */
+  --color-ink-750: #ffffff;
+  --color-ink-800: #f0f0f0; /* inputs, hover */
+  --color-ink-700: #e6e6e6; /* hairlines */
+  --color-ink-600: #d4d4d4;
+  --color-ink-500: #b3b3b3;
+  --color-ink-400: #6b6b6b;
+  --color-ink-300: #545454;
+  --color-ink-200: #333333;
+  --color-paper: #1e1e1e; /* text */
+  --color-accent-300: #0b66c4;
+  --color-accent-500: #0b6fd4;
+  --color-accent-600: #0a5fb8;
+  --color-accent: #0b84e5;
+  --color-on-accent: #ffffff;
+  --color-sun-300: #7f4406;
+  --color-sun-400: #8f4f08;
+  --color-sun-500: #a35a08;
+  --color-sun-600: #c27a20;
+  --color-on-sun: #ffffff;
+  --color-shade-400: #3d5f86;
+  --color-shade-500: #6f8fb6;
+  --color-obs: #1d7547;
+  --color-inf: #8f5208;
+  --color-map: #3d5f86;
+  --color-asm: #5c5c5c;
+  --color-man: #83409f;
+  --color-danger: #d1361a;
+  --color-danger-text: #a3260f;
+  --color-lit: #b06a0a; /* >= 3:1 on every panel and against away (WCAG 1.4.11) */
+  --color-unlit: #6d84a6;
+  --color-away: #e8e8e8;
+  --color-night: #8f8f8f;
+  --color-scrim: rgb(0 0 0 / 0.25);
+  --color-shadow: rgb(0 0 0 / 0.12);
+  --color-sun-glow: color-mix(in oklab, var(--color-sun-600) 40%, transparent);
+  --shadow-panel: 0 0 0 0.5px rgb(0 0 0 / 0.15), 0 2px 5px rgb(0 0 0 / 0.07), 0 10px 24px -6px rgb(0 0 0 / 0.14);
+  --shadow-float: 0 0 0 0.5px rgb(0 0 0 / 0.15), 0 1px 3px rgb(0 0 0 / 0.1);
+}
+
+:root { color-scheme: dark; }
+:root[data-theme="light"] { color-scheme: light; }
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--color-ink-950);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.45;
+  font-feature-settings: "cv11", "calt";
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+.num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum", "cv11"; }
+.mono { font-family: var(--font-mono); }
+.btn-label { } /* marks button labels; no extra styling needed with Inter */
+.text-answer { font-family: var(--font-sans); font-weight: 600; font-size: 44px; line-height: 48px; letter-spacing: -0.035em; font-variant-numeric: tabular-nums; }
+.sun-halo { background: radial-gradient(closest-side, var(--color-sun-glow), transparent); }
+:focus-visible { outline-color: var(--color-accent); }
+::selection { background: color-mix(in oklab, var(--color-accent) 35%, transparent); }
+* { scrollbar-width: thin; scrollbar-color: var(--color-ink-600) transparent; }
+
+input[type="range"] { -webkit-appearance: none; appearance: none; background: transparent; width: 100%; height: 18px; }
+input[type="range"]::-webkit-slider-runnable-track { height: 2px; border-radius: 1px; background: var(--color-ink-600); }
+input[type="range"]::-moz-range-track { height: 2px; border-radius: 1px; background: var(--color-ink-600); }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: #ffffff; margin-top: -5px; box-shadow: 0 0 0 0.5px rgb(0 0 0 / 0.3), 0 1px 3px rgb(0 0 0 / 0.35); cursor: pointer; }
+input[type="range"]::-moz-range-thumb { width: 12px; height: 12px; border: 0; border-radius: 50%; background: #ffffff; box-shadow: 0 0 0 0.5px rgb(0 0 0 / 0.3), 0 1px 3px rgb(0 0 0 / 0.35); cursor: pointer; }
+input[type="range"]:focus-visible { outline: none; }
+input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 2px var(--color-accent); }
+input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 2px var(--color-accent); }
+.sun-range::-webkit-slider-thumb { background: var(--color-sun-500); }
+/* Bigger thumbs where the pointer is a finger. */
+@media (pointer: coarse) {
+  input[type="range"] { height: 32px; }
+  input[type="range"]::-webkit-slider-thumb { width: 22px; height: 22px; margin-top: -9.5px; }
+  input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; }
+}
+
+.maplibregl-ctrl-attrib { font-size: 10px; background: color-mix(in oklab, var(--color-ink-900) 80%, transparent) !important; color: var(--color-ink-300); }
+.maplibregl-ctrl-attrib a { color: var(--color-ink-200) !important; }
+.maplibregl-ctrl-group { background: var(--color-ink-900) !important; border-radius: var(--radius-md) !important; box-shadow: var(--shadow-float) !important; }
+:root:not([data-theme="light"]) .maplibregl-ctrl-group button span { filter: invert(.9); }
+
+@keyframes fadein { from { opacity: 0; transform: translateY(2px) } to { opacity: 1; transform: none } }
+.fade-in { animation: fadein .16s ease-out both; }
+@keyframes shimmer { from { background-position: -200% 0 } to { background-position: 200% 0 } }
+.shimmer { background: linear-gradient(90deg, var(--color-ink-800) 25%, var(--color-ink-700) 50%, var(--color-ink-800) 75%); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; }
+@keyframes pop { from { opacity: 0; transform: translateY(2px) scale(.98) } to { opacity: 1; transform: none } }
+.pop-in { animation: pop .12s ease-out both; }
+@keyframes sheet { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: none } }
+.sheet-in { animation: sheet .16s ease-out both; }
+/* Native selects as input wells with a small chevron (the option list stays native). */
+.select-well { appearance: none; -webkit-appearance: none; padding-right: 20px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cpath d='M1.5 2.75 4 5.25l2.5-2.5' fill='none' stroke='%23999' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 7px center; cursor: pointer; }
+/* Canvas: a faint dot grid behind frames (landing stage, empty states). */
+.canvas-dots { background-color: var(--color-ink-950); background-image: radial-gradient(color-mix(in oklab, var(--color-paper) 9%, transparent) 1px, transparent 1px); background-size: 16px 16px; }
+@media (prefers-reduced-motion: reduce) {
+  .fade-in, .pop-in, .sheet-in { animation: fadein .15s linear both; transform: none; }
+  .shimmer { animation: none; }
+}
