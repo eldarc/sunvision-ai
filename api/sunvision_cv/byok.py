@@ -6,6 +6,7 @@
 """
 from __future__ import annotations
 
+import ipaddress
 import logging
 import os
 from dataclasses import dataclass, field
@@ -81,8 +82,26 @@ def parse_user_key(request: Request) -> str | None:
     return key
 
 
+def client_bucket(address: str) -> str:
+    """Per-client key for an address: an IPv6 address counts as its /64.
+
+    One IPv6 subscriber usually holds at least a /64 and can pick any address
+    in it, so keying on the full address would give them unlimited buckets.
+    IPv4 (including IPv4-mapped IPv6) and unparseable values are kept as given.
+    """
+    try:
+        ip = ipaddress.ip_address(address.strip("[]"))
+    except ValueError:
+        return address
+    if isinstance(ip, ipaddress.IPv6Address):
+        if ip.ipv4_mapped is not None:
+            return str(ip.ipv4_mapped)
+        return str(ipaddress.IPv6Network((ip, 64), strict=False))
+    return str(ip)
+
+
 def client_ip(request: Request) -> str | None:
-    """Client address for the per-client daily limit.
+    """Client address for the per-client daily limit (an IPv6 client as its /64).
 
     ``X-Forwarded-For`` is honoured only with ``SUNVISION_TRUST_PROXY=1`` (deploy
     behind exactly one reverse proxy); then the last hop, which that proxy
@@ -92,8 +111,8 @@ def client_ip(request: Request) -> str | None:
         xff = request.headers.get("x-forwarded-for", "")
         hops = [h.strip() for h in xff.split(",") if h.strip()]
         if hops:
-            return hops[-1]
-    return request.client.host if request.client else None
+            return client_bucket(hops[-1])
+    return client_bucket(request.client.host) if request.client and request.client.host else None
 
 
 def shared_unavailable(message: str | None = None) -> ApiError:

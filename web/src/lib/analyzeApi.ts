@@ -7,10 +7,20 @@
  * - `store.sharedQuota` is refreshed from `/api/health` and updated immediately on `shared_quota_exhausted`.
  * - Errors that a key would fix open the key dialog and set a `roboflow-key` notice.
  * - Nothing here logs request headers, the key or the response body.
+ * - `VITE_API_BASE_URL` (build time) points the calls at an API on another origin;
+ *   unset, they stay relative (`/api/...`, same origin or the Vite dev proxy).
  */
 import type { FacadeAnalysis } from '../schema/scene';
 import { useStore } from '../state/store';
 import { getKeyPrompt, hasRoboflowKey, keyHeaders, setKeyPrompt, type KeyPrompt } from './roboflowKey';
+
+/** Origin of the API from `VITE_API_BASE_URL`, without a trailing slash; '' keeps requests relative. */
+export const API_BASE_URL: string = (import.meta.env.VITE_API_BASE_URL ?? '').trim().replace(/\/+$/, '');
+
+/** `path` (starting with `/api/`) on the configured API origin, or unchanged when none is set. */
+export function apiUrl(path: string): string {
+  return `${API_BASE_URL}${path}`;
+}
 
 export type SharedQuota = NonNullable<ReturnType<typeof useStore.getState>['sharedQuota']>;
 
@@ -237,7 +247,7 @@ export function fetchHealth(): Promise<ApiHealth | null> {
   if (healthInFlight) return healthInFlight;
   healthInFlight = (async () => {
     try {
-      const r = await fetch('/api/health', { cache: 'no-store', headers: { Accept: 'application/json' } });
+      const r = await fetch(apiUrl('/api/health'), { cache: 'no-store', headers: { Accept: 'application/json' } });
       if (!r.ok) throw new Error('health');
       const j = (await r.json()) as unknown;
       if (!isObj(j) || typeof j.status !== 'string') throw new Error('health');
@@ -281,7 +291,7 @@ export async function analyzePhoto(
 
   let res: Response;
   try {
-    res = await fetch(`/api/analyze?${qs.toString()}`, {
+    res = await fetch(apiUrl(`/api/analyze?${qs.toString()}`), {
       method: 'POST',
       body: fd,
       headers: { Accept: 'application/json', ...keyHeaders() },

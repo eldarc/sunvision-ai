@@ -243,7 +243,7 @@ def analyze(
         analysis["depth"]["url"] = "data:image/png;base64," + b64(depth_enc["png"])
         analysis["depth"]["binBase64"] = b64(depth_enc["bin"])
     if depth and depth_provider is None:
-        analysis["warnings"].append("depth estimation unavailable (install the `depth` extra)")
+        analysis["warnings"].append("Depth estimation is off on this server, so heights come from the other methods.")
     analysis["privacy"] = {
         "sentToExternalService": result.sent_to_external_service,
         "service": result.service,

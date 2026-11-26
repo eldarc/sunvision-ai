@@ -52,8 +52,8 @@ Design: [`docs/research/byok.md`](../docs/research/byok.md) §5.
   128 characters or non-printable characters give `400 user_key_format`.
 * **The shared key** (`ROBOFLOW_API_KEY`) is never sent to the browser. It is capped by
   `SUNVISION_SHARED_MONTHLY_IMAGE_CAP` (per UTC calendar month) and `SUNVISION_SHARED_DAILY_PER_CLIENT`
-  (per salted hash of the client IP, per UTC day; raw IPs are never stored). Set
-  `SUNVISION_TRUST_PROXY=1` only behind a single reverse proxy that appends `X-Forwarded-For`.
+  (per salted hash of the client IP, with an IPv6 client counted as its /64, per UTC day; raw IPs are
+  never stored). Set `SUNVISION_TRUST_PROXY=1` only behind a single reverse proxy that appends `X-Forwarded-For`.
 * **Ledger.** `api/.quota/roboflow.json` (gitignored), rewritten atomically (temp file + `os.replace`)
   under `fcntl.flock` on a sidecar `.lock`, so several workers stay consistent. Each shared request
   reserves a slot first; a success or a Roboflow 401/403/404 (and any other unlisted status) counts,

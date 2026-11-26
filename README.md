@@ -144,8 +144,8 @@ Every variable is described in [`.env.example`](.env.example) and [`api/README.m
 **Tests.** None of the tests call Roboflow. In the API tests the inference client is replaced by a guard or a recording fake.
 
 ```bash
-(cd web && npm test && npm run typecheck)          # 335 tests in 19 files (Vitest)
-(cd api && uv run --group dev pytest -q)           # 101 tests
+(cd web && npm test && npm run typecheck)          # 337 tests in 19 files (Vitest)
+(cd api && uv run --group dev pytest -q)           # 103 tests
 ```
 
 ## Repository layout

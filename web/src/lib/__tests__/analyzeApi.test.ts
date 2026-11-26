@@ -337,3 +337,44 @@ describe('askForKey', () => {
     setKeyPrompt(null);
   });
 });
+
+describe('VITE_API_BASE_URL', () => {
+  // The base URL is read once at module load, so each case stubs the env and imports a fresh module.
+  async function freshApi(base: string | undefined) {
+    vi.stubEnv('VITE_API_BASE_URL', base);
+    vi.resetModules();
+    return import('../analyzeApi');
+  }
+  const urlsOf = (fn: ReturnType<typeof vi.fn>) => fn.mock.calls.map(([u]) => String(u));
+  const stubFetch = () => {
+    const fn = vi.fn(async (url: string, _init?: RequestInit) => (String(url).includes('/api/health') ? json(200, HEALTH) : json(200, ANALYSIS)));
+    vi.stubGlobal('fetch', fn);
+    return fn;
+  };
+
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    vi.resetModules();
+  });
+
+  it('prefixes /api/health and /api/analyze with the configured origin (trailing slash trimmed)', async () => {
+    const api = await freshApi(' https://api.example.com/ ');
+    expect(api.API_BASE_URL).toBe('https://api.example.com');
+    const fn = stubFetch();
+    await api.analyzePhoto(photo(), { provider: 'hosted', depth: false });
+    await settle();
+    expect(urlsOf(fn)).toContain('https://api.example.com/api/analyze?provider=hosted&depth=false');
+    expect(urlsOf(fn)).toContain('https://api.example.com/api/health');
+  });
+
+  it('keeps requests relative when unset or empty', async () => {
+    for (const base of [undefined, '']) {
+      const api = await freshApi(base);
+      expect(api.API_BASE_URL).toBe('');
+      const fn = stubFetch();
+      await api.analyzePhoto(photo(), { provider: 'hosted', depth: false });
+      await settle();
+      expect(urlsOf(fn).sort()).toEqual(['/api/analyze?provider=hosted&depth=false', '/api/health']);
+    }
+  });
+});

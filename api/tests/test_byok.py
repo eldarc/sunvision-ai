@@ -279,6 +279,31 @@ def test_trusted_proxy_client_ip(rf, shared, photo, monkeypatch):
     assert "192.0.2.1" not in json.dumps(ledger())
 
 
+def test_ipv6_clients_share_their_64(rf, shared, photo, monkeypatch):
+    monkeypatch.setenv("SUNVISION_SHARED_DAILY_PER_CLIENT", "1")
+    monkeypatch.setenv("SUNVISION_TRUST_PROXY", "1")
+
+    def via(ip):
+        return client.post(
+            "/api/analyze?depth=false",
+            files={"file": ("t.jpg", photo, "image/jpeg")},
+            headers={"X-Forwarded-For": ip},
+        )
+
+    assert via("2001:db8:1:2::1").status_code == 200
+    assert via("2001:db8:1:2:abcd::99").status_code == 429  # same /64
+    assert via("2001:db8:1:3::1").status_code == 200  # another /64
+
+
+def test_client_bucket():
+    from sunvision_cv.byok import client_bucket
+
+    assert client_bucket("192.0.2.1") == "192.0.2.1"
+    assert client_bucket("2001:db8:1:2:aaaa:bbbb:cccc:dddd") == "2001:db8:1:2::/64"
+    assert client_bucket("::ffff:192.0.2.1") == "192.0.2.1"
+    assert client_bucket("testclient") == "testclient"
+
+
 def test_no_shared_key(rf, photo):
     r = post(photo)
     assert r.status_code == 503 and r.json()["detail"]["code"] == "shared_key_unavailable"
