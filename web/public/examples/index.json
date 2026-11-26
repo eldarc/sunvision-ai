@@ -1,5 +1,19 @@
 [
   {
+    "id": "nyc-ridge-street",
+    "title": "106 Ridge Street",
+    "city": "New York",
+    "country": "United States",
+    "description": "A 1914 Colonial Revival tenement on the corner of Ridge and Rivington Streets on the Lower East Side: six storeys of brick and fire escapes on a narrow Manhattan street grid, photographed from across the intersection.",
+    "thumbnail": "photo.jpg",
+    "credit": "Andre Carrotflower · CC BY-SA 4.0",
+    "center": {
+      "lat": 40.71869917,
+      "lon": -73.98314051
+    },
+    "osmSnapshot": "osm.json"
+  },
+  {
     "id": "amsterdam-herengracht",
     "title": "Herengracht 256",
     "city": "Amsterdam",
@@ -24,20 +38,6 @@
     "center": {
       "lat": 48.84601482,
       "lon": 2.3727225
-    },
-    "osmSnapshot": "osm.json"
-  },
-  {
-    "id": "nyc-ridge-street",
-    "title": "106 Ridge Street",
-    "city": "New York",
-    "country": "United States",
-    "description": "A 1914 Colonial Revival tenement on the corner of Ridge and Rivington Streets on the Lower East Side: six storeys of brick and fire escapes on a narrow Manhattan street grid, photographed from across the intersection.",
-    "thumbnail": "photo.jpg",
-    "credit": "Andre Carrotflower · CC BY-SA 4.0",
-    "center": {
-      "lat": 40.71869917,
-      "lon": -73.98314051
     },
     "osmSnapshot": "osm.json"
   },

@@ -8,6 +8,99 @@
   },
   "examples": [
     {
+      "id": "nyc-ridge-street",
+      "photo": {
+        "commonsTitle": "File:Apartment building at 106 Ridge Street, Lower East Side, Manhattan - 20200906.jpg",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Apartment_building_at_106_Ridge_Street,_Lower_East_Side,_Manhattan_-_20200906.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Apartment_building_at_106_Ridge_Street%2C_Lower_East_Side%2C_Manhattan_-_20200906.jpg",
+        "originalSize": [
+          2586,
+          2586
+        ],
+        "originalSha1": "9920f15bc191d8cd2fd6b84e22ff69ab31ac6293",
+        "creator": "Andre Carrotflower",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "captureDate": "2020-09-06T12:22:00",
+        "commonsLocationTemplate": "{{Location|40.718444|-73.983689|heading:61.63079835910382}}",
+        "exif": {
+          "Make": "Apple",
+          "Model": "iPhone 6s Plus",
+          "DateTimeOriginal": "2020:09:06 12:22:00",
+          "FocalLength": "4.15",
+          "FocalLengthIn35mmFilm": 29,
+          "LensModel": "iPhone 6s Plus back camera 4.15mm f/2.2"
+        },
+        "shippedFile": "web/public/examples/nyc-ridge-street/photo.jpg",
+        "transformations": [
+          "downscaled from 2586x2586 to 2000x2000 (Lanczos)",
+          "re-encoded JPEG q88",
+          "all EXIF/XMP metadata stripped"
+        ]
+      },
+      "camera": {
+        "lat": 40.718444,
+        "lon": -73.983689,
+        "headingRaw": 61.63079835910382,
+        "final": {
+          "position": [
+            -33.774,
+            -24.087
+          ],
+          "height": 1.6,
+          "heading": 59.15,
+          "pitch": 17.09,
+          "roll": -0.57,
+          "hfov": 41.9,
+          "provenance": {
+            "position": "inferred",
+            "heading": "inferred",
+            "pitch": "inferred",
+            "hfov": "inferred",
+            "height": "assumed"
+          },
+          "notes": [
+            "Position and heading: Commons {{Location}} geotag with compass heading (accuracy unknown).",
+            "The published file is a 2586x2586 square crop of a 4:3 iPhone frame, so the EXIF focal length (29 mm eq.) does not give the FOV directly: full-frame hfov would be 61.6°, a centred crop without rescaling 41.9°; 48° assumes a 3024-px square crop. Calibrate.",
+            "Pitch 20° estimated by eye from pedestrians' head height (≈ 91% of the image height).",
+            "Resected from 3 ground + 3 vertical-edge correspondences picked on the photo (data/calibration/nyc-ridge-street.json); rms 33.3 px. Geotag was 0.0 m away. No building height was used.",
+            "Hand-picked resection vs. the camera below: the maintainer resection above (position (-36.875, -33.871), heading 48.57°, pitch 17.07°, roll 1.34°, hfov 41.9°, all marked manual) is about 10° off in heading and 2° in roll. Its vertex-1 picks (data/calibration/nyc-ridge-street.json) mark the end of the ornate bays, not the end of the 28 m OSM edge, and are 433 px off under the camera below (docs/research/alignment.md §1).",
+            "Fixture camera auto-aligned from facade regularity (autoAlignCamera in web/src/lib/align.ts, with the resection relaxed from manual to inferred and hfov bounded to the EXIF range [41.9°, 61.6°]): heading 48.6° → 59.2°, roll 1.3° → -0.6°, moved 10.2 m along the Ridge Street facade and 0.7 m away from it; pitch 17.1° and hfov 41.9° (at the lower EXIF bound) kept. Window rows level to 0.11 m (robust σ; 0.80 m with the resection) and all 92 windows land on the target or 202 Rivington (88 with 4 missed with the resection). Values rounded; provenance inferred, so the app keeps refining it on load."
+          ],
+          "hfovRange": [
+            41.9,
+            61.6
+          ]
+        }
+      },
+      "subject": {
+        "targetBuildingId": "way/278284302",
+        "facadeEdgeIndex": 1,
+        "geocode": "Nominatim geocode of '106 Ridge Street, New York' -> OSM way/278284302 (building=apartments)"
+      },
+      "osm": {
+        "endpoint": "https://overpass-api.de/api/interpreter",
+        "retrieved": "2026-11-25T07:41:06Z",
+        "query": "[out:json][timeout:60];\n( way[\"building\"](around:220,40.7185934,-73.9833240);\n  relation[\"building\"][\"type\"=\"multipolygon\"](around:220,40.7185934,-73.9833240);\n  node[\"natural\"=\"tree\"](around:200,40.7185934,-73.9833240);\n  way[\"natural\"=\"tree_row\"](around:200,40.7185934,-73.9833240);\n  way[\"highway\"](around:200,40.7185934,-73.9833240); );\nout body geom;",
+        "rawFile": "data/raw/nyc-ridge-street/osm.json",
+        "license": "ODbL 1.0",
+        "attribution": "© OpenStreetMap contributors"
+      },
+      "validation": [
+        {
+          "source": "OpenStreetMap tags on way/278284302 (ODbL)",
+          "height": 21.4,
+          "levels": 5,
+          "note": "tags height / building:levels; OSM height source: NYC DoITT building footprints import."
+        }
+      ],
+      "origin": {
+        "lat": 40.71869917,
+        "lon": -73.98314051
+      },
+      "timezone": "America/New_York"
+    },
+    {
       "id": "amsterdam-herengracht",
       "photo": {
         "commonsTitle": "File:Herengracht 256.JPG",
@@ -198,99 +291,6 @@
         "lon": 2.3727225
       },
       "timezone": "Europe/Paris"
-    },
-    {
-      "id": "nyc-ridge-street",
-      "photo": {
-        "commonsTitle": "File:Apartment building at 106 Ridge Street, Lower East Side, Manhattan - 20200906.jpg",
-        "filePage": "https://commons.wikimedia.org/wiki/File:Apartment_building_at_106_Ridge_Street,_Lower_East_Side,_Manhattan_-_20200906.jpg",
-        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Apartment_building_at_106_Ridge_Street%2C_Lower_East_Side%2C_Manhattan_-_20200906.jpg",
-        "originalSize": [
-          2586,
-          2586
-        ],
-        "originalSha1": "9920f15bc191d8cd2fd6b84e22ff69ab31ac6293",
-        "creator": "Andre Carrotflower",
-        "license": "CC BY-SA 4.0",
-        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-        "captureDate": "2020-09-06T12:22:00",
-        "commonsLocationTemplate": "{{Location|40.718444|-73.983689|heading:61.63079835910382}}",
-        "exif": {
-          "Make": "Apple",
-          "Model": "iPhone 6s Plus",
-          "DateTimeOriginal": "2020:09:06 12:22:00",
-          "FocalLength": "4.15",
-          "FocalLengthIn35mmFilm": 29,
-          "LensModel": "iPhone 6s Plus back camera 4.15mm f/2.2"
-        },
-        "shippedFile": "web/public/examples/nyc-ridge-street/photo.jpg",
-        "transformations": [
-          "downscaled from 2586x2586 to 2000x2000 (Lanczos)",
-          "re-encoded JPEG q88",
-          "all EXIF/XMP metadata stripped"
-        ]
-      },
-      "camera": {
-        "lat": 40.718444,
-        "lon": -73.983689,
-        "headingRaw": 61.63079835910382,
-        "final": {
-          "position": [
-            -33.774,
-            -24.087
-          ],
-          "height": 1.6,
-          "heading": 59.15,
-          "pitch": 17.09,
-          "roll": -0.57,
-          "hfov": 41.9,
-          "provenance": {
-            "position": "inferred",
-            "heading": "inferred",
-            "pitch": "inferred",
-            "hfov": "inferred",
-            "height": "assumed"
-          },
-          "notes": [
-            "Position and heading: Commons {{Location}} geotag with compass heading (accuracy unknown).",
-            "The published file is a 2586x2586 square crop of a 4:3 iPhone frame, so the EXIF focal length (29 mm eq.) does not give the FOV directly: full-frame hfov would be 61.6°, a centred crop without rescaling 41.9°; 48° assumes a 3024-px square crop. Calibrate.",
-            "Pitch 20° estimated by eye from pedestrians' head height (≈ 91% of the image height).",
-            "Resected from 3 ground + 3 vertical-edge correspondences picked on the photo (data/calibration/nyc-ridge-street.json); rms 33.3 px. Geotag was 0.0 m away. No building height was used.",
-            "Hand-picked resection vs. the camera below: the maintainer resection above (position (-36.875, -33.871), heading 48.57°, pitch 17.07°, roll 1.34°, hfov 41.9°, all marked manual) is about 10° off in heading and 2° in roll. Its vertex-1 picks (data/calibration/nyc-ridge-street.json) mark the end of the ornate bays, not the end of the 28 m OSM edge, and are 433 px off under the camera below (docs/research/alignment.md §1).",
-            "Fixture camera auto-aligned from facade regularity (autoAlignCamera in web/src/lib/align.ts, with the resection relaxed from manual to inferred and hfov bounded to the EXIF range [41.9°, 61.6°]): heading 48.6° → 59.2°, roll 1.3° → -0.6°, moved 10.2 m along the Ridge Street facade and 0.7 m away from it; pitch 17.1° and hfov 41.9° (at the lower EXIF bound) kept. Window rows level to 0.11 m (robust σ; 0.80 m with the resection) and all 92 windows land on the target or 202 Rivington (88 with 4 missed with the resection). Values rounded; provenance inferred, so the app keeps refining it on load."
-          ],
-          "hfovRange": [
-            41.9,
-            61.6
-          ]
-        }
-      },
-      "subject": {
-        "targetBuildingId": "way/278284302",
-        "facadeEdgeIndex": 1,
-        "geocode": "Nominatim geocode of '106 Ridge Street, New York' -> OSM way/278284302 (building=apartments)"
-      },
-      "osm": {
-        "endpoint": "https://overpass-api.de/api/interpreter",
-        "retrieved": "2026-11-25T07:41:06Z",
-        "query": "[out:json][timeout:60];\n( way[\"building\"](around:220,40.7185934,-73.9833240);\n  relation[\"building\"][\"type\"=\"multipolygon\"](around:220,40.7185934,-73.9833240);\n  node[\"natural\"=\"tree\"](around:200,40.7185934,-73.9833240);\n  way[\"natural\"=\"tree_row\"](around:200,40.7185934,-73.9833240);\n  way[\"highway\"](around:200,40.7185934,-73.9833240); );\nout body geom;",
-        "rawFile": "data/raw/nyc-ridge-street/osm.json",
-        "license": "ODbL 1.0",
-        "attribution": "© OpenStreetMap contributors"
-      },
-      "validation": [
-        {
-          "source": "OpenStreetMap tags on way/278284302 (ODbL)",
-          "height": 21.4,
-          "levels": 5,
-          "note": "tags height / building:levels; OSM height source: NYC DoITT building footprints import."
-        }
-      ],
-      "origin": {
-        "lat": 40.71869917,
-        "lon": -73.98314051
-      },
-      "timezone": "America/New_York"
     },
     {
       "id": "sarajevo-obala-kulina-bana",

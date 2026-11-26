@@ -2,6 +2,52 @@
   "_comment": "Hand-curated inputs for scripts/build_scene.py. Every value here is either copied from a cited source (Commons file page / EXIF) or explicitly marked as an assumption with a note.",
   "examples": [
     {
+      "id": "nyc-ridge-street",
+      "title": "106 Ridge Street",
+      "city": "New York",
+      "country": "United States",
+      "description": "A 1914 Colonial Revival tenement on the corner of Ridge and Rivington Streets on the Lower East Side: six storeys of brick and fire escapes on a narrow Manhattan street grid, photographed from across the intersection.",
+      "timezone": "America/New_York",
+      "photo": {
+        "title": "File:Apartment building at 106 Ridge Street, Lower East Side, Manhattan - 20200906.jpg",
+        "creator": "Andre Carrotflower",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apartment_building_at_106_Ridge_Street,_Lower_East_Side,_Manhattan_-_20200906.jpg",
+        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Apartment_building_at_106_Ridge_Street%2C_Lower_East_Side%2C_Manhattan_-_20200906.jpg",
+        "captureDate": "2020-09-06T12:22:00",
+        "retrieved": "2026-11-25",
+        "make": "Apple",
+        "model": "iPhone 6s Plus",
+        "focalLengthMm": 4.15,
+        "focalLength35mm": 29,
+        "transformations": [
+          "downscaled from 2586x2586 to 2000x2000 (Lanczos)",
+          "re-encoded JPEG q88",
+          "all EXIF/XMP metadata stripped"
+        ]
+      },
+      "camera": {
+        "lat": 40.718444,
+        "lon": -73.983689,
+        "headingRawDeg": 61.63079835910382,
+        "heading": 61.63,
+        "headingProvenance": "observed",
+        "pitch": 20,
+        "pitchProvenance": "assumed",
+        "hfov": 48,
+        "hfovProvenance": "assumed",
+        "notes": [
+          "Position and heading: Commons {{Location}} geotag with compass heading (accuracy unknown).",
+          "The published file is a 2586x2586 square crop of a 4:3 iPhone frame, so the EXIF focal length (29 mm eq.) does not give the FOV directly: full-frame hfov would be 61.6°, a centred crop without rescaling 41.9°; 48° assumes a 3024-px square crop. Calibrate.",
+          "Pitch 20° estimated by eye from pedestrians' head height (≈ 91% of the image height)."
+        ]
+      },
+      "validation": [],
+      "targetOsmId": "way/278284302",
+      "targetPointSource": "Nominatim geocode of '106 Ridge Street, New York' -> OSM way/278284302 (building=apartments)"
+    },
+    {
       "id": "amsterdam-herengracht",
       "title": "Herengracht 256",
       "city": "Amsterdam",
@@ -102,52 +148,6 @@
         2.3727865
       ],
       "targetPointSource": "Nominatim geocode of '21bis Boulevard Diderot, Paris' -> OSM node/1372868497"
-    },
-    {
-      "id": "nyc-ridge-street",
-      "title": "106 Ridge Street",
-      "city": "New York",
-      "country": "United States",
-      "description": "A 1914 Colonial Revival tenement on the corner of Ridge and Rivington Streets on the Lower East Side: six storeys of brick and fire escapes on a narrow Manhattan street grid, photographed from across the intersection.",
-      "timezone": "America/New_York",
-      "photo": {
-        "title": "File:Apartment building at 106 Ridge Street, Lower East Side, Manhattan - 20200906.jpg",
-        "creator": "Andre Carrotflower",
-        "license": "CC BY-SA 4.0",
-        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apartment_building_at_106_Ridge_Street,_Lower_East_Side,_Manhattan_-_20200906.jpg",
-        "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Apartment_building_at_106_Ridge_Street%2C_Lower_East_Side%2C_Manhattan_-_20200906.jpg",
-        "captureDate": "2020-09-06T12:22:00",
-        "retrieved": "2026-11-25",
-        "make": "Apple",
-        "model": "iPhone 6s Plus",
-        "focalLengthMm": 4.15,
-        "focalLength35mm": 29,
-        "transformations": [
-          "downscaled from 2586x2586 to 2000x2000 (Lanczos)",
-          "re-encoded JPEG q88",
-          "all EXIF/XMP metadata stripped"
-        ]
-      },
-      "camera": {
-        "lat": 40.718444,
-        "lon": -73.983689,
-        "headingRawDeg": 61.63079835910382,
-        "heading": 61.63,
-        "headingProvenance": "observed",
-        "pitch": 20,
-        "pitchProvenance": "assumed",
-        "hfov": 48,
-        "hfovProvenance": "assumed",
-        "notes": [
-          "Position and heading: Commons {{Location}} geotag with compass heading (accuracy unknown).",
-          "The published file is a 2586x2586 square crop of a 4:3 iPhone frame, so the EXIF focal length (29 mm eq.) does not give the FOV directly: full-frame hfov would be 61.6°, a centred crop without rescaling 41.9°; 48° assumes a 3024-px square crop. Calibrate.",
-          "Pitch 20° estimated by eye from pedestrians' head height (≈ 91% of the image height)."
-        ]
-      },
-      "validation": [],
-      "targetOsmId": "way/278284302",
-      "targetPointSource": "Nominatim geocode of '106 Ridge Street, New York' -> OSM way/278284302 (building=apartments)"
     },
     {
       "id": "sarajevo-obala-kulina-bana",

@@ -287,7 +287,7 @@ export default function Landing() {
         </div>
       </header>
 
-      <div className="max-w-[1120px] px-4 sm:px-8">
+      <div className="px-4 sm:px-8">
         <HowItWorks />
 
         <section aria-label="Roboflow" className="flex flex-col gap-1 border-t border-ink-700 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
